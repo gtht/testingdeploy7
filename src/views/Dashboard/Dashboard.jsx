@@ -48,7 +48,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Grid container>
-          <ItemGrid xs={12} sm={6} md={3}>
+          <ItemGrid xs={12} sm={12} md={3}>
             <StatsCard
               icon={ContentCopy}
               iconColor="orange"
