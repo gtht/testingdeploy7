@@ -12,7 +12,7 @@ import {
   ContentPaste,
   LibraryBooks,
   BubbleChart,
-  LocationOn,
+  Forum,
   Notifications
 } from "material-ui-icons";
 
@@ -54,9 +54,9 @@ const appRoutes = [
   },
   {
     path: "/maps",
-    sidebarName: "Maps",
-    navbarName: "Map",
-    icon: LocationOn,
+    sidebarName: "QnA",
+    navbarName: "QnA",
+    icon: Forum,
     component: Maps
   },
   {
