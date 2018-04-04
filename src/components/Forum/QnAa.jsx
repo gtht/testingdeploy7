@@ -6,7 +6,6 @@ class QnAa extends React.Component {
   
   render(){
     const { classes, onClose, selectedValue, test, ...other } = this.props;
-    alert(this.props.test);
     return (
       <div style= {{flex: 1, flexDirection: 'row'}}>
         <div style= {{flex: 0.7, float: 'left', left: 0, marginLeft: 15, width:'70%'}}>
