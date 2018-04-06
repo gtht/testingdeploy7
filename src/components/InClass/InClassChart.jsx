@@ -1,6 +1,7 @@
+/*
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles, Grid, Hidden, Button, Dialog, TextField, Paper, DialogTitle, DialogActions, DialogContent, DialogContentText } from "material-ui";
+import { withStyles, Grid, Hidden, Button, Dialog, TextField, Paper } from "material-ui";
 
 import { RegularCard, P, A, ItemGrid } from "components";
 
@@ -9,12 +10,6 @@ import {
   StatsCard,
   ChartCard
 } from "components";
-
-import {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart
-} from "variables/charts";
 
 import dashboardStyle from "variables/styles/dashboardStyle";
 import {
@@ -44,46 +39,6 @@ import {
   Legend
 } from "recharts";
 
-/*
-function Icons({ ...props }) {
-  return (
-    <Grid container>
-      <ItemGrid xs={12} sm={12} md={8}>
-            <ChartCard
-              chart={
-                <ChartistGraph
-                  className="ct-chart"
-                  data={dailySalesChart.data}
-                  type="Line"
-                  options={dailySalesChart.options}
-                  listener={dailySalesChart.animation}
-                />
-              }
-              chartColor="green"
-              title="Daily Sales"
-              text={
-                <span>
-                  <span>
-                    <ArrowUpward
-                    />{" "}
-                    55%
-                  </span>{" "}
-                  increase in today sales.
-                </span>
-              }
-              statIcon={AccessTime}
-              statText="updated 4 minutes ago"
-            />
-          <Button 
-            color="primary">
-            Create Assignment
-          </Button>
-      </ItemGrid>
-    </Grid>
-  );
-}
-*/
-
 var config = {
     apiKey: "AIzaSyDvF966Qymq1ktNm39fWqo8CY42GSA6UnQ",
     authDomain: "friendlychat-af4c8.firebaseapp.com",
@@ -103,7 +58,7 @@ data.on('value', snapshot => {
   snapshot.val();
 })
 
-class InClassChart extends React.Component {
+function InClassChart({ ...props }) {
   state = {
     value: 0,
     open: false
@@ -116,11 +71,6 @@ class InClassChart extends React.Component {
     this.setState({open: false})
   }
 
-  createAss() {
-    
-  }
-
-  render() {
     return (
       <Grid container>
         <ItemGrid xs={40} sm={40} md={40}>
@@ -157,74 +107,58 @@ class InClassChart extends React.Component {
             onClick = {this.handleOpen}
             color = "primary" 
           >
-            Create Assignment
+          Create Assignment
           </Button>
-
-          <Paper
-            height = '1000'
-            width = '1000'
-            margin = '5'
-            display = 'inline-block'
-          >
-            
-
+          <Grid container>
+            <ItemGrid xs={300} sm={300} md={300}>
             <Dialog
+              label="New Assignment"
               modal={true}
               open={this.state.open}
               autoScrollBodyContent = {true}
               onBackdropClick = {this.handleClose}
               //fullWidth={true}
-              maxWidth = 'lg'
+              maxWidth = 'md'
               withStyles = {false}
             >
-              <DialogTitle>
-                New Assignment
-              </DialogTitle>
-              
-              <DialogContent>
-                <DialogContentText>
-                  Key in the new Assignment name, and hit "Create".
-                </DialogContentText>
+            <Paper
+              height = '400'
+              width = '400'
+              margin = '20'
+              //display = 'inline-block'
+            >
+            
+            <p>Creating a new Assignment</p>
 
-                <p> </p>
-                  
-                  <TextField 
-                    label = "Assignment Name"
-                    required = 'true'
-                    fullWidth = 'true'
-                  />
-                  
-                <DialogActions>
-                  <Button
-                    primary={true}
-                    keyboardFocused={true}
-                    onClick={this.handleClose}
-                  >
-                  Create
-                  </Button>
-
-                  <Button
-                    primary={true}
-                    onClick={this.handleClose}
-                  >
-                  Cancel
-                  </Button>
-                </DialogActions>
-
-              </DialogContent>
+            <TextField 
+              label = "Assignment Name"
+            />
+            <br />
+            <p></p>
+            <Button
+              primary={true}
+              onClick={this.handleClose}
+            >
+            Cancel
+            </Button>
+            <Button
+              primary={true}
+              keyboardFocused={true}
+              onClick={this.handleClose}
+            >
+            Submit
+            </Button>
+            </Paper>
             </Dialog>
-          </Paper>
+              { this.state.counter }
+            </ItemGrid>
+            </Grid>
 
         </ItemGrid>
       </Grid>
     )
-  }
 }
 
-/*
-Icons.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-*/
 
-export default withStyles(iconsStyle)(InClassChart);
+export default withStyles(InClassChart);
+*/

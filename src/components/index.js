@@ -60,6 +60,12 @@ import SnackbarContent from "./Snackbar/SnackbarContent.jsx";
 import Table from "./Table/Table.jsx";
 
 // ##############################
+// // // InClass
+// #############################
+
+import InClassChart from "./InClass/InClassChart.jsx";
+
+// ##############################
 // // // Tasks
 // #############################
 
