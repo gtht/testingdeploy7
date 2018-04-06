@@ -5,7 +5,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import { withStyles } from "material-ui";
-import firebase from "firebase";
 
 import { Header, Footer, Sidebar } from "components";
 
@@ -15,6 +14,8 @@ import appStyle from "variables/styles/appStyle.jsx";
 
 import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/reactlogo.png";
+
+import firebase from 'firebase';
 
 const switchRoutes = (
   <Switch>
@@ -27,6 +28,19 @@ const switchRoutes = (
 );
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    var config = {
+      apiKey: "AIzaSyAydqEYilCSTJjOyVJ-_2UBiZTKfS3_11A",
+      authDomain: "reddit-clone-75cee.firebaseapp.com",
+      databaseURL: "https://reddit-clone-75cee.firebaseio.com",
+      projectId: "reddit-clone-75cee",
+      storageBucket: "reddit-clone-75cee.appspot.com",
+      messagingSenderId: "237782891735"
+    };
+  firebase.initializeApp(config);
+  }
+
   state = {
     mobileOpen: false
   };
@@ -68,7 +82,7 @@ class App extends React.Component {
       <div className={classes.wrapper}>
         <Sidebar
           routes={appRoutes}
-          logoText={"Creative Tim"}
+          logoText={"CLAssistant"}
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}
