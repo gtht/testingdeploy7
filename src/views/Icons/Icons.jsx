@@ -86,12 +86,12 @@ function Icons({ ...props }) {
 */
 
 var config = {
-    apiKey: "AIzaSyDvF966Qymq1ktNm39fWqo8CY42GSA6UnQ",
-    authDomain: "friendlychat-af4c8.firebaseapp.com",
-    databaseURL: "https://friendlychat-af4c8.firebaseio.com",
-    projectId: "friendlychat-af4c8",
-    storageBucket: "friendlychat-af4c8.appspot.com",
-    messagingSenderId: "919303787426"
+    apiKey: "AIzaSyC2n7VJ7--T2859rBpru7q0I2BDxu5omU4",
+    authDomain: "inclassexercises-241b5.firebaseapp.com",
+    databaseURL: "https://inclassexercises-241b5.firebaseio.com",
+    projectId: "inclassexercises-241b5",
+    storageBucket: "",
+    messagingSenderId: "1002580453239"
   };
 
 try {
@@ -114,9 +114,11 @@ class InClassChart extends React.Component {
   state = {
     value: 0,
     open: false,
-    assName: ''
+    assName: '',
+    number: 0
   }
   handleOpen = () => {
+    this.setState({assName: ''})
     this.setState({open: true})
 
   }
@@ -125,14 +127,24 @@ class InClassChart extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     this.setState({
       assName: e.target.value
     })
   }
 
-  createAss(assName) {
-    firebase.database().ref('Asses/').set({
-        name: assName
+  createAss(e) {
+
+    firebase.database().ref('asses/' + this.state.number + '/').set({
+        name: this.state.assName
+    })
+    // to close the dialog box after clicking create
+    this.setState({open: false});
+  }
+
+  submitAss(assName, uid) {
+    firebase.database().ref('asses/' + assName + '/').set({
+      uid: 'submitted'
     })
   }
 
@@ -156,7 +168,7 @@ class InClassChart extends React.Component {
             content={
               <Button
               // need to make the button post to a certain node in firebase
-                //onClick = {this.submitAss.bind(this)("ABCD")}
+                //onClick = {this.submitAss.bind(this)}
               >
                 Submit
               </Button>
@@ -234,7 +246,7 @@ class InClassChart extends React.Component {
                   <Button
                     primary={true}
                     keyboardFocused={true}
-                    onClick = {this.createAss.bind(this)(this.state.assName)}
+                    onClick = {this.createAss.bind(this)}
                   >
                   Create
                   </Button>
