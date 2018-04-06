@@ -40,10 +40,9 @@ class MessageBox extends Component {
   }
 
   handleSubmit(e){
-    e.preventDefault();
 
     if (this.state.title.length > 1 && this.state.desc.length > 1){
-      let dbCon = this.props.db.database().ref('/messages');
+      let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.selectedIndex+1)+'/messages');
       dbCon.push({
         title: trim(this.state.title),
         desc: trim(this.state.desc)

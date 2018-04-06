@@ -14,7 +14,7 @@ class AddLessonDialog extends React.Component {
     this.handleUpdate = this.handleUpdate.bind(this);
 
     this.state = {
-      name: ''
+      addLessonName: ''
     };
   }
 
@@ -32,20 +32,21 @@ class AddLessonDialog extends React.Component {
 
   handleChange(e){
       this.setState({
-        name: e.target.value
+        addLessonName: e.target.value
       });
   }
 
   handleSubmit(e){
     e.preventDefault();
-    if (this.state.name.length > 1){
-      let dbCon = this.props.db.database().ref('/lessons');
-      dbCon.push({
-          lecture_name: trim(this.state.name)
+    if (this.state.addLessonName.length > 1){
+      let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.nextIndex+1));
+      dbCon.set({
+          lecture_name: trim(this.state.addLessonName)
       });
 
       this.setState({
-        name: ''
+        addLessonName: '',
+        nextIndex: this.props.nextIndex+1
       });
 
       this.handleClose();
@@ -70,7 +71,7 @@ class AddLessonDialog extends React.Component {
             <TextField
               style={{width: '95%', margin: '5px'}}
               label="Insert new lesson name"
-              value= {this.state.name}
+              value= {this.state.addLessonName}
               onChange= {this.handleChange}
             />
             <Button color="primary" onClick={this.handleSubmit} fullWidth={true}>Submit</Button>

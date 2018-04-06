@@ -27,16 +27,17 @@ class LessonList extends Component {
     // ‘/messages.’ Messages are one of the nodes of firebase, and we are getting
     // all of its children as data.
     this.state  = {
-      lessons: [],
+      listOfLessons: [],
       openDialog: false,
-      selectedItem: null,
+      selectedLesson: null,
       selectedIndex: null,
-      openQnA: false
+      openQnA: false,
+      nextIndex: 0
     }
 
-    let app = this.props.db.database().ref('/lessons');
+    let app = this.props.db.database().ref('lessons');
     app.on('value', snapshot => {
-      this.getData(snapshot.val());
+      this.getLessonData(snapshot.val());
     });
   }
 
@@ -52,11 +53,15 @@ class LessonList extends Component {
   };
 
   handleMenuItemClick = (event, index, lesson) => {
-    this.setState({ selectedIndex: index, openQnA: true });
+    this.setState({ selectedIndex: index, openQnA: true, selectedLesson: lesson });
+    let msg = this.props.db.database().ref('lessons/lecture1/messages');
+    msg.on('value', snapshot => {
+      this.getMsgData(snapshot.val());
+    });
   };
 
   //retrieve data from Firebase
-  getData(values){
+  getLessonData(values){
     let messagesVal = values;   // this is an Object
     let lessons = _(messagesVal)
                       .keys()
@@ -68,18 +73,36 @@ class LessonList extends Component {
                       .value();
       //stores array of Objects into lessons state
       this.setState({
-        lessons: lessons
+        listOfLessons: lessons
       });
+      this.setState({
+        nextIndex: this.state.listOfLessons.length
+      });
+  }
+
+  getMsgData(values){
+    let messagesVal = values;   // this is an Object
+    let lessons = _(messagesVal)
+                      .keys()
+                      .map(messageKey => {
+                          let cloned = _.clone(messagesVal[messageKey]);
+                          cloned.key = messageKey;
+                          return cloned;
+                      })
+                      .value();
+    alert("MessageData="+lessons);
+      //stores array of Objects into lessons state
+
   }
   // Finally, iterate an array and put the value in Message component as a
   // property and Message component displays the messages
   render(){
-    let messageNodes = this.state.lessons.map((lesson, index) => {
+    let messageNodes = this.state.listOfLessons.map((lesson, index) => {
       return (
         <MenuItem
           key={lesson}
           selected={index === this.state.selectedIndex}
-          onClick={event => this.handleMenuItemClick(event, index)}
+          onClick={event => this.handleMenuItemClick(event, index, lesson)}
         >
           <Message message = {lesson.lecture_name} />
         </MenuItem>
@@ -89,7 +112,7 @@ class LessonList extends Component {
     const isLoggedIn = this.state.openQnA;
 
     const msg = isLoggedIn ? (
-        <div><QnA /></div>
+        <div><QnA db={firebase} selectedLesson={this.state.selectedLesson} selectedIndex={this.state.selectedIndex} /></div>
       ) : (
         <div>Pick a lesson to begin</div>
       );
@@ -105,6 +128,7 @@ class LessonList extends Component {
           </MenuList>
         </Paper>
         <AddLessonDialog
+          nextIndex={this.state.nextIndex}
           db={firebase}
           open={this.state.openDialog}
           onClose={this.handleClose}

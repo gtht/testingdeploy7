@@ -22,6 +22,7 @@
     "react-scripts": "1.0.17",
     "react-swipeable-views": "^0.12.12",
     "recharts": "^1.0.0-beta.10",
+    "trim": "0.0.1",
     "victory": "^0.25.6"
   },
   "scripts": {
