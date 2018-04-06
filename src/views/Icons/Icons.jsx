@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles, Grid, Hidden, Button, Dialog, TextField, Paper, DialogTitle, DialogActions, DialogContent, DialogContentText } from "material-ui";
+import { withStyles, Grid, Hidden, Button, Dialog, TextField, Paper, DialogTitle, 
+  DialogActions, DialogContent, DialogContentText, CardContent, CardActions, CardHeader, Card } from "material-ui";
 
 import { RegularCard, P, A, ItemGrid } from "components";
 
@@ -103,10 +104,17 @@ data.on('value', snapshot => {
   snapshot.val();
 })
 
+function writeUserData(name) {
+  firebase.database().ref('testCharts/').set({
+    username: name
+  });
+}
+
 class InClassChart extends React.Component {
   state = {
     value: 0,
-    open: false
+    open: false,
+    assName: ''
   }
   handleOpen = () => {
     this.setState({open: true})
@@ -116,14 +124,45 @@ class InClassChart extends React.Component {
     this.setState({open: false})
   }
 
-  createAss() {
-    
+  handleChange(e) {
+    this.setState({
+      assName: e.target.value
+    })
+  }
+
+  createAss(assName) {
+    firebase.database().ref('Asses/').set({
+        name: assName
+    })
+  }
+
+  constructor(props) {
+    super(props);
   }
 
   render() {
     return (
       <Grid container>
         <ItemGrid xs={40} sm={40} md={40}>
+          <Button
+              onClick = {this.handleOpen}
+              color = "rose" 
+            >
+              Create Assignment
+            </Button>
+            <RegularCard
+            headerColor = "green"
+            cardTitle = "Assignment A"
+            content={
+              <Button
+              // need to make the button post to a certain node in firebase
+                //onClick = {this.submitAss.bind(this)("ABCD")}
+              >
+                Submit
+              </Button>
+            }
+          />
+            
             <ChartCard
               db = {firebase}
               chart = {
@@ -138,7 +177,7 @@ class InClassChart extends React.Component {
                   <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
                 </LineChart>
               }
-              chartColor="green"
+              chartColor="orange"
               title="Assignment 1"
               text={
                 <span>
@@ -153,12 +192,7 @@ class InClassChart extends React.Component {
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
             />
-          <Button
-            onClick = {this.handleOpen}
-            color = "primary" 
-          >
-            Create Assignment
-          </Button>
+          
 
           <Paper
             height = '1000'
@@ -192,13 +226,15 @@ class InClassChart extends React.Component {
                     label = "Assignment Name"
                     required = 'true'
                     fullWidth = 'true'
+                    onChange = {this.handleChange.bind(this)}
+                    value = {this.state.assName}
                   />
                   
                 <DialogActions>
                   <Button
                     primary={true}
                     keyboardFocused={true}
-                    onClick={this.handleClose}
+                    onClick = {this.createAss.bind(this)(this.state.assName)}
                   >
                   Create
                   </Button>
