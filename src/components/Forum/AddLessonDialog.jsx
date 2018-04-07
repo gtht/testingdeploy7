@@ -10,24 +10,10 @@ class AddLessonDialog extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
 
     this.state = {
       addLessonName: ''
     };
-  }
-
-  handleRemove() {
-    return this.props.db.database().ref('items').child('ITEM_KEY').remove();
-  }
-
-  handleUpdate() {
-    var updates = {};
-    updates['/id'] = 1;
-    updates['/title'] = 'Apple';
-
-    return this.props.db.database().ref('items').child('ITEM_KEY').update(updates);
   }
 
   handleChange(e){
@@ -39,14 +25,13 @@ class AddLessonDialog extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     if (this.state.addLessonName.length > 1){
-      let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.nextIndex+1));
+      let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.nextLessonIndex+2));
       dbCon.set({
           lecture_name: trim(this.state.addLessonName)
       });
 
       this.setState({
-        addLessonName: '',
-        nextIndex: this.props.nextIndex+1
+        addLessonName: ''
       });
 
       this.handleClose();
@@ -63,6 +48,7 @@ class AddLessonDialog extends React.Component {
 
   render() {
     const { classes, onClose, selectedValue, test, ...other } = this.props;
+
     return (
       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
         <DialogTitle>Add New Lesson</DialogTitle>
