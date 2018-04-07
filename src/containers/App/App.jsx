@@ -30,15 +30,16 @@ const switchRoutes = (
 class App extends React.Component {
   constructor(props){
     super(props);
+
     var config = {
-      apiKey: "AIzaSyAydqEYilCSTJjOyVJ-_2UBiZTKfS3_11A",
-      authDomain: "reddit-clone-75cee.firebaseapp.com",
-      databaseURL: "https://reddit-clone-75cee.firebaseio.com",
-      projectId: "reddit-clone-75cee",
-      storageBucket: "reddit-clone-75cee.appspot.com",
-      messagingSenderId: "237782891735"
+      apiKey: "AIzaSyCHaMYnbjPtuwvWi9eFA35WEIrLmYRLfTI",
+      authDomain: "bt3103-project.firebaseapp.com",
+      databaseURL: "https://bt3103-project.firebaseio.com",
+      projectId: "bt3103-project",
+      storageBucket: "bt3103-project.appspot.com",
+      messagingSenderId: "64444378799"
     };
-  firebase.initializeApp(config);
+    firebase.initializeApp(config);
   }
 
   state = {

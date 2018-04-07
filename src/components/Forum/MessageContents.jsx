@@ -11,9 +11,9 @@ import Message from './Message';
 class MessageContents extends Component {
   render(){
     return (
-      <div>
-      
-        <IconButton>
+      <div style={{flex:1, flexDirection: 'column'}}>
+        <div>contentssssss</div>
+        <IconButton style={{flex: 0.1, right: 0}}>
           <Delete />
         </IconButton>
       </div>

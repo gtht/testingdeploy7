@@ -89,6 +89,7 @@ import MessageList from "./Forum/MessageList.jsx";
 import MessageBox from "./Forum/MessageBox.jsx";
 import AddLessonDialog from "./Forum/AddLessonDialog.jsx";
 import QnA from "./Forum/QnAa.jsx";
+import MessageContents from "./Forum/MessageContents.jsx";
 
 export {
   // Cards
@@ -134,5 +135,6 @@ export {
   MessageList,
   MessageBox,
   AddLessonDialog,
-  QnA
+  QnA,
+  MessageContents
 };

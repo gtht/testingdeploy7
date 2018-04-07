@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './Message'
+import wordwrap from 'wordwrap';
 
 import { Paper,
           MenuItem,
@@ -59,7 +60,7 @@ class LessonList extends React.Component {
     });
 
     const isOpen = this.state.openQnA;
-
+    // alert("from lessonlist: index="+this.state.selectedIndex);
     const msg = isOpen ? (
         <div>
           <QnA

@@ -37,6 +37,7 @@ class QnAa extends React.Component {
 
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
+
     // alert("from QnA:"+this.state.listOfMessages);
 
     return (

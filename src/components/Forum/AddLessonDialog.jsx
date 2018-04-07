@@ -25,7 +25,7 @@ class AddLessonDialog extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     if (this.state.addLessonName.length > 1){
-      let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.nextLessonIndex+2));
+      let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.nextLessonIndex+1));
       dbCon.set({
           lecture_name: trim(this.state.addLessonName)
       });
