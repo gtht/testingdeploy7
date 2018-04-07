@@ -44,7 +44,8 @@ class MessageBox extends Component {
       let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.selectedIndex+1)+'/messages');
       dbCon.push({
         title: trim(this.state.title),
-        desc: trim(this.state.desc)
+        desc: trim(this.state.desc),
+        solved: false
       });
 
       this.showNotification("bc");

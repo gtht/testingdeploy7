@@ -1,28 +1,34 @@
 import React, {Component} from 'react';
 import Message from './Message';
+import firebase from 'firebase';
 
-import { List, ListItemText } from 'material-ui';
+import { List, ListItemText, FormControlLabel, Switch } from 'material-ui';
 import { Muted } from "components";
 
 class MessageList extends Component {
   constructor(props){
     super(props);
-
-    this.state  = {
-      messagePage: this.props.selectedIndex,
-      emptyMsg: true
-    }
   }
+
+  handleUpvote = (post, key) => {
+    firebase.database().ref('lessons/lecture'+(this.props.selectedIndex+1)+'/messages/'+key).set({
+      title: post.title,
+      desc: post.desc,
+      solved: !post.solved,
+    });
+    // alert("changed");
+}
 
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
-    // alert("from messagelist:"+this.props.listOfMessages);
+    // alert("from messagelist:"+this.props.selectedIndex);
     let messageNodes = this.props.listOfMessages.map((message) => {
       // alert(message.title);
       return (
-        <div className="card">
+        <div className="card" style={{flex: 1, flexDirectrion: 'row'}}>
           <div className="card-content"
             style= {{
+              flex: 0.85, float: 'left', width:'95%',
               padding: '20px 15px',
               lineHeight: '20px',
               position: "relative",
@@ -36,6 +42,18 @@ class MessageList extends Component {
               primary= {<p><b><Message message = {message.title} /></b></p>}
               secondary= {<Muted><Message message = {message.desc} /></Muted>}
             />
+            <FormControlLabel
+            style={{flex: 0.2, float: 'right', width:'20%'}}
+            control={
+              <Switch
+                checked={message.solved}
+                onChange={this.handleUpvote.bind(this, message, message.key)}
+                value={message.key}
+                color="primary"
+              />
+            }
+            label="Resolved"
+          />
           </div>
         </div>
       )
