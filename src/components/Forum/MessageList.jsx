@@ -21,7 +21,7 @@ class MessageList extends Component {
 
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
-    // alert("from messagelist:"+this.props.selectedIndex);
+    // alert("from messagelist:"+this.props.listOfMessages);
     let messageNodes = this.props.listOfMessages.map((message) => {
       // alert(message.title);
       return (

@@ -1,13 +1,10 @@
 import React from 'react';
 import Message from './Message'
-import wordwrap from 'wordwrap';
 
-import { Paper,
-          MenuItem,
-          ListSubheader,
-          MenuList } from 'material-ui';
+import { Paper, MenuItem, ListSubheader, MenuList, Grid } from 'material-ui';
+import { ContentCopy, Warning, Chat, ChatBubble, Comment } from "material-ui-icons";
 
-import { AddLessonDialog, QnA } from "components";
+import { AddLessonDialog, QnA, StatsCard, ItemGrid } from "components";
 
 class LessonList extends React.Component {
   constructor(props){
@@ -26,7 +23,7 @@ class LessonList extends React.Component {
     }
   }
 
-  //for Dialog
+  // for Dialog
   handleClickOpen = () => {
     this.setState({
       openDialog: true
@@ -36,15 +33,19 @@ class LessonList extends React.Component {
   handleClose = value => {
     this.setState({ openDialog: false });
   };
+  // end of Dialog methods
 
+  // for Lessons sidebar
   handleMenuItemClick = (event, index, lesson) => {
     this.setState({ selectedIndex: index, openQnA: false, selectedLesson: lesson }, this.myFunction);
   };
+  // end of sidebar method
 
   // refresh QnA component
   myFunction = () => {
     this.setState({ openQnA: true });
   }
+  // end of QnA method
 
   render(){
     let messageNodes = this.props.listOfLessons.map((lesson, index) => {
@@ -59,13 +60,13 @@ class LessonList extends React.Component {
       )
     });
 
+    // to show & hide MessageList & MessageBox
     const isOpen = this.state.openQnA;
-    // alert("from lessonlist: index="+this.state.selectedIndex);
+
     const msg = isOpen ? (
         <div>
           <QnA
             db={this.props.db}
-            listOfMessages={this.props.listOfLessons}
             selectedLesson={this.state.selectedLesson}
             selectedIndex={this.state.selectedIndex}
           />
@@ -73,32 +74,46 @@ class LessonList extends React.Component {
       ) : (
         <div>Pick a lesson to begin</div>
       );
+    // end of show/hide Messages method
 
     return (
-      <div style= {{flex: 1, flexDirection: 'row'}}>
-        <div style= {{flex: 0.2, float: 'left', left: 0, marginLeft: 15, width:'20%'}}>
-        <Paper style={{padding: '5px'}}>
-        <ListSubheader>Lessons:</ListSubheader>
-          <MenuList>
-            {messageNodes}
-            <MenuItem onClick={this.handleClickOpen}>+Add New Lesson</MenuItem>
-          </MenuList>
-        </Paper>
-        <AddLessonDialog
-          nextLessonIndex={this.props.nextLessonIndex}
-          db={this.props.db}
-          open={this.state.openDialog}
-          onClose={this.handleClose}
-        />
-        </div>
-        <div
-          style= {{flex: 0.8, right: 0,
-                      marginRight: 15,
-                      marginTop: 10,
-                      width: '75%',
-                      float: 'right'}}
-        >
-          {msg}
+      <div>
+        <div style= {{flex: 1, flexDirection: 'row'}}>
+          <div style= {{flex: 0.2, float: 'left', left: 0, marginLeft: 15, width:'20%'}}>
+          <Paper style={{padding: '5px'}}>
+          <ListSubheader>Lessons:</ListSubheader>
+            <MenuList>
+              {messageNodes}
+              <MenuItem onClick={this.handleClickOpen}>+Add New Lesson</MenuItem>
+            </MenuList>
+          </Paper>
+          <AddLessonDialog
+            nextLessonIndex={this.props.nextLessonIndex}
+            db={this.props.db}
+            open={this.state.openDialog}
+            onClose={this.handleClose}
+          />
+          <div>
+              <StatsCard
+                icon={ChatBubble}
+                iconColor="blue"
+                title={"Total"+" posts"}
+                description= {this.props.listOfLessons.length}
+                small="Lessons"
+                statIcon={Comment}
+                statIconColor="info"
+                statText="average posts per lesson:"
+              />
+          </div>
+          </div>
+          <div style= {{flex: 0.8, right: 0,
+                        marginRight: 15,
+                        marginTop: 10,
+                        width: '75%',
+                        float: 'right'}}
+          >
+            {msg}
+          </div>
         </div>
 
       </div>
