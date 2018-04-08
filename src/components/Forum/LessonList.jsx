@@ -1,8 +1,9 @@
 import React from 'react';
 import Message from './Message'
+import _ from 'lodash';
 
 import { Paper, MenuItem, ListSubheader, MenuList, Grid } from 'material-ui';
-import { ContentCopy, Warning, Chat, ChatBubble, Comment } from "material-ui-icons";
+import { Feedback, Chat, ChatBubble, Comment, Class } from "material-ui-icons";
 
 import { AddLessonDialog, QnA, StatsCard, ItemGrid } from "components";
 
@@ -14,13 +15,18 @@ class LessonList extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleMenuItemClick = this.handleMenuItemClick.bind(this);
     this.myFunction = this.myFunction.bind(this);
+    // this.myFunction4 = this.myFunction4.bind(this);
+    //
+    // this.myFunction5 = this.myFunction5.bind(this);
 
     this.state  = {
       openDialog: false,
       selectedLesson: null,
       selectedIndex: null,
       openQnA: false,
+      msgCount: 0
     }
+
   }
 
   // for Dialog
@@ -47,8 +53,21 @@ class LessonList extends React.Component {
   }
   // end of QnA method
 
+  //
+  // myFunction4 = () => {
+  //   alert("test2");
+  //
+  //   this.setState({msgCount: total}, this.myFunction5);
+  // }
+  //
+  // myFunction5 = () => {
+  //   alert(this.state.msgCount);
+  // }
+
   render(){
+    // alert("test1");
     let messageNodes = this.props.listOfLessons.map((lesson, index) => {
+
       return (
         <MenuItem
           key={lesson}
@@ -59,7 +78,25 @@ class LessonList extends React.Component {
         </MenuItem>
       )
     });
-
+    let highestCount = 0;
+    let mostPost = "";
+    let total = 0;
+    if (this.props.listOfLessons.length > 0){
+      // const totalCounter = 0;
+      for (var i=0; i<this.props.listOfLessons.length; i++){
+        // alert("lessonlist"+ this.props.listOfLessons[i].lecture_name);
+        var counter = 0; // length of messages for one lesson
+        for (var key in this.props.listOfLessons[i].messages){
+          // alert(key);
+          counter++;
+        }
+        if (counter>highestCount){highestCount = counter; mostPost = this.props.listOfLessons[i].lecture_name;}
+        // alert("counter="+counter);
+        total = total + counter;
+      }
+      // alert("total="+total);
+    }
+    // const avg = total/this.props.listOfLessons
     // to show & hide MessageList & MessageBox
     const isOpen = this.state.openQnA;
 
@@ -93,16 +130,26 @@ class LessonList extends React.Component {
             open={this.state.openDialog}
             onClose={this.handleClose}
           />
-          <div>
+          <div style={{marginTop: '10px'}}>
               <StatsCard
-                icon={ChatBubble}
-                iconColor="blue"
-                title={"Total"+" posts"}
+                icon={Class}
+                iconColor="green"
+                title= "Total of"
                 description= {this.props.listOfLessons.length}
                 small="Lessons"
+                statIcon={Feedback}
+                statIconColor="grey"
+                statText= {"'"+mostPost+"' has the highest no. of posts"}
+              />
+              <StatsCard
+                icon={ChatBubble}
+                iconColor="orange"
+                title= "Total of"
+                description= {total}
+                small= {"Posts Submitted"}
                 statIcon={Comment}
-                statIconColor="info"
-                statText="average posts per lesson:"
+                statIconColor="grey"
+                statText= {(parseFloat(total/this.props.listOfLessons.length).toFixed(2))+ " average posts per lesson"}
               />
           </div>
           </div>

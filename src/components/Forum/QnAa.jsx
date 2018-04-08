@@ -39,7 +39,6 @@ class QnAa extends React.Component {
     myFunction2 = () => {
       var titles = [];
       var dict = [];
-      var array1 = [1, 4, 9, 16];
       this.state.listOfMessages.map((message) => {
         var title = message.title;
         var words = title.split(" ");
