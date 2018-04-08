@@ -104,7 +104,7 @@ const purpleCardHeader = {
 };
 
 const cardActions = {
-  margin: "0 20px 10px",
+  margin: "0 10px 10px",
   paddingTop: "10px",
   borderTop: "1px solid #eeeeee",
   height: "auto",

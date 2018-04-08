@@ -31,14 +31,17 @@ class App extends React.Component {
   constructor(props){
     super(props);
     var config = {
-      apiKey: "AIzaSyAydqEYilCSTJjOyVJ-_2UBiZTKfS3_11A",
-      authDomain: "reddit-clone-75cee.firebaseapp.com",
-      databaseURL: "https://reddit-clone-75cee.firebaseio.com",
-      projectId: "reddit-clone-75cee",
-      storageBucket: "reddit-clone-75cee.appspot.com",
-      messagingSenderId: "237782891735"
+      apiKey: "AIzaSyDvF966Qymq1ktNm39fWqo8CY42GSA6UnQ",
+      authDomain: "friendlychat-af4c8.firebaseapp.com",
+      databaseURL: "https://friendlychat-af4c8.firebaseio.com",
+      projectId: "friendlychat-af4c8",
+      storageBucket: "friendlychat-af4c8.appspot.com",
+      messagingSenderId: "919303787426"
     };
-  firebase.initializeApp(config);
+
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
   }
 
   state = {
@@ -58,22 +61,6 @@ class App extends React.Component {
   }
   componentDidUpdate() {
     this.refs.mainPanel.scrollTop = 0;
-  }
-
-  constructor(props) {
-    super(props);
-    var config = {
-      apiKey: "AIzaSyDvF966Qymq1ktNm39fWqo8CY42GSA6UnQ",
-      authDomain: "friendlychat-af4c8.firebaseapp.com",
-      databaseURL: "https://friendlychat-af4c8.firebaseio.com",
-      projectId: "friendlychat-af4c8",
-      storageBucket: "friendlychat-af4c8.appspot.com",
-      messagingSenderId: "919303787426"
-    };
-
-    try {
-      firebase.initializeApp(config);
-    } catch (error) {}
   }
 
   render() {

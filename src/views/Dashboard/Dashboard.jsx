@@ -31,6 +31,18 @@ import {
   completedTasksChart
 } from "variables/charts";
 
+import {
+  PieChart,
+  Pie,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from "recharts";
+
 import dashboardStyle from "variables/styles/dashboardStyle";
 
 class Dashboard extends React.Component {
@@ -48,137 +60,119 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Grid container>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={ContentCopy}
-              iconColor="orange"
-              title="Used Space"
-              description="49/50"
-              small="GB"
-              statIcon={Warning}
-              statIconColor="danger"
-              statLink={{ text: "Get More Space...", href: "#pablo" }}
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={Store}
-              iconColor="green"
-              title="Revenue"
-              description="$34,245"
-              statIcon={DateRange}
-              statText="Last 24 Hours"
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={InfoOutline}
-              iconColor="red"
-              title="Fixed Issues"
-              description="75"
-              statIcon={LocalOffer}
-              statText="Tracked from Github"
-            />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={6} md={3}>
-            <StatsCard
-              icon={Accessibility}
-              iconColor="blue"
-              title="Followers"
-              description="+245"
-              statIcon={Update}
-              statText="Just Updated"
-            />
-          </ItemGrid>
-        </Grid>
-        <Grid container>
-          <ItemGrid xs={12} sm={12} md={4}>
-            <ChartCard
-              chart={
-                <ChartistGraph
-                  className="ct-chart"
-                  data={dailySalesChart.data}
-                  type="Line"
-                  options={dailySalesChart.options}
-                  listener={dailySalesChart.animation}
-                />
+          <ItemGrid xs={100} sm={100} md={10}>
+            <ChartCard 
+              chart = {
+                <LineChart width={700} height={250} data={this.props.asses}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  </LineChart>
               }
               chartColor="green"
-              title="Daily Sales"
-              text={
-                <span>
-                  <span className={this.props.classes.successText}>
-                    <ArrowUpward
-                      className={this.props.classes.upArrowCardCategory}
-                    />{" "}
-                    55%
-                  </span>{" "}
-                  increase in today sales.
-                </span>
-              }
+              title="Line Chart 1"
+              text={"Some text here"}
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
             />
           </ItemGrid>
-          <ItemGrid xs={12} sm={12} md={4}>
-            <ChartCard
-              chart={
-                <ChartistGraph
-                  className="ct-chart"
-                  data={emailsSubscriptionChart.data}
-                  type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
+          <ItemGrid xs={8} sm={8} md={5}>
+            <RegularCard
+              headerColor="orange"
+              cardTitle="Table 2"
+              cardSubtitle="Assignment that took longest to complete at the top"
+              content={
+                <Table
+                  tableHeaderColor="warning"
+                  tableHead={["Assignment Name", "Time Taken to Complete"]}
+                  tableData={[
+                    ["AWS Lambda 2", "Incomplete"],
+                    ["Charting Tutorial", "Incomplete"],
+                    ["AWS Lambda 1", "6h 43mins"]
+                  ]}
                 />
               }
-              chartColor="orange"
-              title="Email Subscriptions"
-              text="Last Campaign Performance"
-              statIcon={AccessTime}
-              statText="campaign sent 2 days ago"
             />
           </ItemGrid>
-          <ItemGrid xs={12} sm={12} md={4}>
-            <ChartCard
-              chart={
-                <ChartistGraph
-                  className="ct-chart"
-                  data={completedTasksChart.data}
-                  type="Line"
-                  options={completedTasksChart.options}
-                  listener={completedTasksChart.animation}
+          <ItemGrid xs={8} sm={8} md={5}>
+            <RegularCard
+              headerColor="orange"
+              cardTitle="Table 2"
+              cardSubtitle="Assignment that took longest to complete at the top"
+              content={
+                <Table
+                  tableHeaderColor="warning"
+                  tableHead={["Assignment Name", "Time Taken to Complete"]}
+                  tableData={[
+                    ["AWS Lambda 2", "Incomplete"],
+                    ["Charting Tutorial", "Incomplete"],
+                    ["AWS Lambda 1", "6h 43mins"]
+                  ]}
                 />
               }
-              chartColor="red"
-              title="Completed Tasks"
-              text="Last Campaign Performance"
-              statIcon={AccessTime}
-              statText="campaign sent 2 days ago"
             />
           </ItemGrid>
         </Grid>
         <Grid container>
-          <ItemGrid xs={12} sm={12} md={6}>
-            <TasksCard />
-          </ItemGrid>
-          <ItemGrid xs={12} sm={12} md={6}>
+          <ItemGrid xs={100} sm={100} md={10}>
+            <ChartCard 
+              chart = {
+                <LineChart width={350} height={300} data={this.props.asses}
+                    margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  </LineChart>
+              }
+              chartColor="green"
+              title="Line Chart 1"
+              text={"Some text here"}
+              statIcon={AccessTime}
+              statText="updated 4 minutes ago"
+            />
             <RegularCard
               headerColor="orange"
-              cardTitle="Employees Stats"
-              cardSubtitle="New employees on 15th September, 2016"
+              cardTitle="Table 2"
+              cardSubtitle="Assignment that took longest to complete at the top"
               content={
                 <Table
                   tableHeaderColor="warning"
-                  tableHead={["ID", "Name", "Salary", "Country"]}
+                  tableHead={["Assignment Name", "Time Taken to Complete", "Relevant Concepts"]}
                   tableData={[
-                    ["1", "Dakota Rice", "$36,738", "Niger"],
-                    ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                    ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                    ["4", "Philip Chaney", "$38,735", "Korea, South"]
+                    ["AWS Lambda 2", "Incomplete", "AWS Lambda, API Gateway, Python"],
+                    ["Charting Tutorial", "Incomplete", "Recharts, React, JavaScript"],
+                    ["AWS Lambda 1", "6h 43mins", "AWS Lambda, API Gateway, Python"]
                   ]}
                 />
               }
+            />
+            <ChartCard 
+              chart = {
+                <LineChart width={350} height={300} data={this.props.asses}
+                    margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  </LineChart>
+              }
+              chartColor="green"
+              title="Line Chart 1"
+              text={"Some text here"}
+              statIcon={AccessTime}
+              statText="updated 4 minutes ago"
             />
           </ItemGrid>
         </Grid>

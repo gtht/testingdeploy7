@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles, Grid, Hidden, Button, Dialog, TextField, Paper, DialogTitle, 
-  DialogActions, DialogContent, DialogContentText, CardContent, CardActions, CardHeader, Card } from "material-ui";
+  DialogActions, DialogContent, DialogContentText, CardContent, CardActions, 
+  CardHeader, Card, MenuItem } from "material-ui";
 
 import { RegularCard, P, A, ItemGrid } from "components";
 
@@ -45,6 +46,7 @@ import {
   Legend
 } from "recharts";
 
+import _ from "lodash";
 /*
 function Icons({ ...props }) {
   return (
@@ -85,6 +87,8 @@ function Icons({ ...props }) {
 }
 */
 
+
+
 var config = {
     apiKey: "AIzaSyC2n7VJ7--T2859rBpru7q0I2BDxu5omU4",
     authDomain: "inclassexercises-241b5.firebaseapp.com",
@@ -94,20 +98,8 @@ var config = {
     messagingSenderId: "1002580453239"
   };
 
-try {
-  firebase.initializeApp(config);
-} catch (error) {}
-
-var db = firebase.database();
-let data = db.ref('testCharts');
-data.on('value', snapshot => {
-  snapshot.val();
-})
-
-function writeUserData(name) {
-  firebase.database().ref('testCharts/').set({
-    username: name
-  });
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
 }
 
 class InClassChart extends React.Component {
@@ -115,8 +107,20 @@ class InClassChart extends React.Component {
     value: 0,
     open: false,
     assName: '',
+    allAsses: [],
     number: 0
   }
+
+  constructor(props) {
+    super(props);
+
+    var db = firebase.database();
+    let data = db.ref('asses');
+    data.on('value', snapshot => {
+      this.getAssData(snapshot.val());
+    })
+  }
+  
   handleOpen = () => {
     this.setState({assName: ''})
     this.setState({open: true})
@@ -134,77 +138,108 @@ class InClassChart extends React.Component {
   }
 
   createAss(e) {
-
-    firebase.database().ref('asses/' + this.state.number + '/').set({
+    firebase.database().ref('asses/' + this.state.assName + '/').set({
         name: this.state.assName
     })
     // to close the dialog box after clicking create
     this.setState({open: false});
+    //this.setState({number: this.state.number + 1})
+    let newAss = firebase.database().ref('asses');
+    newAss.on('value', snapshot => {
+      this.getAssData(snapshot.val());
+    });
   }
 
-  submitAss(assName, uid) {
-    firebase.database().ref('asses/' + assName + '/').set({
-      uid: 'submitted'
+  ///////// TODO: REDO SUBMITASS ////////////////
+  submitAss(assName) {
+    this.setState({
+      number: this.state.number + 1
+    })
+    firebase.database().ref('asses/' + assName + '/submissions' + '/' + this.state.number + '/').set({
+      status: 'submitted'
     })
   }
 
-  constructor(props) {
-    super(props);
-  }
+  getAssData(values){
+    let assVal = values;   // this is an Object
+    let asses = _(assVal)
+                      .keys()
+                      .map(assKey => {
+                          let cloned = _.clone(assVal[assKey]);
+                          cloned.key = assKey;
+                          return cloned;
+                      })
+                      .value();
+      //stores array of Objects into lessons state
+      this.setState({
+        allAsses: asses
+      });
+      //this.setState({
+        //nextIndex: this.state.listOfLessons.length
+      //});
+  } 
 
   render() {
+
+    // this is the part that creates the thing to pop up everytime we create a new ass
+    let messageNodes = this.state.allAsses.map((ass, index) => {
+      return (
+        // create Grid here jic wanna add more items to return
+        <Grid popup>
+          <RegularCard
+            headerColor = "orange"
+            // because the key is name, so we use ass.name to reflect the name of the ass
+            cardTitle = {ass.name}
+            content = {
+              <Grid con>
+                <Button
+                size = 'small'
+                variant = 'fab'
+                onClick = {this.submitAss.bind(this)}
+                >
+                  Submit
+                </Button>
+                <ChartCard
+                  db = {firebase}
+                  chart = {
+                    <LineChart width={730} height={250} data={this.props.asses}
+                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                    </LineChart>
+                  }
+                  chartColor="yellow"
+                  title={ass.name}
+                  statIcon={InfoOutline}
+                  statText="See how many students are done with this assignment"
+                />
+              </Grid>
+            }
+          >
+          </RegularCard>
+        </Grid>
+      )
+    })
+
     return (
       <Grid container>
         <ItemGrid xs={40} sm={40} md={40}>
           <Button
+              size = 'large'
+              fullWidth = 'true'
+              variant = 'raised'
               onClick = {this.handleOpen}
-              color = "rose" 
+              color = "secondary" 
             >
               Create Assignment
             </Button>
-            <RegularCard
-            headerColor = "green"
-            cardTitle = "Assignment A"
-            content={
-              <Button
-              // need to make the button post to a certain node in firebase
-                //onClick = {this.submitAss.bind(this)}
-              >
-                Submit
-              </Button>
-            }
-          />
             
-            <ChartCard
-              db = {firebase}
-              chart = {
-                <LineChart width={730} height={250} data={this.props.testCharts}
-                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                </LineChart>
-              }
-              chartColor="orange"
-              title="Assignment 1"
-              text={
-                <span>
-                  <span>
-                    <ArrowUpward
-                    />{" "}
-                    55%
-                  </span>{" "}
-                  increase in today sales.
-                </span>
-              }
-              statIcon={AccessTime}
-              statText="updated 4 minutes ago"
-            />
-          
+            {messageNodes}
 
           <Paper
             height = '1000'
