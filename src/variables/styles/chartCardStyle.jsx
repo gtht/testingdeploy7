@@ -11,6 +11,7 @@ import {
   redCardHeader,
   blueCardHeader,
   purpleCardHeader,
+  yellowCardHeader,
   cardActions,
   grayColor,
   warningColor,
@@ -34,6 +35,7 @@ const chartCardStyle = {
   redCardHeader,
   blueCardHeader,
   purpleCardHeader,
+  yellowCardHeader,
   cardContent: {
     padding: "10px 15px"
   },

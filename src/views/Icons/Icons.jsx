@@ -91,24 +91,7 @@ function Icons({ ...props }) {
 }
 */
 
-<<<<<<< HEAD
 
-
-var config = {
-    apiKey: "AIzaSyD8jctfQu1S_OXFL-ZhSc_yfTfmOLYNl0Q",
-    authDomain: "bt3103week10.firebaseapp.com",
-    databaseURL: "https://bt3103week10.firebaseio.com",
-    projectId: "bt3103week10",
-    storageBucket: "bt3103week10.appspot.com",
-    messagingSenderId: "968052591654"
-  };
-
-if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-}
-
-=======
->>>>>>> 6aeb78b941af068670a6e8dcc7a15dc6e69f7811
 class InClassChart extends React.Component {
   state = {
     value: 0,

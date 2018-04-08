@@ -317,12 +317,12 @@ class Dashboard extends React.Component {
 
             <ChartCard
               chart={
-                <ScatterChart width={1000} height={400} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
+                <ScatterChart width={800} height={400} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
            
             <CartesianGrid />
             <XAxis  dataKey={'x'} type="number" name='Day' 
                 label={
-                <AxisLabel axisType="xAxis" width={1000} height={385}>
+                <AxisLabel axisType="xAxis" width={800} height={385}>
                   {"Day of the Week"}
                 </AxisLabel>
                   }
@@ -341,7 +341,7 @@ class Dashboard extends React.Component {
           </ScatterChart>
               
               }
-              chartColor="blue"
+              chartColor="yellow"
               title="Category of Student's Time Commitment on Code Combat"
               text={
                 <span>
@@ -365,7 +365,7 @@ class Dashboard extends React.Component {
           <ItemGrid xs={12} sm={12} md={4}>
             <ChartCard
               chart={
-                <PieChart width={300} height={300}>
+                <PieChart width={250} height={300}>
                   <Pie 
                     activeIndex={this.state.activeIndex}
                     activeShape={renderActiveShape} 
@@ -403,7 +403,7 @@ class Dashboard extends React.Component {
                <ItemGrid xs={12} sm={12} md={2}>   
                   <StatsCard
                   icon={ContentCopy}
-                  iconColor="green"
+                  iconColor="purple"
                   title="Current Week's AvgTime Spent"
                   description="95"
                   small="mins"
@@ -417,12 +417,12 @@ class Dashboard extends React.Component {
                 
                <ChartCard
                       chart={
-                         <BarChart width={500} height={300} data={this.state.listavgDailyTimeSpent}>
+                         <BarChart width={400} height={300} data={this.state.listavgDailyTimeSpent}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="Weekday" />
                     <YAxis 
                         label={
-                            <AxisLabel axisType="yAxis" width={800} height={250}>
+                            <AxisLabel axisType="yAxis" width={400} height={250}>
                               {"Play Time (mins)"}
                             </AxisLabel>
                               }
@@ -458,7 +458,7 @@ class Dashboard extends React.Component {
          <ItemGrid xs={12} sm={12} md={2}>   
                   <StatsCard
                   icon={ContentCopy}
-                  iconColor="orange"
+                  iconColor="blue"
                   title="Current Week's Total Levels Completed"
                   description="1728"
                   small="levels"
@@ -471,12 +471,12 @@ class Dashboard extends React.Component {
             <ItemGrid xs={12} sm={12} md={5}>
                  <ChartCard
               chart={
-                <BarChart width={375} height={300} data={this.state.listdailyNumberOfLevelCompleted}>
+                <BarChart width={340} height={300} data={this.state.listdailyNumberOfLevelCompleted}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="Weekday" />
                     <YAxis 
                        label={
-                            <AxisLabel axisType="yAxis" width={800} height={250}>
+                            <AxisLabel axisType="yAxis" width={340} height={250}>
                               {"Number of Levels Completed"}
                             </AxisLabel>
                               }
@@ -488,7 +488,7 @@ class Dashboard extends React.Component {
                   </BarChart>
               
               }
-              chartColor="orange"
+              chartColor="yellow"
               title="Daily Total Levels Completed"
               text={
                 <span>
@@ -512,12 +512,12 @@ class Dashboard extends React.Component {
            <ItemGrid xs={12} sm={12} md={5}>
                  <ChartCard
               chart={
-                <BarChart width={375} height={300} data={this.state.listMaxDict}>
+                <BarChart width={340} height={300} data={this.state.listMaxDict}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" angle={-90} textAnchor="end" />
                     <YAxis 
                       label={
-                            <AxisLabel axisType="yAxis" width={800} height={250}>
+                            <AxisLabel axisType="yAxis" width={340} height={250}>
                               {"Play Time (mins)"}
                             </AxisLabel>
                               }
@@ -529,7 +529,7 @@ class Dashboard extends React.Component {
                   </BarChart>
               
               }
-              chartColor="blue"
+              chartColor="orange"
               title="Average Playtime for 10 Most Popular Levels for the Week "
               text={
                 <span>
