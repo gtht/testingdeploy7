@@ -1,12 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-<<<<<<< HEAD
 import { withStyles, Grid, Hidden, Button, Dialog, TextField, Paper, DialogTitle,
   DialogActions, DialogContent, DialogContentText, CardContent, CardActions,
-=======
-import { withStyles, Grid, Hidden, Button, Dialog, TextField, Paper, DialogTitle, 
-  DialogActions, DialogContent, DialogContentText, CardContent, CardActions, 
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
   CardHeader, Card, MenuItem } from "material-ui";
 
 import { RegularCard, P, A, ItemGrid } from "components";
@@ -85,7 +80,7 @@ function Icons({ ...props }) {
 <<<<<<< HEAD
           <Button
 =======
-          <Button 
+          <Button
 >>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
             color="primary">
             Create Assignment
@@ -96,24 +91,6 @@ function Icons({ ...props }) {
 }
 */
 
-<<<<<<< HEAD
-=======
-
-
-var config = {
-    apiKey: "AIzaSyC2n7VJ7--T2859rBpru7q0I2BDxu5omU4",
-    authDomain: "inclassexercises-241b5.firebaseapp.com",
-    databaseURL: "https://inclassexercises-241b5.firebaseio.com",
-    projectId: "inclassexercises-241b5",
-    storageBucket: "",
-    messagingSenderId: "1002580453239"
-  };
-
-if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-}
-
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
 class InClassChart extends React.Component {
   state = {
     value: 0,
@@ -132,11 +109,7 @@ class InClassChart extends React.Component {
       this.getAssData(snapshot.val());
     })
   }
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
   handleOpen = () => {
     this.setState({assName: ''})
     this.setState({open: true})
@@ -193,11 +166,7 @@ class InClassChart extends React.Component {
       //this.setState({
         //nextIndex: this.state.listOfLessons.length
       //});
-<<<<<<< HEAD
   }
-=======
-  } 
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
 
   render() {
 
@@ -254,19 +223,10 @@ class InClassChart extends React.Component {
               fullWidth = 'true'
               variant = 'raised'
               onClick = {this.handleOpen}
-<<<<<<< HEAD
               color = "secondary"
             >
               Create Assignment
             </Button>
-
-=======
-              color = "secondary" 
-            >
-              Create Assignment
-            </Button>
-            
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
             {messageNodes}
 
           <Paper
@@ -275,11 +235,6 @@ class InClassChart extends React.Component {
             margin = '5'
             display = 'inline-block'
           >
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
 
             <Dialog
               modal={true}
@@ -293,35 +248,18 @@ class InClassChart extends React.Component {
               <DialogTitle>
                 New Assignment
               </DialogTitle>
-<<<<<<< HEAD
-
-=======
-              
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
               <DialogContent>
                 <DialogContentText>
                   Key in the new Assignment name, and hit "Create".
                 </DialogContentText>
-
                 <p> </p>
-<<<<<<< HEAD
-
                   <TextField
-=======
-                  
-                  <TextField 
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
                     label = "Assignment Name"
                     required = 'true'
                     fullWidth = 'true'
                     onChange = {this.handleChange.bind(this)}
                     value = {this.state.assName}
                   />
-<<<<<<< HEAD
-
-=======
-                  
->>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
                 <DialogActions>
                   <Button
                     primary={true}
