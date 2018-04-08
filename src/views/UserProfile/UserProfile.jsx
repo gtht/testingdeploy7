@@ -6,141 +6,112 @@ import {
   RegularCard,
   Button,
   CustomInput,
-  ItemGrid
+  ItemGrid,
+  Table
 } from "components";
 
 import avatar from "assets/img/faces/marc.jpg";
 
-function UserProfile({ ...props }) {
-  return (
-    <div>
-      <Grid container>
-        <ItemGrid xs={12} sm={12} md={8}>
-          <RegularCard
-            cardTitle="Edit Profile"
-            cardSubtitle="Complete your profile"
-            content={
-              <div>
-                <Grid container>
-                  <ItemGrid xs={12} sm={12} md={5}>
-                    <CustomInput
-                      labelText="Company (disabled)"
-                      id="company-disabled"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        disabled: true
-                      }}
-                    />
-                  </ItemGrid>
-                  <ItemGrid xs={12} sm={12} md={3}>
-                    <CustomInput
-                      // labelText="Username"
-                      id="username"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                    />
-                  </ItemGrid>
-                  <ItemGrid xs={12} sm={12} md={4}>
-                    <CustomInput
-                      labelText="Email address"
-                      id="email-address"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                    />
-                  </ItemGrid>
-                </Grid>
-                <Grid container>
-                  <ItemGrid xs={12} sm={12} md={6}>
-                    <CustomInput
-                      labelText="First Name"
-                      id="first-name"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                    />
-                  </ItemGrid>
-                  <ItemGrid xs={12} sm={12} md={6}>
-                    <CustomInput
-                      labelText="Last Name"
-                      id="last-name"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                    />
-                  </ItemGrid>
-                </Grid>
-                <Grid container>
-                  <ItemGrid xs={12} sm={12} md={4}>
-                    <CustomInput
-                      labelText="City"
-                      id="city"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                    />
-                  </ItemGrid>
-                  <ItemGrid xs={12} sm={12} md={4}>
-                    <CustomInput
-                      labelText="Country"
-                      id="country"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                    />
-                  </ItemGrid>
-                  <ItemGrid xs={12} sm={12} md={4}>
-                    <CustomInput
-                      labelText="Postal Code"
-                      id="postal-code"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                    />
-                  </ItemGrid>
-                </Grid>
-                <Grid container>
-                  <ItemGrid xs={12} sm={12} md={12}>
-                    <InputLabel style={{ color: "#AAAAAA" }}>
-                      About me
-                    </InputLabel>
-                    <CustomInput
-                      labelText="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                      id="about-me"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        multiline: true,
-                        rows: 5
-                      }}
-                    />
-                  </ItemGrid>
-                </Grid>
-              </div>
-            }
-            footer={<Button color="primary">Update Profile</Button>}
-          />
-        </ItemGrid>
-        <ItemGrid xs={12} sm={12} md={4}>
-          <ProfileCard
-            avatar={avatar}
-            subtitle="CEO / CO-FOUNDER"
-            title="Alec Thompson"
-            description="Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
-            footer={
-              <Button color="primary" round>
-                Follow
-              </Button>
-            }
-          />
-        </ItemGrid>
-      </Grid>
-    </div>
-  );
+// for charting:
+import {
+  PieChart,
+  Pie,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from "recharts";
+
+import {
+  StatsCard,
+  ChartCard
+} from "components";
+
+// necessary items for chart cards:
+import {
+  ContentCopy,
+  Store,
+  InfoOutline,
+  Warning,
+  DateRange,
+  LocalOffer,
+  Update,
+  ArrowUpward,
+  AccessTime,
+  Accessibility
+} from "material-ui-icons";
+
+
+class StudentDashboard extends React.Component {
+  state = {};
+
+  // any methods eg handleChange
+
+
+  render() {
+    return (
+      <div>
+        <Grid container>
+          <ItemGrid xs={40} sm={20} md={10}>
+            <ChartCard 
+              chart = {
+                <LineChart width={730} height={250} data={this.props.asses}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  </LineChart>
+              }
+              chartColor="green"
+              title="Line Chart 1"
+              text={"Some text here"}
+              statIcon={AccessTime}
+              statText="updated 4 minutes ago"
+            />
+            <RegularCard
+              headerColor="orange"
+              cardTitle="Table 1"
+              cardSubtitle="For assignment completion process"
+              content={
+                <Table
+                  tableHeaderColor="warning"
+                  tableHead={["Assignment Name", "Status", "Percentage Completed"]}
+                  tableData={[
+                    ["Charting Tutorial", "Incomplete", "95%"],
+                    ["AWS Lambda 1", "Submitted", "100%"],
+                    ["AWS Lambda 2", "Incomplete", "55%"]
+                  ]}
+                />
+              }
+            />
+            <RegularCard
+              headerColor="orange"
+              cardTitle="Table 2"
+              cardSubtitle="Assignment that took longest to complete at the top"
+              content={
+                <Table
+                  tableHeaderColor="warning"
+                  tableHead={["Assignment Name", "Time Taken to Complete", "Relevant Concepts"]}
+                  tableData={[
+                    ["AWS Lambda 2", "Incomplete", "AWS Lambda, API Gateway, Python"],
+                    ["Charting Tutorial", "Incomplete", "Recharts, React, JavaScript"],
+                    ["AWS Lambda 1", "6h 43mins", "AWS Lambda, API Gateway, Python"]
+                  ]}
+                />
+              }
+            />
+          </ItemGrid>
+        </Grid>
+      </div>
+    )
+  }
 }
 
-export default UserProfile;
+export default StudentDashboard;

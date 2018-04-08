@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React from "react";
 import { Grid, ListItem, IconButton } from "material-ui";
+=======
+  import React from "react";
+import { Grid } from "material-ui";
+>>>>>>> fdaa376e8626e8f8a6ad6b81da3a9258d357c791
 import { AddAlert } from "material-ui-icons";
 
 import {
