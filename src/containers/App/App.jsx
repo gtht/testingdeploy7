@@ -31,12 +31,12 @@ class App extends React.Component {
   constructor(props){
     super(props);
     var config = {
-      apiKey: "AIzaSyDvF966Qymq1ktNm39fWqo8CY42GSA6UnQ",
-      authDomain: "friendlychat-af4c8.firebaseapp.com",
-      databaseURL: "https://friendlychat-af4c8.firebaseio.com",
-      projectId: "friendlychat-af4c8",
-      storageBucket: "friendlychat-af4c8.appspot.com",
-      messagingSenderId: "919303787426"
+      apiKey: "AIzaSyD8jctfQu1S_OXFL-ZhSc_yfTfmOLYNl0Q",
+      authDomain: "bt3103week10.firebaseapp.com",
+      databaseURL: "https://bt3103week10.firebaseio.com",
+      projectId: "bt3103week10",
+      storageBucket: "bt3103week10.appspot.com",
+      messagingSenderId: "968052591654"
     };
 
     if (!firebase.apps.length) {

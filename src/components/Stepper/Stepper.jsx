@@ -177,4 +177,4 @@ class Stepper extends React.Component {
   }
 }
 
-export default withStyles(Stepper);
+export default withStyles(styles)(Stepper);

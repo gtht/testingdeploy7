@@ -90,12 +90,12 @@ function Icons({ ...props }) {
 
 
 var config = {
-    apiKey: "AIzaSyC2n7VJ7--T2859rBpru7q0I2BDxu5omU4",
-    authDomain: "inclassexercises-241b5.firebaseapp.com",
-    databaseURL: "https://inclassexercises-241b5.firebaseio.com",
-    projectId: "inclassexercises-241b5",
-    storageBucket: "",
-    messagingSenderId: "1002580453239"
+    apiKey: "AIzaSyD8jctfQu1S_OXFL-ZhSc_yfTfmOLYNl0Q",
+    authDomain: "bt3103week10.firebaseapp.com",
+    databaseURL: "https://bt3103week10.firebaseio.com",
+    projectId: "bt3103week10",
+    storageBucket: "bt3103week10.appspot.com",
+    messagingSenderId: "968052591654"
   };
 
 if (!firebase.apps.length) {
