@@ -70,15 +70,17 @@ class QnAa extends React.Component {
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
     const data2 = this.state.worddata;
-    // const data = [
-    //   { text: 'Hey', value: 10 },
-    //   { text: 'lol', value: 20 },
-    //   { text: 'first impression', value: 2 },
-    //   { text: 'very cool', value: 10 },
-    //   { text: 'duck', value: 10 },
-    // ];
     const fontSizeMapper = word => Math.log2(word.value*5) * 10;
-
+    let resolved = 0;
+    if (this.state.listOfMessages.length > 0){
+      for (var i=0; i<this.state.listOfMessages.length; i++){
+        // alert(this.state.listOfMessages[i]);
+        if (this.state.listOfMessages[i].solved == true){
+          // alert("true");
+          resolved++;
+        }
+      }
+    }
     return (
 
       <div style= {{flex: 1, flexDirection: 'row'}}>
@@ -103,7 +105,7 @@ class QnAa extends React.Component {
           boxShadow:
           "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)"}}>
 
-          <Muted style={{padding: '10px'}}>Total Posts:<b style={{ float:'right'}}>{this.state.listOfMessages.length}</b></Muted><hr/>
+          <Muted style={{padding: '10px'}}>Resolved Post(s):</Muted><h3>{resolved} out of {this.state.listOfMessages.length}</h3><hr/>
           <Muted style={{padding: '10px'}}>Common Words:</Muted>
             <WordCloud style={{border: '1px solid blue'}}
               width={200}
