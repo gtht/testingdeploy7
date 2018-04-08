@@ -30,6 +30,7 @@ const switchRoutes = (
 class App extends React.Component {
   constructor(props){
     super(props);
+
     var config = {
       apiKey: "AIzaSyD8jctfQu1S_OXFL-ZhSc_yfTfmOLYNl0Q",
       authDomain: "bt3103week10.firebaseapp.com",
@@ -38,10 +39,7 @@ class App extends React.Component {
       storageBucket: "bt3103week10.appspot.com",
       messagingSenderId: "968052591654"
     };
-
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-    }
+    firebase.initializeApp(config);
   }
 
   state = {

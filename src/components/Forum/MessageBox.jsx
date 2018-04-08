@@ -22,8 +22,7 @@ class MessageBox extends Component {
     this.state = {
       bc: false,
       title: '',
-      desc:'',
-      message: ''
+      desc:''
     };
   }
 
@@ -40,12 +39,13 @@ class MessageBox extends Component {
   }
 
   handleSubmit(e){
-
+    // alert("from messageBOx:index="+this.props.selectedIndex);
     if (this.state.title.length > 1 && this.state.desc.length > 1){
       let dbCon = this.props.db.database().ref('/lessons/lecture'+(this.props.selectedIndex+1)+'/messages');
       dbCon.push({
         title: trim(this.state.title),
-        desc: trim(this.state.desc)
+        desc: trim(this.state.desc),
+        solved: false
       });
 
       this.showNotification("bc");
