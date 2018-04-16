@@ -551,23 +551,23 @@ class Dashboard extends React.Component {
         <Grid container>
           
           <ItemGrid xs={12} sm={12} md={12}>
-            <Paper 
-            style = {{maxHeight: 200, overflow: 'auto'}}
-            content = {            
+            
               <RegularCard
                 headerColor="purple"
                 cardTitle="This Week's Overview of Cohort"
                 cardSubtitle=""
                 content={
+                  <div
+                    style = {{maxHeight:'400px', overflow:'auto'}}>
                   <Table
                     tableHeaderColor="warning"
                     tableHead={["Student'sWeeklyCategory", "Name", "CCName", "LastUpdated", "LastLevelsPlayed", "Student'sAvgPlaytime", "CohortAvgPlaytime"]}
                     tableData={this.state.tablelist}
                   />
+                  </div>
                 }
               />
-            }
-            />
+
           </ItemGrid>
         </Grid>
       </div>
