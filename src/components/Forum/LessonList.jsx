@@ -21,9 +21,9 @@ class LessonList extends React.Component {
 
     this.state  = {
       openDialog: false,
-      selectedLesson: null,
-      selectedIndex: null,
-      openQnA: false,
+      selectedLesson: this.props.listOfLessons[0],
+      selectedIndex: 0,
+      openQnA: true,
       msgCount: 0
     }
 
@@ -65,6 +65,9 @@ class LessonList extends React.Component {
   // }
 
   render(){
+    // if(this.props.listOfLessons.length >0 ){
+    //   alert(this.props.listOfLessons[0].lecture_name);
+    // }
     // alert("test1");
     let messageNodes = this.props.listOfLessons.map((lesson, index) => {
 
@@ -98,19 +101,19 @@ class LessonList extends React.Component {
     }
     // const avg = total/this.props.listOfLessons
     // to show & hide MessageList & MessageBox
-    const isOpen = this.state.openQnA;
-
-    const msg = isOpen ? (
-        <div>
-          <QnA
-            db={this.props.db}
-            selectedLesson={this.state.selectedLesson}
-            selectedIndex={this.state.selectedIndex}
-          />
-        </div>
-      ) : (
-        <div>Pick a lesson to begin</div>
-      );
+    // const isOpen = this.state.openQnA;
+    //
+    // const msg = isOpen ? (
+    //     <div>
+    //       <QnA
+    //         db={this.props.db}
+    //         selectedLesson={this.state.selectedLesson}
+    //         selectedIndex={this.state.selectedIndex}
+    //       />
+    //     </div>
+    //   ) : (
+    //     <div>Pick a lesson to begin</div>
+    //   );
     // end of show/hide Messages method
 
     return (
@@ -118,10 +121,9 @@ class LessonList extends React.Component {
         <div style= {{flex: 1, flexDirection: 'row'}}>
           <div style= {{flex: 0.2, float: 'left', left: 0, marginLeft: 15, width:'20%'}}>
           <Paper style={{padding: '5px'}}>
-          <ListSubheader>Lessons:</ListSubheader>
+          <ListSubheader>Videos:</ListSubheader>
             <MenuList>
               {messageNodes}
-              <MenuItem onClick={this.handleClickOpen}>+Add New Lesson</MenuItem>
             </MenuList>
           </Paper>
           <AddLessonDialog
@@ -130,28 +132,6 @@ class LessonList extends React.Component {
             open={this.state.openDialog}
             onClose={this.handleClose}
           />
-          <div style={{marginTop: '10px'}}>
-              <StatsCard
-                icon={Class}
-                iconColor="green"
-                title= "Total of"
-                description= {this.props.listOfLessons.length}
-                small="Lessons"
-                statIcon={Feedback}
-                statIconColor="grey"
-                statText= {"'"+mostPost+"' has the highest no. of posts"}
-              />
-              <StatsCard
-                icon={ChatBubble}
-                iconColor="orange"
-                title= "Total of"
-                description= {total}
-                small= {"Posts Submitted"}
-                statIcon={Comment}
-                statIconColor="grey"
-                statText= {(parseFloat(total/this.props.listOfLessons.length).toFixed(2))+ " average posts per lesson"}
-              />
-          </div>
           </div>
           <div style= {{flex: 0.8, right: 0,
                         marginRight: 15,
@@ -159,7 +139,11 @@ class LessonList extends React.Component {
                         width: '75%',
                         float: 'right'}}
           >
-            {msg}
+            <QnA
+              db={this.props.db}
+              selectedLesson={this.state.selectedLesson}
+              selectedIndex={this.state.selectedIndex}
+              />
           </div>
         </div>
 

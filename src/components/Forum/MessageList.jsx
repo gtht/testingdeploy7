@@ -42,18 +42,6 @@ class MessageList extends Component {
               primary= {<p><b><Message message = {message.title} /></b></p>}
               secondary= {<Muted><Message message = {message.desc} /></Muted>}
             />
-            <FormControlLabel
-            style={{flex: 0.2, float: 'right', width:'20%'}}
-            control={
-              <Switch
-                checked={message.solved}
-                onChange={this.handleUpvote.bind(this, message, message.key)}
-                value={message.key}
-                color="primary"
-              />
-            }
-            label="Resolved"
-          />
           </div>
         </div>
       )
@@ -68,7 +56,8 @@ class MessageList extends Component {
 
     return (
       <div>
-        <List>
+        <List
+          style={{maxHeight:'200px', overflow:'auto'}}>
           {messageNodes}
         </List>
       </div>

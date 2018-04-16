@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase";
-import { LessonList } from "components";
+import { LessonList, RegularCard } from "components";
+
 import _ from 'lodash';
 
 class Maps extends React.Component {
@@ -40,7 +41,15 @@ class Maps extends React.Component {
     // alert("from maps:"+this.state.listOfLessons);
     return (
       <div style= {{flex: 1, flexDirection: 'row'}}>
+      <RegularCard
+        plainCard={true}
+        fullWidth= {true}
+        cardTitle= "Video Analytics"
+        headerColor="red"
+        content={
         <div><LessonList db={firebase} listOfLessons={this.state.listOfLessons} nextLessonIndex={this.state.nextLessonIndex} /></div>
+        }
+        />
       </div>
     );
   }

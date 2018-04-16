@@ -1,9 +1,10 @@
 import React from "react";
 import firebase from "firebase";
-import { RegularCard, MessageList, MessageBox, ChartCard, Muted } from "components";
+import { RegularCard, MessageList, MessageBox, ChartCard, Muted, ItemGrid } from "components";
 import { AccessTime } from "material-ui-icons";
 import _ from 'lodash';
 import WordCloud from 'react-d3-cloud';
+import { Grid } from "material-ui";
 
 class QnAa extends React.Component {
   constructor(props){
@@ -70,6 +71,7 @@ class QnAa extends React.Component {
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
     const data2 = this.state.worddata;
+    // const excludeWord = ["i", "you", "it", "he", "she"];
     const fontSizeMapper = word => Math.log2(word.value*5) * 10;
     let resolved = 0;
     if (this.state.listOfMessages.length > 0){
@@ -84,38 +86,28 @@ class QnAa extends React.Component {
     return (
 
       <div style= {{flex: 1, flexDirection: 'row'}}>
-        <div style= {{flex: 0.7, float: 'left', left: 0, marginLeft: 15, width:'70%'}}>
         <RegularCard
           fullWidth= {true}
-          cardTitle= {this.props.selectedLesson.lecture_name}
+          cardTitle= "Frequent Words Submitted"
+          headerColor="green"
           content={
-          <MessageList db={firebase} selectedIndex={this.props.selectedIndex} listOfMessages={this.state.listOfMessages} /> }
+            <div>
+              <WordCloud
+                width={1000}
+                height={200}
+                data={data2}
+                fontSizeMapper={fontSizeMapper}
+              />
+            </div>
+          }
         />
-      </div>
-        <div style= {{flex: 0.3, right: 0, marginRight: 15, marginTop: 7, width: '25%', float: 'right'}}>
-        <MessageBox db={firebase} selectedIndex={this.props.selectedIndex} />
-        <div style= {{
-          padding: '20px 15px',
-          lineHeight: '20px',
-          position: "relative",
-          marginBottom: "10px",
-          backgroundColor: "white",
-          color: "#555555",
-          borderRadius: "3px",
-          boxShadow:
-          "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)"}}>
-
-          <Muted style={{padding: '10px'}}>Resolved Post(s):</Muted><h3>{resolved} out of {this.state.listOfMessages.length}</h3><hr/>
-          <Muted style={{padding: '10px'}}>Common Words:</Muted>
-            <WordCloud style={{border: '1px solid blue'}}
-              width={200}
-              height= {200}
-              data={data2}
-              fontSizeMapper={fontSizeMapper}
-            />
-
-        </div>
-        </div>
+        <RegularCard
+          fullWidth= {true}
+          cardTitle= "Top 5 Answers"
+          content={
+          <MessageList db={firebase} selectedIndex={this.props.selectedIndex} listOfMessages={this.state.listOfMessages} />
+          }
+        />
       </div>
     );
   }
