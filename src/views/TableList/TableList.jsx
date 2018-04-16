@@ -9,7 +9,7 @@ import {
   DateRange,LocalOffer,Update,
   ArrowUpward,AccessTime,Accessibility
 } from "material-ui-icons";
-import { withStyles, Grid } from "material-ui";
+import { withStyles, Grid, Paper } from "material-ui";
 import {
   PieChart,
   Pie,
@@ -315,42 +315,35 @@ class Dashboard extends React.Component {
       <Grid container> 
          <ItemGrid xs={12} sm={12} md={12}>
 
-            <ChartCard
-              chart={
+            <RegularCard
+              content={
                 <ScatterChart width={800} height={400} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-           
-            <CartesianGrid />
-            <XAxis  dataKey={'x'} type="number" name='Day' 
-                label={
-                <AxisLabel axisType="xAxis" width={800} height={385}>
-                  {"Day of the Week"}
-                </AxisLabel>
-                  }
-              />
-            <YAxis dataKey={'y'} type="number" name='Play Time' unit='mins'
-              label={
-                <AxisLabel axisType="yAxis" width={100} height={385}>
-                  {"Play Time (mins)"}
-                </AxisLabel>
-                  }
-            />
-            <Scatter name='Took too Long' data={this.state.chartTooLong} fill='#FF0000'/>
-            <Scatter name='Took too Fast' data={this.state.chartTooShort} fill='#228B22'/>
-            <Legend verticalAlign="top" height={36}/>
-            <Tooltip cursor={{strokeDasharray: '3 3'}}/>
-          </ScatterChart>
-              
+                  <CartesianGrid />
+                  <XAxis  dataKey={'x'} type="number" name='Day' 
+                    label={
+                      <AxisLabel axisType="xAxis" width={800} height={385}>
+                      {"Day of the Week"}
+                      </AxisLabel>
+                    }
+                  />
+                  <YAxis dataKey={'y'} type="number" name='Play Time' unit='mins'
+                    label={
+                      <AxisLabel axisType="yAxis" width={100} height={385}>
+                      {"Play Time (mins)"}
+                      </AxisLabel>
+                    }
+                  />
+                  <Scatter name='Took too Long' data={this.state.chartTooLong} fill='#FF0000'/>
+                  <Scatter name='Took too Fast' data={this.state.chartTooShort} fill='#228B22'/>
+                  <Legend verticalAlign="top" height={36}/>
+                  <Tooltip cursor={{strokeDasharray: '3 3'}}/>
+                  </ScatterChart>  
               }
-              chartColor="yellow"
-              title="Category of Student's Time Commitment on Code Combat"
-              text={
+              headerColor="red"
+              cardTitle="Category of Student's Time Commitment on Code Combat"
+              cardSubtitle={
                 <span>
-                  <span className={this.props.classes.successText}>
-                    <ArrowUpward
-                      className={this.props.classes.upArrowCardCategory}
-                    />{" "}
-                    
-                  </span>
+                {" "}
                   <b>tookTooLong</b> -- students spending 30% more time than the daily average ,   <b>tookTooFast</b> -- students spending 30% lesser time than the daily average
                 </span>
                  
@@ -456,7 +449,7 @@ class Dashboard extends React.Component {
 
         <Grid container> 
          <ItemGrid xs={12} sm={12} md={2}>   
-                  <StatsCard
+                <StatsCard
                   icon={ContentCopy}
                   iconColor="blue"
                   title="Current Week's Total Levels Completed"
@@ -558,18 +551,22 @@ class Dashboard extends React.Component {
         <Grid container>
           
           <ItemGrid xs={12} sm={12} md={12}>
-
-            <RegularCard
-              headerColor="purple"
-              cardTitle="This Week's Overview of Cohort"
-              cardSubtitle=""
-              content={
-                <Table
-                  tableHeaderColor="warning"
-                  tableHead={["Student'sWeeklyCategory", "Name", "CCName", "LastUpdated", "LastLevelsPlayed", "Student'sAvgPlaytime", "CohortAvgPlaytime"]}
-                  tableData={this.state.tablelist}
-                />
-              }
+            <Paper 
+            style = {{maxHeight: 200, overflow: 'auto'}}
+            content = {            
+              <RegularCard
+                headerColor="purple"
+                cardTitle="This Week's Overview of Cohort"
+                cardSubtitle=""
+                content={
+                  <Table
+                    tableHeaderColor="warning"
+                    tableHead={["Student'sWeeklyCategory", "Name", "CCName", "LastUpdated", "LastLevelsPlayed", "Student'sAvgPlaytime", "CohortAvgPlaytime"]}
+                    tableData={this.state.tablelist}
+                  />
+                }
+              />
+            }
             />
           </ItemGrid>
         </Grid>

@@ -273,9 +273,14 @@ class Dashboard extends React.Component {
       <div>
         <Grid container>
           <ItemGrid xs={100} sm={100} md={10}>
-            <ChartCard 
-              chart = {
-                <LineChart width={800} height={400} data={this.state.assignmentsLineChart}
+            <RegularCard 
+              headerColor="blue"
+              cardTitle="Assignment Submission Tracking"
+              cardSubtitle={"Track student's submission"}
+              statIcon={AccessTime}
+              statText="updated 4 minutes ago"
+              content = {
+                <LineChart width={780} height={400} data={this.state.assignmentsLineChart}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -286,11 +291,6 @@ class Dashboard extends React.Component {
                   <Line type="monotone" dataKey="Real-time Charts Tutorial2" stroke="#82ca9d" />
                   </LineChart>
               }
-              chartColor="blue"
-              title="Assignment Submission Tracking"
-              text={"Track student's submission"}
-              statIcon={AccessTime}
-              statText="updated 4 minutes ago"
             />
           </ItemGrid>
 
@@ -332,9 +332,9 @@ class Dashboard extends React.Component {
 
           <ItemGrid xs={100} sm={100} md={10}>
 
-            <ChartCard 
-              chart = {
-                <LineChart width={800} height={300} data={this.state.activeUsersLineChart}
+            <RegularCard 
+              content = {
+                <LineChart width={780} height={300} data={this.state.activeUsersLineChart}
                     margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -345,9 +345,9 @@ class Dashboard extends React.Component {
                   
                   </LineChart>
               }
-              chartColor="green"
-              title="Track the Number of Active users on Achievements App"
-              text=""
+              headerColor="green"
+              cardTitle="Track the Number of Active users on Achievements App"
+              cardSubtitle=""
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
             />
