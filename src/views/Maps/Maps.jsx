@@ -44,7 +44,7 @@ class Maps extends React.Component {
       <RegularCard
         plainCard={true}
         fullWidth= {true}
-        cardTitle= "Video Analytics"
+        cardTitle= "Text Analytics for Videos"
         headerColor="red"
         content={
         <div><LessonList db={firebase} listOfLessons={this.state.listOfLessons} nextLessonIndex={this.state.nextLessonIndex} /></div>

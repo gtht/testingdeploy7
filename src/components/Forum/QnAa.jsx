@@ -44,7 +44,7 @@ class QnAa extends React.Component {
         var title = message.title;
         var words = title.split(" ");
         for (var j=0; j<words.length; j++){
-          var word = words[j].replace(/[^a-zA-Z 0-9]+/g,"");
+          var word = words[j].replace(/[^a-zA-Z 0-9]+/g,"").toUpperCase();
           var index = titles.indexOf(word);
           // alert(index);
           if (index > -1){
