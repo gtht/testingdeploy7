@@ -11,8 +11,8 @@ class LessonList extends React.Component {
   constructor(props){
     super(props);
 
-    this.handleClickOpen = this.handleClickOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+    // this.handleClickOpen = this.handleClickOpen.bind(this);
+    // this.handleClose = this.handleClose.bind(this);
     this.handleMenuItemClick = this.handleMenuItemClick.bind(this);
     this.myFunction = this.myFunction.bind(this);
     // this.myFunction4 = this.myFunction4.bind(this);
@@ -20,7 +20,7 @@ class LessonList extends React.Component {
     // this.myFunction5 = this.myFunction5.bind(this);
 
     this.state  = {
-      openDialog: false,
+      // openDialog: false,
       selectedLesson: this.props.listOfLessons[0],
       selectedIndex: 0,
       openQnA: true,
@@ -30,15 +30,15 @@ class LessonList extends React.Component {
   }
 
   // for Dialog
-  handleClickOpen = () => {
-    this.setState({
-      openDialog: true
-    });
-  };
-
-  handleClose = value => {
-    this.setState({ openDialog: false });
-  };
+  // handleClickOpen = () => {
+  //   this.setState({
+  //     openDialog: true
+  //   });
+  // };
+  //
+  // handleClose = value => {
+  //   this.setState({ openDialog: false });
+  // };
   // end of Dialog methods
 
   // for Lessons sidebar
@@ -69,6 +69,8 @@ class LessonList extends React.Component {
     //   alert(this.props.listOfLessons[0].lecture_name);
     // }
     // alert("test1");
+
+    const { listOfLessons, videoKeys, ...other } = this.props;
     let messageNodes = this.props.listOfLessons.map((lesson, index) => {
 
       return (
@@ -77,28 +79,28 @@ class LessonList extends React.Component {
           selected={index === this.state.selectedIndex}
           onClick={event => this.handleMenuItemClick(event, index, lesson)}
         >
-          <Message message = {lesson.lecture_name} />
+          <Message message = {lesson.VideoTitle} />
         </MenuItem>
       )
     });
-    let highestCount = 0;
-    let mostPost = "";
-    let total = 0;
-    if (this.props.listOfLessons.length > 0){
-      // const totalCounter = 0;
-      for (var i=0; i<this.props.listOfLessons.length; i++){
-        // alert("lessonlist"+ this.props.listOfLessons[i].lecture_name);
-        var counter = 0; // length of messages for one lesson
-        for (var key in this.props.listOfLessons[i].messages){
-          // alert(key);
-          counter++;
-        }
-        if (counter>highestCount){highestCount = counter; mostPost = this.props.listOfLessons[i].lecture_name;}
-        // alert("counter="+counter);
-        total = total + counter;
-      }
-      // alert("total="+total);
-    }
+    // let highestCount = 0;
+    // let mostPost = "";
+    // let total = 0;
+    // if (this.props.listOfLessons.length > 0){
+    //   // const totalCounter = 0;
+    //   for (var i=0; i<this.props.listOfLessons.length; i++){
+    //     // alert("lessonlist"+ this.props.listOfLessons[i].lecture_name);
+    //     var counter = 0; // length of messages for one lesson
+    //     for (var key in this.props.listOfLessons[i].VideoTitle){
+    //       // alert(key);
+    //       counter++;
+    //     }
+    //     if (counter>highestCount){highestCount = counter; mostPost = this.props.listOfLessons[i].VideoTitle;}
+    //     // alert("counter="+counter);
+    //     total = total + counter;
+    //   }
+    //   // alert("total="+total);
+    // }
     // const avg = total/this.props.listOfLessons
     // to show & hide MessageList & MessageBox
     // const isOpen = this.state.openQnA;
@@ -120,18 +122,12 @@ class LessonList extends React.Component {
       <div>
         <div style= {{flex: 1, flexDirection: 'row'}}>
           <div style= {{flex: 0.2, float: 'left', left: 0, marginLeft: 15, width:'20%'}}>
-          <Paper style={{padding: '5px'}}>
+          <Paper style={{padding: '5px', maxHeight:'500px', overflow:'auto'}}>
           <ListSubheader>Videos:</ListSubheader>
             <MenuList>
               {messageNodes}
             </MenuList>
           </Paper>
-          <AddLessonDialog
-            nextLessonIndex={this.props.nextLessonIndex}
-            db={this.props.db}
-            open={this.state.openDialog}
-            onClose={this.handleClose}
-          />
           </div>
           <div style= {{flex: 0.8, right: 0,
                         marginRight: 15,
@@ -143,6 +139,8 @@ class LessonList extends React.Component {
               db={this.props.db}
               selectedLesson={this.state.selectedLesson}
               selectedIndex={this.state.selectedIndex}
+              listOfLessons={this.props.listOfLessons}
+              videoKeys={this.props.videoKeys}
               />
           </div>
         </div>

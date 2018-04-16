@@ -11,20 +11,34 @@ class QnAa extends React.Component {
     super(props);
     this.state = {
       listOfMessages: [],
-      worddata: []
+      worddata: [],
     }
     this.myFunction2 = this.myFunction2.bind(this);
   }
 
   componentDidMount() {
-      let msg = firebase.database().ref('lessons/lecture'+(this.props.selectedIndex+1)+'/messages');
+    alert("videoKey:"+this.props.videoKeys);
+    alert("selectedIndex:"+this.props.selectedIndex);
+    // Final_YouTubeUI_DataRetrieving/-L7gqLshklhgvaUoSqIl/responses
+      let msg = firebase.database().ref('lessons/lecture'+(this.selectedIndex+1)+'/messages');
       msg.on('value', snapshot => {
         this.getMessageData(snapshot.val());
       });
-    }
+  }
+
+    // componentShouldUpdate(){
+    //
+    //     alert("videoKey:"+this.props.videoKeys);
+    //     alert("selectedIndex:"+this.props.selectedIndex);
+    //     let msg = firebase.database().ref('Final_YouTubeUI_DataRetrieving/'+(this.props.videoKeys[0])+'/responses');
+    //     msg.on('value', snapshot => {
+    //       this.getMessageData(snapshot.val());
+    //     });
+    // }
 
     getMessageData(values){
       let messagesVal = values;   // this is an Object
+      alert("msgVal="+messagesVal);
       let messages = _(messagesVal)
                         .keys()
                         .map(messageKey => {
@@ -69,20 +83,23 @@ class QnAa extends React.Component {
     }
 
   render(){
-    const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
+
+    const { selectedLesson, selectedIndex, videoKeys, listOfLessons, ...other } = this.props;
+    alert("from QnA:"+this.props.videoKeys);
+
     const data2 = this.state.worddata;
     // const excludeWord = ["i", "you", "it", "he", "she"];
-    const fontSizeMapper = word => Math.log2(word.value*5) * 10;
-    let resolved = 0;
-    if (this.state.listOfMessages.length > 0){
-      for (var i=0; i<this.state.listOfMessages.length; i++){
-        // alert(this.state.listOfMessages[i]);
-        if (this.state.listOfMessages[i].solved == true){
-          // alert("true");
-          resolved++;
-        }
-      }
-    }
+    const fontSizeMapper = word => Math.log2(word.value*2) * 10;
+    // let resolved = 0;
+    // if (this.state.listOfMessages.length > 0){
+    //   for (var i=0; i<this.state.listOfMessages.length; i++){
+    //     // alert(this.state.listOfMessages[i]);
+    //     if (this.state.listOfMessages[i].solved == true){
+    //       // alert("true");
+    //       resolved++;
+    //     }
+    //   }
+    // }
     return (
 
       <div style= {{flex: 1, flexDirection: 'row'}}>
