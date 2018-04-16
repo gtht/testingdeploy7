@@ -301,11 +301,14 @@ class Dashboard extends React.Component {
               cardTitle="Youtube Video total Views"
               cardSubtitle="Total views for each youtube video assignment"
               content={
+                <div
+                  style = {{maxHeight:'320px', overflow:'auto'}}>
                 <Table
                   tableHeaderColor="warning"
                   tableHead={["Assignment Name", "Views"]}
                   tableData={this.state.youtubeTable}
                 />
+                </div>
               }
             />
 
@@ -319,11 +322,14 @@ class Dashboard extends React.Component {
               cardTitle="Overview of Assignments Submitted "
               cardSubtitle="Assignment that took longest to complete at the top"
               content={
+                <div
+                  style = {{maxHeight:'300px', overflow:'auto'}}>
                 <Table
                   tableHeaderColor="warning"
                   tableHead={["Assignment Name", "No. Students Completed", "Assignment Status"]}
                   tableData={this.state.assignmentTable }
                 />
+                </div>
               }
             />
           </ItemGrid>
