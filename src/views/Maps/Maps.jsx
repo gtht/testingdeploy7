@@ -9,12 +9,13 @@ class Maps extends React.Component {
     super(props);
     this.state = {
       listOfLessons: [],
-      nextLessonIndex: 0,
-      videoKeys: []
+      nextLessonIndex: 0
     }
+    this.myFunction5 = this.myFunction5.bind(this);
   }
 
   componentDidMount() {
+    // Final_YouTubeUI_DataRetrieving
         let app = firebase.database().ref('Final_YouTubeUI_DataRetrieving');
         app.on('value', snapshot => {
           this.getLessonData(snapshot.val());
@@ -23,14 +24,11 @@ class Maps extends React.Component {
 
   getLessonData(values){
     let messagesVal = values;   // this is an Object
-    // alert(messagesVal);
-    let videoKeys = [];
     let lessons = _(messagesVal)
                       .keys()
                       .map(messageKey => {
                           let cloned = _.clone(messagesVal[messageKey]);
                           cloned.key = messageKey;
-                          videoKeys.push(messageKey);
                           return cloned;
                       })
                       .value();
@@ -38,22 +36,24 @@ class Maps extends React.Component {
       this.setState({
         listOfLessons: lessons,
         nextLessonIndex: lessons.length,
-        videoKeys: videoKeys
-      });
+      }, this.myFunction5);
+  }
+
+  myFunction5 = () => {
+
   }
 
   render(){
-    // alert("from maps:"+this.state.listOfLessons);
     return (
       <div style= {{flex: 1, flexDirection: 'row'}}>
-      <RegularCard
-        plainCard={true}
-        fullWidth= {true}
-        cardTitle= "Text Analytics for Videos"
-        headerColor="red"
-        content={
-        <div><LessonList db={firebase} videoKeys={this.state.videoKeys} listOfLessons={this.state.listOfLessons} nextLessonIndex={this.state.nextLessonIndex} /></div>
-        }
+        <RegularCard
+          plainCard={true}
+          fullWidth= {true}
+          cardTitle= "Text Analytics for Videos"
+          headerColor="red"
+          content={
+            <div><LessonList db={firebase} listOfLessons={this.state.listOfLessons} nextLessonIndex={this.state.nextLessonIndex} /></div>
+          }
         />
       </div>
     );

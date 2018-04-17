@@ -11,34 +11,23 @@ class QnAa extends React.Component {
     super(props);
     this.state = {
       listOfMessages: [],
-      worddata: [],
+      worddata: []
     }
     this.myFunction2 = this.myFunction2.bind(this);
   }
 
   componentDidMount() {
-    alert("videoKey:"+this.props.videoKeys);
-    alert("selectedIndex:"+this.props.selectedIndex);
-    // Final_YouTubeUI_DataRetrieving/-L7gqLshklhgvaUoSqIl/responses
-      let msg = firebase.database().ref('lessons/lecture'+(this.selectedIndex+1)+'/messages');
+    // lessons/lecture'+(this.props.selectedIndex+1)+'/messages
+    // alert(this.props.selectedLesson);
+      let msg = firebase.database().ref('Final_YouTubeUI_DataRetrieving/'+this.props.selectedLesson+'/responses');
       msg.on('value', snapshot => {
         this.getMessageData(snapshot.val());
       });
-  }
-
-    // componentShouldUpdate(){
-    //
-    //     alert("videoKey:"+this.props.videoKeys);
-    //     alert("selectedIndex:"+this.props.selectedIndex);
-    //     let msg = firebase.database().ref('Final_YouTubeUI_DataRetrieving/'+(this.props.videoKeys[0])+'/responses');
-    //     msg.on('value', snapshot => {
-    //       this.getMessageData(snapshot.val());
-    //     });
-    // }
+    }
 
     getMessageData(values){
       let messagesVal = values;   // this is an Object
-      alert("msgVal="+messagesVal);
+      // alert(messagesVal);
       let messages = _(messagesVal)
                         .keys()
                         .map(messageKey => {
@@ -54,17 +43,21 @@ class QnAa extends React.Component {
     myFunction2 = () => {
       var titles = [];
       var dict = [];
+      const excludeWord = ["I","YOU","IT","HE","SHE","Q","A","DO","NOT","IS","IN","WE","HOW","INTO",
+                            "AND","OR","BY","TO","YOUR","ARE","WHO","WHAT","WHEN","WHERE","WHY","BE",
+                            "THEN","SO","AN","THAT","THE","DOES","HAS","HAVE","SHOULD","WOULD","COULD",
+                            "ON","US","FOR","THEY","AM", "ITS", "FROM", "BUT", "OF"];
       this.state.listOfMessages.map((message) => {
-        var title = message.title;
+        var title = message.text;
         var words = title.split(" ");
         for (var j=0; j<words.length; j++){
-          var word = words[j].replace(/[^a-zA-Z 0-9]+/g,"").toUpperCase();
+          var word = words[j].replace(/[^a-zA-Z]+/g,"").toUpperCase();
           var index = titles.indexOf(word);
           // alert(index);
           if (index > -1){
             // alert("repetitive"+dict[index][1]);
             dict[index] = [word, (dict[index][1]+1)];
-          } else {
+          } else if (excludeWord.indexOf(word) < 0){
             titles.push(word);
             dict.push([word, 1]);
           }
@@ -83,12 +76,9 @@ class QnAa extends React.Component {
     }
 
   render(){
-
-    const { selectedLesson, selectedIndex, videoKeys, listOfLessons, ...other } = this.props;
-    alert("from QnA:"+this.props.videoKeys);
-
+    const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
     const data2 = this.state.worddata;
-    // const excludeWord = ["i", "you", "it", "he", "she"];
+
     const fontSizeMapper = word => Math.log2(word.value*2) * 10;
     // let resolved = 0;
     // if (this.state.listOfMessages.length > 0){
@@ -101,7 +91,6 @@ class QnAa extends React.Component {
     //   }
     // }
     return (
-
       <div style= {{flex: 1, flexDirection: 'row'}}>
         <RegularCard
           fullWidth= {true}

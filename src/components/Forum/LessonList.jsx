@@ -15,13 +15,10 @@ class LessonList extends React.Component {
     // this.handleClose = this.handleClose.bind(this);
     this.handleMenuItemClick = this.handleMenuItemClick.bind(this);
     this.myFunction = this.myFunction.bind(this);
-    // this.myFunction4 = this.myFunction4.bind(this);
-    //
-    // this.myFunction5 = this.myFunction5.bind(this);
 
     this.state  = {
       // openDialog: false,
-      selectedLesson: this.props.listOfLessons[0],
+      selectedLesson: null,
       selectedIndex: 0,
       openQnA: true,
       msgCount: 0
@@ -43,7 +40,8 @@ class LessonList extends React.Component {
 
   // for Lessons sidebar
   handleMenuItemClick = (event, index, lesson) => {
-    this.setState({ selectedIndex: index, openQnA: false, selectedLesson: lesson }, this.myFunction);
+    // alert(lesson.key);
+    this.setState({ selectedIndex: index, openQnA: false, selectedLesson: lesson.key }, this.myFunction);
   };
   // end of sidebar method
 
@@ -51,28 +49,12 @@ class LessonList extends React.Component {
   myFunction = () => {
     this.setState({ openQnA: true });
   }
+
   // end of QnA method
 
-  //
-  // myFunction4 = () => {
-  //   alert("test2");
-  //
-  //   this.setState({msgCount: total}, this.myFunction5);
-  // }
-  //
-  // myFunction5 = () => {
-  //   alert(this.state.msgCount);
-  // }
-
   render(){
-    // if(this.props.listOfLessons.length >0 ){
-    //   alert(this.props.listOfLessons[0].lecture_name);
-    // }
-    // alert("test1");
-
-    const { listOfLessons, videoKeys, ...other } = this.props;
     let messageNodes = this.props.listOfLessons.map((lesson, index) => {
-
+      // alert("testrun");
       return (
         <MenuItem
           key={lesson}
@@ -91,11 +73,11 @@ class LessonList extends React.Component {
     //   for (var i=0; i<this.props.listOfLessons.length; i++){
     //     // alert("lessonlist"+ this.props.listOfLessons[i].lecture_name);
     //     var counter = 0; // length of messages for one lesson
-    //     for (var key in this.props.listOfLessons[i].VideoTitle){
+    //     for (var key in this.props.listOfLessons[i].messages){
     //       // alert(key);
     //       counter++;
     //     }
-    //     if (counter>highestCount){highestCount = counter; mostPost = this.props.listOfLessons[i].VideoTitle;}
+    //     if (counter>highestCount){highestCount = counter; mostPost = this.props.listOfLessons[i].lecture_name;}
     //     // alert("counter="+counter);
     //     total = total + counter;
     //   }
@@ -103,48 +85,41 @@ class LessonList extends React.Component {
     // }
     // const avg = total/this.props.listOfLessons
     // to show & hide MessageList & MessageBox
-    // const isOpen = this.state.openQnA;
-    //
-    // const msg = isOpen ? (
-    //     <div>
-    //       <QnA
-    //         db={this.props.db}
-    //         selectedLesson={this.state.selectedLesson}
-    //         selectedIndex={this.state.selectedIndex}
-    //       />
-    //     </div>
-    //   ) : (
-    //     <div>Pick a lesson to begin</div>
-    //   );
+    const isOpen = this.state.openQnA;
+
+    const msg = isOpen ? (
+        <div>
+          <QnA
+            db={this.props.db}
+            selectedLesson={this.state.selectedLesson}
+            selectedIndex={this.state.selectedIndex}
+          />
+        </div>
+      ) : (
+        <div>Pick a lesson to begin</div>
+      );
     // end of show/hide Messages method
 
     return (
       <div>
         <div style= {{flex: 1, flexDirection: 'row'}}>
           <div style= {{flex: 0.2, float: 'left', left: 0, marginLeft: 15, width:'20%'}}>
-          <Paper style={{padding: '5px', maxHeight:'500px', overflow:'auto'}}>
-          <ListSubheader>Videos:</ListSubheader>
-            <MenuList>
-              {messageNodes}
-            </MenuList>
-          </Paper>
+            <Paper style={{padding: '5px', maxHeight: '500px'}}>
+            <ListSubheader>Videos:</ListSubheader>
+              <MenuList>
+                {messageNodes}
+              </MenuList>
+            </Paper>
           </div>
           <div style= {{flex: 0.8, right: 0,
-                        marginRight: 15,
-                        marginTop: 10,
-                        width: '75%',
-                        float: 'right'}}
+                      marginRight: 15,
+                      marginTop: 10,
+                      width: '75%',
+                      float: 'right'}}
           >
-            <QnA
-              db={this.props.db}
-              selectedLesson={this.state.selectedLesson}
-              selectedIndex={this.state.selectedIndex}
-              listOfLessons={this.props.listOfLessons}
-              videoKeys={this.props.videoKeys}
-              />
+            {msg}
           </div>
         </div>
-
       </div>
     );
   }
