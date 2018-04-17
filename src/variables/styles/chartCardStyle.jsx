@@ -11,6 +11,7 @@ import {
   redCardHeader,
   blueCardHeader,
   purpleCardHeader,
+  yellowCardHeader,
   cardActions,
   grayColor,
   warningColor,
@@ -25,7 +26,7 @@ const chartCardStyle = {
   card,
   cardHeader: {
     ...cardHeader,
-    padding: "0",
+    padding: "0!important",
     minHeight: "160px",
     ...defaultFont
   },
@@ -34,8 +35,9 @@ const chartCardStyle = {
   redCardHeader,
   blueCardHeader,
   purpleCardHeader,
+  yellowCardHeader,
   cardContent: {
-    padding: "15px 20px"
+    padding: "10px 15px"
   },
   cardTitle: {
     marginTop: "0",
@@ -58,7 +60,7 @@ const chartCardStyle = {
     color: grayColor,
     fontSize: "12px",
     display: "inline-block",
-    margin: "0!important"
+    margin: "0"
   },
   cardStatsIcon: {
     position: "relative",

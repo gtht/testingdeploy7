@@ -12,30 +12,30 @@ import {
   ContentPaste,
   LibraryBooks,
   BubbleChart,
-  LocationOn,
+  Forum,
   Notifications
 } from "material-ui-icons";
 
 const appRoutes = [
   {
     path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
+    sidebarName: "Classroom Analytics",
+    navbarName: "Classroom Analytics (Teacher)",
     icon: Dashboard,
     component: DashboardPage
   },
   {
     path: "/user",
-    sidebarName: "User Profile",
-    navbarName: "Profile",
-    icon: Person,
+    sidebarName: "Classroom Analytics",
+    navbarName: "Classroom Analytics (Student)",
+    icon: Dashboard,
     component: UserProfile
   },
   {
     path: "/table",
-    sidebarName: "Table List",
-    navbarName: "Table List",
-    icon: ContentPaste,
+    sidebarName: "CodeCombat Analytics",
+    navbarName: "CodeCombat Analytics",
+    icon: BubbleChart,
     component: TableList
   },
   {
@@ -46,17 +46,10 @@ const appRoutes = [
     component: Typography
   },
   {
-    path: "/icons",
-    sidebarName: "Icons",
-    navbarName: "Icons",
-    icon: BubbleChart,
-    component: Icons
-  },
-  {
     path: "/maps",
-    sidebarName: "Maps",
-    navbarName: "Map",
-    icon: LocationOn,
+    sidebarName: "QnA",
+    navbarName: "QnA",
+    icon: Forum,
     component: Maps
   },
   {

@@ -1,3 +1,46 @@
+// ############################
+/*
+import React from 'react';
+import ReactDOM from 'react-dom';
+import firebase from 'firebase';
+import reactfire from 'reactfire';
+
+var config = {
+    apiKey: "AIzaSyDvF966Qymq1ktNm39fWqo8CY42GSA6UnQ",
+    authDomain: "friendlychat-af4c8.firebaseapp.com",
+    databaseURL: "https://friendlychat-af4c8.firebaseio.com",
+    projectId: "friendlychat-af4c8",
+    storageBucket: "friendlychat-af4c8.appspot.com",
+    messagingSenderId: "919303787426"
+  };
+
+try {
+  firebase.initializeApp(config);
+} catch (error) {}
+
+var db = firebase.database();
+db.ref("/testCharts").on("value", data => {
+  if (data.val()) {
+    store.dispatch({ type: "SET_VAL", payload: data.val() });
+    console.log("dispatched & displaying getstate:");
+    console.log(store.getState());
+  }
+});
+
+class App extends React.Component { 
+  render() {
+    return (
+      <div> {
+        return <RechartsComp key={index} charts={chart} />;
+        })
+      }
+      </div>
+    );
+  }
+}
+*/
+// ##############################
+
 // ##############################
 // // // javascript library for creating charts
 // #############################

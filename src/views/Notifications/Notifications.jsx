@@ -10,7 +10,7 @@ import {
   Button,
   SnackbarContent,
   Snackbar,
-  ItemGrid
+  ItemGrid,
 } from "components";
 
 class Notifications extends React.Component {
@@ -60,6 +60,18 @@ class Notifications extends React.Component {
           <div>
             <Grid container>
               <ItemGrid xs={12} sm={12} md={6}>
+              <div className="card-content"
+                style= {{
+                  padding: '20px 15px',
+                  lineHeight: '20px',
+                  position: "relative",
+                  marginBottom: "10px",
+                  backgroundColor: "white",
+                  color: "#555555",
+                  borderRadius: "3px",
+                  boxShadow:
+                  "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)"}}>
+                </div>
                 <h5>Notifications Style</h5>
                 <br />
                 <SnackbarContent message={"This is a plain notification"} />

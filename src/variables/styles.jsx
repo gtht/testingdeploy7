@@ -102,9 +102,13 @@ const purpleCardHeader = {
   background: "linear-gradient(60deg, #ab47bc, #8e24aa)",
   ...primaryBoxShadow
 };
+const yellowCardHeader = {
+  background: "linear-gradient(60deg, #EECC40, #EECC10)",
+  ...primaryBoxShadow
+};
 
 const cardActions = {
-  margin: "0 20px 10px",
+  margin: "0 10px 10px",
   paddingTop: "10px",
   borderTop: "1px solid #eeeeee",
   height: "auto",
@@ -151,6 +155,7 @@ export {
   redCardHeader,
   blueCardHeader,
   purpleCardHeader,
+  yellowCardHeader,
   cardActions,
   cardHeader,
   defaultBoxShadow

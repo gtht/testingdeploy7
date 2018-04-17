@@ -7,6 +7,8 @@ import "assets/css/material-dashboard-react.css";
 
 import indexRoutes from "routes/index.jsx";
 
+import registerServiceWorker from './registerServiceWorker';
+
 const hist = createBrowserHistory();
 
 ReactDOM.render(
@@ -19,3 +21,5 @@ ReactDOM.render(
   </Router>,
   document.getElementById("root")
 );
+
+registerServiceWorker();

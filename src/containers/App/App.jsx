@@ -15,6 +15,8 @@ import appStyle from "variables/styles/appStyle.jsx";
 import image from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/reactlogo.png";
 
+import firebase from 'firebase';
+
 const switchRoutes = (
   <Switch>
     {appRoutes.map((prop, key) => {
@@ -26,6 +28,20 @@ const switchRoutes = (
 );
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+
+    var config = {
+      apiKey: "AIzaSyD8jctfQu1S_OXFL-ZhSc_yfTfmOLYNl0Q",
+      authDomain: "bt3103week10.firebaseapp.com",
+      databaseURL: "https://bt3103week10.firebaseio.com",
+      projectId: "bt3103week10",
+      storageBucket: "bt3103week10.appspot.com",
+      messagingSenderId: "968052591654"
+    };
+    firebase.initializeApp(config);
+  }
+
   state = {
     mobileOpen: false
   };
@@ -44,13 +60,14 @@ class App extends React.Component {
   componentDidUpdate() {
     this.refs.mainPanel.scrollTop = 0;
   }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
       <div className={classes.wrapper}>
         <Sidebar
           routes={appRoutes}
-          logoText={"Creative Tim"}
+          logoText={"CLAssistant"}
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}
