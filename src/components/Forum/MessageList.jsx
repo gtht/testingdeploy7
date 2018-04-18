@@ -12,7 +12,7 @@ class MessageList extends Component {
 
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
-    let messageNodes = this.props.listOfMessages.map((message) => {
+    let messageNodes = this.props.selected5.map((message) => {
 
     return (
       <div className="card" style={{flex: 1, flexDirectrion: 'row'}}>
@@ -29,7 +29,7 @@ class MessageList extends Component {
             boxShadow:
             "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)"}}>
           <ListItemText
-            primary= {<p><b><Message message = {message.text} /></b></p>}
+            primary= {<p><b><Message message = {message} /></b></p>}
           />
         </div>
       </div>

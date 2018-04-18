@@ -9,7 +9,7 @@ class Maps extends React.Component {
     super(props);
     this.state = {
       listOfLessons: [],
-      nextLessonIndex: 0
+      first: null
     }
     this.myFunction5 = this.myFunction5.bind(this);
   }
@@ -35,7 +35,7 @@ class Maps extends React.Component {
       //stores array of Objects into lessons state
       this.setState({
         listOfLessons: lessons,
-        nextLessonIndex: lessons.length,
+        first: lessons[0].key
       }, this.myFunction5);
   }
 
@@ -44,6 +44,7 @@ class Maps extends React.Component {
   }
 
   render(){
+    // alert(this.state.first);
     return (
       <div style= {{flex: 1, flexDirection: 'row'}}>
         <RegularCard
@@ -52,7 +53,7 @@ class Maps extends React.Component {
           cardTitle= "Text Analytics for Videos"
           headerColor="red"
           content={
-            <div><LessonList db={firebase} listOfLessons={this.state.listOfLessons} nextLessonIndex={this.state.nextLessonIndex} /></div>
+            <div><LessonList db={firebase} listOfLessons={this.state.listOfLessons} first={this.state.first} /></div>
           }
         />
       </div>

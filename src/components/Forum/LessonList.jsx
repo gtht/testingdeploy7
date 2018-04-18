@@ -17,12 +17,14 @@ class LessonList extends React.Component {
     this.myFunction = this.myFunction.bind(this);
 
     this.state  = {
-      // openDialog: false,
-      selectedLesson: null,
+      new: true,
+      selectedLesson: this.props.first,
       selectedIndex: 0,
-      openQnA: true,
+      openQnA: false,
       msgCount: 0
     }
+
+    // this.setState({openQnA: true});
 
   }
 
@@ -41,7 +43,7 @@ class LessonList extends React.Component {
   // for Lessons sidebar
   handleMenuItemClick = (event, index, lesson) => {
     // alert(lesson.key);
-    this.setState({ selectedIndex: index, openQnA: false, selectedLesson: lesson.key }, this.myFunction);
+    this.setState({ new: false, selectedIndex: index, openQnA: false, selectedLesson: lesson.key }, this.myFunction);
   };
   // end of sidebar method
 
@@ -53,6 +55,9 @@ class LessonList extends React.Component {
   // end of QnA method
 
   render(){
+  //   if(this.props.listOfLessons.length > 0){
+  //   alert(this.props.listOfLessons[0].key);
+  // }
     let messageNodes = this.props.listOfLessons.map((lesson, index) => {
       // alert("testrun");
       return (
@@ -91,12 +96,12 @@ class LessonList extends React.Component {
         <div>
           <QnA
             db={this.props.db}
-            selectedLesson={this.state.selectedLesson}
+            selectedLesson={this.state.new ? (this.props.first) : (this.state.selectedLesson)}
             selectedIndex={this.state.selectedIndex}
           />
         </div>
       ) : (
-        <div>Pick a lesson to begin</div>
+        <div>Pick a video to begin</div>
       );
     // end of show/hide Messages method
 
