@@ -39,7 +39,7 @@ class MessageList extends Component {
     return (
       <div>
         <List
-          style={{maxHeight:'200px', overflow:'auto'}}>
+          style={{maxHeight:'280px', overflow:'auto'}}>
           {messageNodes}
         </List>
       </div>
