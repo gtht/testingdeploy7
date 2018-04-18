@@ -24,7 +24,8 @@ import {
   TasksCard,
   RegularCard,
   Table,
-  ItemGrid
+  ItemGrid,
+  MessageContents
 } from "components";
 
 import {
@@ -89,37 +90,6 @@ if(mm<10){
     mm='0'+mm;
 }
 var today = dd+'/'+mm+'/'+yyyy+ ' ' + hh + ':'+min;
-
-
-/*<ChartCard
-              chart = {
-                <LineChart width={350} height={300} data={this.props.youtubeChart}
-                    margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="AWS Lambda Lab - Part 1 (5:55)" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="AWS Lambda Lab - Part 2 (7:13)" stroke="#82ca9d" />
-                  <Line type="monotone" dataKey="AWS Lambda Lab - Part 3 (7:13)" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="AWS Lambda Lab - Part 4 (7:28)" stroke="#82ca9d" />
-                  <Line type="monotone" dataKey="AWS Lambda Lab - Part 5 (4:26)" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="Introduction to AWS Lambda:" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="Introduction to AWS Lambda (video 3:01)" stroke="#82ca9d" />
-                  <Line type="monotone" dataKey="Introduction to AWS Lambda (video)" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="AWS Lambda Lab - Part 4 (7:28)" stroke="#82ca9d" />
-                  <Line type="monotone" dataKey="Real-time Charts Tutorial (video 12:05):" stroke="#8884d8" />
-
-                  </LineChart>
-              }
-              chartColor="green"
-              title="Suggested Assignments to Focus on"
-              text={"Some text here"}
-              statIcon={AccessTime}
-              statText="updated 4 minutes ago"
-            />*/
-
 
 class Dashboard extends React.Component {
 
@@ -260,10 +230,7 @@ class Dashboard extends React.Component {
         userActivity: messages
       });
     }
-
-
   }
-
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -272,10 +239,11 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
+
   render() {
     // SAMPLE DATA FROM RECHART SAMPLE CHARTS
-
-    const data2 = [
+    const { root, depth, x, y, width, height, index, payload, colors, rank, name } = this.props;
+    const data = [
           {
             name: 'axis',
             children: [
@@ -408,11 +376,7 @@ class Dashboard extends React.Component {
           }
         ];
 
-        const COLORS = ['#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57', '#ffc658', '#fdc513', '#fed85f', '#ff5079'];
-        /*const CustomizedContent = React.createClass({
-         render() {
-          const { root, depth, x, y, width, height, index, payload, colors, rank, name } = this.props;*/
-
+const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
             // END OF SAMPLE DATA
     return (
       <div>
@@ -420,8 +384,12 @@ class Dashboard extends React.Component {
           <ItemGrid xs={100} sm={100} md={6}>
             <RegularCard
               headerColor="orange"
-              cardTitle="Assignments Completeness RadialBar"
-              cardSubtitle={"An overview of the percentage of students who have completed the 10 assignments"}
+              cardTitle="Percentage of Assignment Completion"
+              cardSubtitle={
+                <span>
+                {" "}
+                An overview of the <b>percentage of submissions</b> received for each assignment
+                </span>}
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
               content = {
@@ -440,8 +408,7 @@ class Dashboard extends React.Component {
                     label={{ position: 'insideStart', fill: '#fff' }}
                     background
                     clockWise={true}
-                    dataKey='uv'
-                    label={false}/>
+                    dataKey='uv'/>
                   <Legend
                     iconSize={20}
                     width={300}
@@ -449,6 +416,7 @@ class Dashboard extends React.Component {
                     layout='vertical'
                     verticalAlign='middle'
                   />
+                  <Tooltip />
                 </RadialBarChart>
               }
             />
@@ -456,8 +424,8 @@ class Dashboard extends React.Component {
           <ItemGrid xs={100} sm={100} md={6}>
             <RegularCard
               headerColor="orange"
-              cardTitle="Assignment Completeness Table"
-              cardSubtitle="A list of assignments in this course"
+              cardTitle="List of Assignment Completion"
+              cardSubtitle="An overview of a list of assignments & the no. of submissions"
               content={
                 <div style={{maxHeight:'400px', overflow: 'auto'}}>
                 <Table
@@ -471,13 +439,13 @@ class Dashboard extends React.Component {
           </ItemGrid>
           <ItemGrid xs={100} sm={100} md={12}>
             <RegularCard
-              headerColor="blue"
-              cardTitle="User Activeness"
-              cardSubtitle={"Tracks user activities & assignment submissions"}
+              headerColor="green"
+              cardTitle="User Activity"
+              cardSubtitle={"Tracks user activities & assignment submissions over a period of time"}
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
               content = {
-                <LineChart width={900} height={400} data={this.state.userActivity}
+                <LineChart width={1300} height={400} data={this.state.userActivity}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -490,7 +458,7 @@ class Dashboard extends React.Component {
               }
             />
           </ItemGrid>
-          <ItemGrid xs={8} sm={8} md={6}>
+          <ItemGrid xs={8} sm={8} md={8}>
             <RegularCard
               headerColor="red"
               cardTitle="Assignments Not Completed TreeMap"
@@ -498,20 +466,62 @@ class Dashboard extends React.Component {
               content={
                 <div>
                   <Treemap
-                    width={640}
+                    width={800}
                     height={400}
-                    data={data2}
+                    data={data}
                     dataKey="size"
                     ratio={4/3}
                     stroke="#fff"
                     fill="#8884d8"
-                  />
+                    // content={
+                      // <g>
+                      //   <rect
+                      //     x={x}
+                      //     y={y}
+                      //     width={width}
+                      //     height={height}
+                      //     style={{
+                      //       fill: depth < 2 ? colors[Math.floor(index / root.children.length * 6)] : 'none',
+                      //       stroke: '#fff',
+                      //       strokeWidth: 2 / (depth + 1e-10),
+                      //       strokeOpacity: 1 / (depth + 1e-10),
+                      //     }}
+                      //   />
+                      //   {
+                      //     depth === 1 ?
+                      //     <text
+                      //       x={x + width / 2}
+                      //       y={y + height / 2 + 7}
+                      //       textAnchor="middle"
+                      //       fill="#fff"
+                      //       fontSize={14}
+                      //     >
+                      //       {name}
+                      //     </text>
+                      //     : null
+                      //   }
+                      //   {
+                      //     depth === 1 ?
+                      //     <text
+                      //       x={x + 4}
+                      //       y={y + 18}
+                      //       fill="#fff"
+                      //       fontSize={16}
+                      //       fillOpacity={0.9}
+                      //     >
+                      //       {index + 1}
+                      //     </text>
+                      //     : null
+                      //   }
+                      // </g>
+                  // }
+                />
                 </div>
               }
             />
           </ItemGrid>
 
-          <ItemGrid xs={8} sm={8} md={6}>
+          <ItemGrid xs={4} sm={4} md={4}>
 
             <RegularCard
               headerColor="red"
@@ -531,21 +541,16 @@ class Dashboard extends React.Component {
           </ItemGrid>
         </Grid>
         <Grid container>
-
-          <ItemGrid xs={100} sm={100} md={12}>
-
-            <RegularCard
-              content = {
-                <ItemGrid>
-                  testing
-                </ItemGrid>
-              }
-              headerColor="green"
-              cardTitle="Top & Bottom 5 Students"
-              cardSubtitle=""
-              statIcon={AccessTime}
-              statText="updated 4 minutes ago"
-            />
+          <ItemGrid xs={12} sm={12} md={12}>
+          <RegularCard
+            plainCard={true}
+            headerColor="purple"
+            cardTitle="Text Analytics"
+            cardSubtitle="An analysis of short-answer questions"
+            content={
+              <MessageContents />
+            }
+          />
           </ItemGrid>
         </Grid>
       </div>
