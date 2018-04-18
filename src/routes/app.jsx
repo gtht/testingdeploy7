@@ -20,7 +20,7 @@ const appRoutes = [
   {
     path: "/dashboard",
     sidebarName: "Classroom Analytics",
-    navbarName: "Classroom Analytics (Teacher)",
+    navbarName: "Classroom Analytics",
     icon: Dashboard,
     component: DashboardPage
   },
@@ -30,13 +30,6 @@ const appRoutes = [
     navbarName: "CodeCombat Analytics",
     icon: BubbleChart,
     component: TableList
-  },
-  {
-    path: "/textanalytics",
-    sidebarName: "Text Analytics",
-    navbarName: "Text Analytics",
-    icon: FontDownload,
-    component: Maps
   },
   { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
 ];

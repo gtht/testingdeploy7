@@ -51,7 +51,7 @@ class QnAa extends React.Component {
                             "AND","OR","BY","TO","YOUR","ARE","WHO","WHAT","WHEN","WHERE","WHY","BE",
                             "THEN","SO","AN","THAT","THE","DOES","HAS","HAVE","SHOULD","WOULD","COULD",
                             "ON","US","FOR","THEY","AM", "ITS", "FROM", "BUT", "OF", "WITH", "AS", "OUR",
-                            "THERE","CAN","DONT","THIS","THAT","THOSE"];
+                            "THERE","CAN","DONT","THIS","THAT","THOSE","IF","THAN"];
       var arrListOfMsgs = [];
       this.state.listOfMessages.map((message) => {
         // alert(message.text);
