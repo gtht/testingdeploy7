@@ -33,13 +33,13 @@ class MessageList extends Component {
           />
         </div>
       </div>
-    )
+    ) 
   });
 
     return (
       <div>
         <List
-          style={{maxHeight:'280px', overflow:'auto'}}>
+          style={{maxHeight:'250px', overflow:'auto'}}>
           {messageNodes}
         </List>
       </div>
