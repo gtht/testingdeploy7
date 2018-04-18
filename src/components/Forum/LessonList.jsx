@@ -19,7 +19,7 @@ class LessonList extends React.Component {
     this.state  = {
       new: true,
       selectedLesson: this.props.first,
-      selectedIndex: 0,
+      selectedIndex: null,
       openQnA: false,
       msgCount: 0
     }
@@ -93,39 +93,30 @@ class LessonList extends React.Component {
     const isOpen = this.state.openQnA;
 
     const msg = isOpen ? (
-        <div>
           <QnA
             db={this.props.db}
             selectedLesson={this.state.new ? (this.props.first) : (this.state.selectedLesson)}
             selectedIndex={this.state.selectedIndex}
           />
-        </div>
       ) : (
-        <div>Pick a video to begin</div>
+        <p>Pick an assignment to begin</p>
       );
     // end of show/hide Messages method
 
     return (
-      <div>
-        <div style= {{flex: 1, flexDirection: 'row'}}>
-          <div style= {{flex: 0.2, float: 'left', left: 0, marginLeft: 15, width:'20%'}}>
-            <Paper style={{padding: '5px', maxHeight: '500px'}}>
-            <ListSubheader>Videos:</ListSubheader>
+      <Grid container>
+        <ItemGrid xs={12} sm={12} md={3}>
+            <Paper style={{maxHeight: '600px'}}>
+            <ListSubheader>Assignments:</ListSubheader>
               <MenuList>
                 {messageNodes}
               </MenuList>
             </Paper>
-          </div>
-          <div style= {{flex: 0.8, right: 0,
-                      marginRight: 15,
-                      marginTop: 10,
-                      width: '75%',
-                      float: 'right'}}
-          >
+        </ItemGrid>
+        <ItemGrid xs={12} sm={12} md={9}>
             {msg}
-          </div>
-        </div>
-      </div>
+        </ItemGrid>
+      </Grid>
     );
   }
 }
