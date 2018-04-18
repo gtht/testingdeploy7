@@ -51,11 +51,11 @@ class QnAa extends React.Component {
                             "AND","OR","BY","TO","YOUR","ARE","WHO","WHAT","WHEN","WHERE","WHY","BE",
                             "THEN","SO","AN","THAT","THE","DOES","HAS","HAVE","SHOULD","WOULD","COULD",
                             "ON","US","FOR","THEY","AM", "ITS", "FROM", "BUT", "OF", "WITH", "AS", "OUR",
-                            "THERE","CAN"];
+                            "THERE","CAN","DONT","THIS","THAT","THOSE"];
       var arrListOfMsgs = [];
       this.state.listOfMessages.map((message) => {
         // alert(message.text);
-        arrListOfMsgs.push(message.text.toUpperCase());
+        arrListOfMsgs.push(message.text);
         var title = message.text;
         var words = title.split(" ");
         for (var j=0; j<words.length; j++){
@@ -103,10 +103,10 @@ class QnAa extends React.Component {
         var max5score = [];
         var score = 0;
         // find the top 20 words inside of each response
-        for (var j=0; j<20; j++){
+        for (var j=0; j<25; j++){
           // reset tf for each word search
           var tf;
-          if (msglist[index].indexOf(wordlist[j].text) > -1) {
+          if (msglist[index].toUpperCase().indexOf(wordlist[j].text) > -1) {
             tf = true;
           } else {
             tf = false;
@@ -152,30 +152,29 @@ class QnAa extends React.Component {
     //   }
     // }
     return (
-      <div style= {{flex: 1, flexDirection: 'row'}}>
+      <ItemGrid xs={12} sm={12} md={12}>
         <RegularCard
-          fullWidth= {true}
-          cardTitle= "Frequent Words Submitted"
-          headerColor="green"
+          fullWidth={true}
+          cardTitle= "Most Common Words Submitted"
+          headerColor="orange"
           content={
-            <div>
               <WordCloud
-                width={1000}
+                width={900}
                 height={200}
                 data={data2}
                 fontSizeMapper={fontSizeMapper}
               />
-            </div>
           }
         />
         <RegularCard
           fullWidth= {true}
-          cardTitle= "Top 5 Answers"
+          cardTitle= "Top Answers"
+          headerColor="green"
           content={
           <MessageList db={firebase} selectedIndex={this.props.selectedIndex} selected5={this.state.selected5} />
           }
         />
-      </div>
+      </ItemGrid>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase";
-import { LessonList, RegularCard } from "components";
+import { LessonList, RegularCard, ItemGrid } from "components";
+import { Grid } from "material-ui";
 
 import _ from 'lodash';
 
@@ -46,16 +47,12 @@ class Maps extends React.Component {
   render(){
     // alert(this.state.first);
     return (
-      <div style= {{flex: 1, flexDirection: 'row'}}>
-        <RegularCard
-          plainCard={true}
-          fullWidth= {true}
-          cardTitle= "Text Analytics for Videos"
-          headerColor="red"
-          content={
-            <div><LessonList db={firebase} listOfLessons={this.state.listOfLessons} first={this.state.first} /></div>
-          }
-        />
+      <div>
+        <Grid container>
+          <ItemGrid xs={12} sm={12} md={12}>
+          <LessonList db={firebase} listOfLessons={this.state.listOfLessons} first={this.state.first} />
+          </ItemGrid>
+        </Grid>
       </div>
     );
   }
