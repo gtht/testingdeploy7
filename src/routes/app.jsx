@@ -25,13 +25,6 @@ const appRoutes = [
     component: DashboardPage
   },
   {
-    path: "/dashboardstud",
-    sidebarName: "Classroom Analytics 2",
-    navbarName: "Classroom Analytics (Student)",
-    icon: Dashboard,
-    component: UserProfile
-  },
-  {
     path: "/codecombat",
     sidebarName: "CodeCombat Analytics",
     navbarName: "CodeCombat Analytics",
