@@ -42,7 +42,10 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  Treemap,
+  RadialBarChart,
+  RadialBar
 } from "recharts";
 
 import dashboardStyle from "variables/styles/dashboardStyle";
@@ -81,14 +84,14 @@ var min = today.getMinutes();
 var yyyy = today.getFullYear();
 if(dd<10){
     dd='0'+dd;
-} 
+}
 if(mm<10){
     mm='0'+mm;
-} 
+}
 var today = dd+'/'+mm+'/'+yyyy+ ' ' + hh + ':'+min;
 
 
-/*<ChartCard 
+/*<ChartCard
               chart = {
                 <LineChart width={350} height={300} data={this.props.youtubeChart}
                     margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
@@ -107,7 +110,7 @@ var today = dd+'/'+mm+'/'+yyyy+ ' ' + hh + ':'+min;
                   <Line type="monotone" dataKey="Introduction to AWS Lambda (video)" stroke="#8884d8" />
                   <Line type="monotone" dataKey="AWS Lambda Lab - Part 4 (7:28)" stroke="#82ca9d" />
                   <Line type="monotone" dataKey="Real-time Charts Tutorial (video 12:05):" stroke="#8884d8" />
-                
+
                   </LineChart>
               }
               chartColor="green"
@@ -116,10 +119,10 @@ var today = dd+'/'+mm+'/'+yyyy+ ' ' + hh + ':'+min;
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
             />*/
-            
+
 
 class Dashboard extends React.Component {
-  
+
   constructor(props){
       super(props);
       this.state= {
@@ -133,10 +136,10 @@ class Dashboard extends React.Component {
         xaxisLabel : " ",
         yaxisLabel : " ",
         finalTable : []
-       
+
       };
-    } 
-   
+    }
+
    componentWillMount(){
         let yourUrl= "https://nrjbyc2z57.execute-api.ap-southeast-1.amazonaws.com/prod/ccDataUpdate";
         fetch(yourUrl, { mode: "no-cors" }).then(function(response) {
@@ -159,46 +162,46 @@ class Dashboard extends React.Component {
   path1.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(), 1);
-      
+
     })
-  
+
   path2.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),2);
-    
+
     })
-  
+
   path3.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),3);
-      
+
     })
-  
+
   path4.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),4);
-      
+
     })
   /*
   path5.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),5);
-      
+
     })
     */
   path6.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),6);
-      
+
     })
-    
+
    path7.on('value',snapshot =>{
     //console.log(snapshot.val());
     this.getData(snapshot.val(),7);
-    
+
   })
-  
- }  
+
+ }
   getData(values, num){
     var messagesVal = values;   // this is an Object
     // iterates thru the 10 Objects
@@ -214,25 +217,25 @@ class Dashboard extends React.Component {
                       .value();
 
       //alert(typeof messages);
-      //alert("messages="+messages    
+      //alert("messages="+messages
       if (num==1){
       this.setState({
         assignmentsLineChart: messages
       });
     }
-    
+
        if (num==2){
       this.setState({
         youtubeTable: messages
       });
     }
-    
+
         if (num==3){
       this.setState({
         assignmentTable: messages
       });
     }
-    
+
     if (num==4){
       this.setState({
         youtubeChart: messages
@@ -250,13 +253,13 @@ class Dashboard extends React.Component {
         finalTable: messages
       });
     }
-    
+
      if (num==7){
       this.setState({
         activeUsersLineChart: messages
       });
     }
-    
+
 
   }
 
@@ -269,18 +272,219 @@ class Dashboard extends React.Component {
     this.setState({ value: index });
   };
   render() {
+    // SAMPLE DATA FROM RECHART SAMPLE CHARTS
+    const data = [
+          {name: '18-24', uv: 31.47, pv: 2400, fill: '#8884d8'},
+          {name: '25-29', uv: 26.69, pv: 4567, fill: '#83a6ed'},
+          {name: '30-34', uv: 15.69, pv: 1398, fill: '#8dd1e1'},
+          {name: '35-39', uv: 8.22, pv: 9800, fill: '#82ca9d'},
+          {name: '40-49', uv: 8.63, pv: 3908, fill: '#a4de6c'},
+          {name: '50+', uv: 2.63, pv: 4800, fill: '#d0ed57'},
+          {name: 'unknow', uv: 6.67, pv: 4800, fill: '#ffc658'},
+          {name: 'unknow', uv: 6.67, pv: 4800, fill: '#ffc658'},
+          {name: 'unknow', uv: 6.67, pv: 4800, fill: '#ffc658'},
+          {name: 'unknow', uv: 6.67, pv: 4800, fill: '#ffc658'}
+        ];
+
+    const data2 = [
+              {
+                name: 'axis',
+                children: [
+                  { name: 'Axes', size: 1302 },
+                  { name: 'Axis', size: 24593 },
+                  { name: 'AxisGridLine', size: 652 },
+                  { name: 'AxisLabel', size: 636 },
+                  { name: 'CartesianAxes', size: 6703 },
+                ],
+              },
+              {
+                name: 'controls',
+                children: [
+                  { name: 'AnchorControl', size: 2138 },
+                  { name: 'ClickControl', size: 3824 },
+                  { name: 'Control', size: 1353 },
+                  { name: 'ControlList', size: 4665 },
+                  { name: 'DragControl', size: 2649 },
+                  { name: 'ExpandControl', size: 2832 },
+                  { name: 'HoverControl', size: 4896 },
+                  { name: 'IControl', size: 763 },
+                  { name: 'PanZoomControl', size: 5222 },
+                  { name: 'SelectionControl', size: 7862 },
+                  { name: 'TooltipControl', size: 8435 },
+                ],
+              },
+              {
+                name: 'data',
+                children: [
+                  { name: 'Data', size: 20544 },
+                  { name: 'DataList', size: 19788 },
+                  { name: 'DataSprite', size: 10349 },
+                  { name: 'EdgeSprite', size: 3301 },
+                  { name: 'NodeSprite', size: 19382 },
+                  {
+                    name: 'render',
+                    children: [
+                      { name: 'ArrowType', size: 698 },
+                      { name: 'EdgeRenderer', size: 5569 },
+                      { name: 'IRenderer', size: 353 },
+                      { name: 'ShapeRenderer', size: 2247 },
+                    ],
+                  },
+                  { name: 'ScaleBinding', size: 11275 },
+                  { name: 'Tree', size: 7147 },
+                  { name: 'TreeBuilder', size: 9930 },
+                ],
+              },
+              {
+                name: 'events',
+                children: [
+                  { name: 'DataEvent', size: 7313 },
+                  { name: 'SelectionEvent', size: 6880 },
+                  { name: 'TooltipEvent', size: 3701 },
+                  { name: 'VisualizationEvent', size: 2117 },
+                ],
+              },
+              {
+                name: 'legend',
+                children: [
+                  { name: 'Legend', size: 20859 },
+                  { name: 'LegendItem', size: 4614 },
+                  { name: 'LegendRange', size: 10530 },
+                ],
+              },
+              {
+                name: 'operator',
+                children: [
+                  {
+                    name: 'distortion',
+                    children: [
+                      { name: 'BifocalDistortion', size: 4461 },
+                      { name: 'Distortion', size: 6314 },
+                      { name: 'FisheyeDistortion', size: 3444 },
+                    ],
+                  },
+                  {
+                    name: 'encoder',
+                    children: [
+                      { name: 'ColorEncoder', size: 3179 },
+                      { name: 'Encoder', size: 4060 },
+                      { name: 'PropertyEncoder', size: 4138 },
+                      { name: 'ShapeEncoder', size: 1690 },
+                      { name: 'SizeEncoder', size: 1830 },
+                    ],
+                  },
+                  {
+                    name: 'filter',
+                    children: [
+                      { name: 'FisheyeTreeFilter', size: 5219 },
+                      { name: 'GraphDistanceFilter', size: 3165 },
+                      { name: 'VisibilityFilter', size: 3509 },
+                    ],
+                  },
+                  { name: 'IOperator', size: 1286 },
+                  {
+                    name: 'label',
+                    children: [
+                      { name: 'Labeler', size: 9956 },
+                      { name: 'RadialLabeler', size: 3899 },
+                      { name: 'StackedAreaLabeler', size: 3202 },
+                    ],
+                  },
+                  {
+                    name: 'layout',
+                    children: [
+                      { name: 'AxisLayout', size: 6725 },
+                      { name: 'BundledEdgeRouter', size: 3727 },
+                      { name: 'CircleLayout', size: 9317 },
+                      { name: 'CirclePackingLayout', size: 12003 },
+                      { name: 'DendrogramLayout', size: 4853 },
+                      { name: 'ForceDirectedLayout', size: 8411 },
+                      { name: 'IcicleTreeLayout', size: 4864 },
+                      { name: 'IndentedTreeLayout', size: 3174 },
+                      { name: 'Layout', size: 7881 },
+                      { name: 'NodeLinkTreeLayout', size: 12870 },
+                      { name: 'PieLayout', size: 2728 },
+                      { name: 'RadialTreeLayout', size: 12348 },
+                      { name: 'RandomLayout', size: 870 },
+                      { name: 'StackedAreaLayout', size: 9121 },
+                      { name: 'TreeMapLayout', size: 9191 },
+                    ],
+                  },
+                  { name: 'Operator', size: 2490 },
+                  { name: 'OperatorList', size: 5248 },
+                  { name: 'OperatorSequence', size: 4190 },
+                  { name: 'OperatorSwitch', size: 2581 },
+                  { name: 'SortOperator', size: 2023 },
+                ],
+              }
+            ];
+
+            const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
+
+            // END OF SAMPLE DATA
     return (
       <div>
         <Grid container>
-          <ItemGrid xs={100} sm={100} md={10}>
-            <RegularCard 
-              headerColor="blue"
-              cardTitle="Assignment Submission Tracking"
-              cardSubtitle={"Track student's submission"}
+          <ItemGrid xs={100} sm={100} md={7}>
+            <RegularCard
+              headerColor="orange"
+              cardTitle="Assignments Completeness RadialBar"
+              cardSubtitle={"An overview of the percentage of students who have completed the 10 assignments"}
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
               content = {
-                <LineChart width={780} height={400} data={this.state.assignmentsLineChart}
+                <RadialBarChart
+                  width={1100}
+                  height={400}
+                  cx={210}
+                  cy={210}
+                  innerRadius={20}
+                  outerRadius={200}
+                  barSize={15}
+                  data={data}
+                >
+                  <RadialBar
+                    minAngle={1}
+                    label={{ position: 'insideStart', fill: '#fff' }}
+                    background
+                    clockWise={true}
+                    dataKey='uv'/>
+                  <Legend
+                    iconSize={20}
+                    width={120}
+                    height={140}
+                    layout='vertical'
+                    verticalAlign='middle'
+                  />
+                </RadialBarChart>
+              }
+            />
+          </ItemGrid>
+          <ItemGrid xs={100} sm={100} md={5}>
+            <RegularCard
+              headerColor="orange"
+              cardTitle="Assignment Completeness Table"
+              cardSubtitle="A list of assignments in this course"
+              content={
+                <div style={{maxHeight:'400px', overflow: 'auto'}}>
+                <Table
+                  tableHeaderColor="warning"
+                  tableHead={["Assignment", "Completeness"]}
+                  tableData={this.state.finalTable}
+                />
+                </div>
+              }
+            />
+          </ItemGrid>
+          <ItemGrid xs={100} sm={100} md={12}>
+            <RegularCard
+              headerColor="blue"
+              cardTitle="User Activeness"
+              cardSubtitle={"Tracks user activities & assignment submissions"}
+              statIcon={AccessTime}
+              statText="updated 4 minutes ago"
+              content = {
+                <LineChart width={1280} height={400} data={this.state.assignmentsLineChart}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -293,40 +497,39 @@ class Dashboard extends React.Component {
               }
             />
           </ItemGrid>
-
-
-          <ItemGrid xs={8} sm={8} md={5}>
+          <ItemGrid xs={8} sm={8} md={6}>
             <RegularCard
-              headerColor="orange"
-              cardTitle="Youtube Video total Views"
-              cardSubtitle="Total views for each youtube video assignment"
+              headerColor="red"
+              cardTitle="Assignments Not Completed TreeMap"
+              cardSubtitle="modify thanks"
               content={
-                <div
-                  style = {{maxHeight:'320px', overflow:'auto'}}>
-                <Table
-                  tableHeaderColor="warning"
-                  tableHead={["Assignment Name", "Views"]}
-                  tableData={this.state.youtubeTable}
-                />
+                <div>
+                  <Treemap
+                  	width={640}
+                    height={400}
+                    data={data2}
+                    dataKey="size"
+                    ratio={4/3}
+                    stroke="#fff"
+                    fill="#8884d8"
+                  />
                 </div>
               }
             />
-
           </ItemGrid>
 
-
-          <ItemGrid xs={8} sm={8} md={5}>
+          <ItemGrid xs={8} sm={8} md={6}>
 
             <RegularCard
               headerColor="red"
-              cardTitle="Overview of Assignments Submitted "
-              cardSubtitle="Assignment that took longest to complete at the top"
+              cardTitle="Assignments Not Completed Table"
+              cardSubtitle="modify thanks"
               content={
                 <div
-                  style = {{maxHeight:'300px', overflow:'auto'}}>
+                  style = {{maxHeight:'400px', overflow:'auto'}}>
                 <Table
                   tableHeaderColor="warning"
-                  tableHead={["Assignment Name", "No. Students Completed", "Assignment Status"]}
+                  tableHead={["Student Name", "Assignments Not Completed"]}
                   tableData={this.state.assignmentTable }
                 />
                 </div>
@@ -336,46 +539,19 @@ class Dashboard extends React.Component {
         </Grid>
         <Grid container>
 
-          <ItemGrid xs={100} sm={100} md={10}>
+          <ItemGrid xs={100} sm={100} md={12}>
 
-            <RegularCard 
+            <RegularCard
               content = {
-                <LineChart width={780} height={300} data={this.state.activeUsersLineChart}
-                    margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                  
-                  </LineChart>
+                <ItemGrid>
+                  testing
+                </ItemGrid>
               }
               headerColor="green"
-              cardTitle="Track the Number of Active users on Achievements App"
+              cardTitle="Top & Bottom 5 Students"
               cardSubtitle=""
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
-            />
-          
-            <RegularCard
-              headerColor="orange"
-              cardTitle="Suggested Assignments to Focus on"
-              cardSubtitle="Assignment that took longest to complete at the top"
-              content={
-                <Table
-                  tableHeaderColor="warning"
-                  tableHead={["Student's Name", "Assignment 1", "Assignment 2"
-                  , "Assignment 3"
-                  , "Assignment 4"
-                  , "Assignment 5"
-                  , "Assignment 6"
-                  , "Assignment 7"
-                  , "Assignment 8"
-                  , "Assignment 9"]}
-                  tableData={this.state.finalTable}
-                />
-              }
             />
           </ItemGrid>
         </Grid>

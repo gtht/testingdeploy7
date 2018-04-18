@@ -10,49 +10,31 @@ class MessageList extends Component {
     super(props);
   }
 
-  handleUpvote = (post, key) => {
-    firebase.database().ref('lessons/lecture'+(this.props.selectedIndex+1)+'/messages/'+key).set({
-      title: post.title,
-      desc: post.desc,
-      solved: !post.solved,
-    });
-    // alert("changed");
-}
-
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
-    // alert("from messagelist:"+this.props.listOfMessages);
-    let messageNodes = this.props.listOfMessages.map((message) => {
-      // alert(message.title);
-      return (
-        <div className="card" style={{flex: 1, flexDirectrion: 'row'}}>
-          <div className="card-content"
-            style= {{
-              flex: 0.85, float: 'left', width:'95%',
-              padding: '20px 15px',
-              lineHeight: '20px',
-              position: "relative",
-              marginBottom: "10px",
-              backgroundColor: "white",
-              color: "#555555",
-              borderRadius: "3px",
-              boxShadow:
-              "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)"}}>
-            <ListItemText
-              primary= {<p><b><Message message = {message.title} /></b></p>}
-              secondary= {<Muted><Message message = {message.desc} /></Muted>}
-            />
-          </div>
-        </div>
-      )
-    });
+    let messageNodes = this.props.selected5.map((message) => {
 
-    // const emptt = this.state.emptyMsg;
-    // const msg = emptt ? (
-    //     <div>No posts yet</div>
-    //   ) : (
-    //     <div>{messageNodes}</div>
-    //   );
+    return (
+      <div className="card" style={{flex: 1, flexDirectrion: 'row'}}>
+        <div className="card-content"
+          style= {{
+            flex: 0.85, float: 'left', width:'95%',
+            padding: '20px 15px',
+            lineHeight: '20px',
+            position: "relative",
+            marginBottom: "10px",
+            backgroundColor: "white",
+            color: "#555555",
+            borderRadius: "3px",
+            boxShadow:
+            "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)"}}>
+          <ListItemText
+            primary= {<p><b><Message message = {message} /></b></p>}
+          />
+        </div>
+      </div>
+    )
+  });
 
     return (
       <div>
