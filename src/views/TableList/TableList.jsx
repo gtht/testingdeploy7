@@ -72,7 +72,7 @@ const AxisLabel = ({
 
 //const {PieChart, Pie, Sector} = Recharts;
 
-                   
+
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
@@ -127,22 +127,22 @@ var min = today.getMinutes();
 var yyyy = today.getFullYear();
 if(dd<10){
     dd='0'+dd;
-} 
+}
 if(mm<10){
     mm='0'+mm;
-} 
+}
 var today = dd+'/'+mm+'/'+yyyy+ ' ' + hh + ':'+min;
 
-const avgDailyTimeSpent2 =[ {x : "Friday", y: 110},{x : "thur", y: 100},{x : "wed", y: 90},{x : "tue", y: 80},{x : "mon", y: 70} ]; 
+const avgDailyTimeSpent2 =[ {x : "Friday", y: 110},{x : "thur", y: 100},{x : "wed", y: 90},{x : "tue", y: 80},{x : "mon", y: 70} ];
 const avgDailyTimeSpent3 =[ {x : "Friday", y: 110},{x : "thursday", y: 100},{x : "wednesday", y: 90},{x : "tuesday", y: 80},{x : "monday", y: 70},
-{x : "Fri", y: 110},{x : "thur", y: 100},{x : "wed", y: 90},{x : "tue", y: 80},{x : "mon", y: 70} ]; 
+{x : "Fri", y: 110},{x : "thur", y: 100},{x : "wed", y: 90},{x : "tue", y: 80},{x : "mon", y: 70} ];
 var db= firebase;
   //var xaxisLabel = "my x axis";
-  //var yaxisLabel = "my y axis"; 
+  //var yaxisLabel = "my y axis";
 
 
 class Dashboard extends React.Component {
-    
+
     constructor(props){
       super(props);
       this.state= {
@@ -168,12 +168,12 @@ class Dashboard extends React.Component {
         piechartfinal: {},
         value : 0
       };
-    } 
-    
+    }
+
   //chartData =  [{ name: 'a', value: 5, 12 }];
   //console.log('chartData');
-  //componentWillMount    
- 
+  //componentWillMount
+
   componentWillMount(){
         let yourUrl= "https://nrjbyc2z57.execute-api.ap-southeast-1.amazonaws.com/prod/ccDataUpdate";
         fetch(yourUrl, { mode: "no-cors" }).then(function(response) {
@@ -222,19 +222,19 @@ class Dashboard extends React.Component {
       this.getData(snapshot.val(),3);
       console.log(this.state.chartTooShort);
     })
-  
+
   path4.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),4);
       console.log(this.state.avgDailyTimeSpent);
     })
-  
+
   path5.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),5);
       console.log(this.state.chartTooShort);
     })
-    
+
   path6.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),6);
@@ -252,7 +252,7 @@ class Dashboard extends React.Component {
     console.log(this.state.listMaxDict);
   })
 
-  
+
   path8.on('value',snapshot =>{
     //console.log(snapshot.val());
     this.getData(snapshot.val(),8);
@@ -264,7 +264,7 @@ class Dashboard extends React.Component {
     this.getData(snapshot.val(),9);
     console.log(this.state.scatterAvgY);
   })
-  
+
   path10.on('value',snapshot =>{
     //console.log(snapshot.val());
     this.getData(snapshot.val(),10);
@@ -320,8 +320,8 @@ class Dashboard extends React.Component {
     console.log(this.state.piechartfinal);
   })
 
- 
- }  
+
+ }
   getData(values, num){
     var messagesVal = values;   // this is an Object
     // iterates thru the 10 Objects
@@ -337,7 +337,7 @@ class Dashboard extends React.Component {
                       .value();
 
       //alert(typeof messages);
-      //alert("messages="+messages    
+      //alert("messages="+messages
       if (num==1){
       this.setState({
         chartTooLong: messages
@@ -450,12 +450,12 @@ class Dashboard extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
- 
+
   onPieEnter = (data, index)=> {
     this.setState({
       activeIndex: index });
     };
-  
+
   /*
   let get_chart_data = function(firebaseRef) {
     // this.props
@@ -463,7 +463,7 @@ class Dashboard extends React.Component {
     ref.once().then(
         chartData = snap.val()
         console.log("updated chartData",chartData)
-        // force refresh of this component. 
+        // force refresh of this component.
       )
 
       this.props.db.database().ref("newCharts/bar/data")
@@ -471,9 +471,8 @@ class Dashboard extends React.Component {
   */
 
   /*
-  
-                 */
 
+                 */
 
   render() {
     return (
@@ -481,7 +480,7 @@ class Dashboard extends React.Component {
       <div>
         <Grid container>
           <ItemGrid xs={12} sm={12} md={12}>
-           
+
            <RegularCard
               content={
                  <ResponsiveContainer width="100%" height={400}>
@@ -492,33 +491,32 @@ class Dashboard extends React.Component {
                   <YAxis />
                   <Tooltip />
                   <Legend hide={true}/>
-                  <Line type="linear" dataKey="activeUsers" stroke="#8884d8" />
-                  <Line type="linear" dataKey="totalAvgLevelsCompleted" stroke="#82ca9d" />
+                  <Line type="linear" dataKey="activeUsers" stroke="#8B0000" />
+                  <Line type="linear" dataKey="totalAvgLevelsCompleted" stroke="#000080" />
                   </LineChart>
                 </ResponsiveContainer>
               }
-              headerColor="blue"
+              headerColor="green"
               cardTitle="Overview of Student Activity in Cohort"
               cardSubtitle={
                 <span>
                 {" "}
                 Measures the <b>number of students on Code Combat</b> and the <b>average number of levels completed per student</b>
                 </span>
-                 
+
               }
               statIcon={AccessTime}
               statText= {'Last updated '+today}
             />
           </ItemGrid>
-        
 
         </Grid>
 
-         <Grid container> 
+         <Grid container>
 
           <ItemGrid xs={8} sm={8} md={6}>
             <RegularCard
-              headerColor="orange"
+              headerColor="green"
               cardTitle="Top 20 Students with Highest Activity"
               cardSubtitle="Highest number of Code Combat level update count to Acheivement App"
               content={
@@ -535,9 +533,8 @@ class Dashboard extends React.Component {
 
           </ItemGrid>
 
-
           <ItemGrid xs={12} sm={12} md={6}>
-             
+
              <StatsCard
                   icon={Accessibility}
                   iconColor="green"
@@ -566,7 +563,7 @@ class Dashboard extends React.Component {
                 <BarChart data={this.state.listdailyNumberOfLevelCompleted}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="Weekday" />
-                    <YAxis 
+                    <YAxis
                        label={
                             <AxisLabel axisType="yAxis" width={340} height={350}>
                               {"Number of Levels Completed"}
@@ -576,11 +573,11 @@ class Dashboard extends React.Component {
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="levelsCompleted" fill="#787878" opacity= {0.9}/>
-                    
+
                   </BarChart>
                 </ResponsiveContainer>
               }
-              chartColor="orange"
+              chartColor="green"
               title="Daily Total Levels Completed"
               text={
                 <span>
@@ -588,59 +585,49 @@ class Dashboard extends React.Component {
                     <ArrowUpward
                       className={this.props.classes.upArrowCardCategory}
                     />{" "}
-                    
+
                   </span>{" "}
                   Daily summation of all the levels completed by the cohort
-                 
-
-               
-
-
                 </span>
               }
               statIcon={AccessTime}
               statText= {'Last updated '+today}
             />
-              
                </ItemGrid>
-         
-              
+
             </Grid>
 
-      <Grid container> 
-     
+      <Grid container>
+
          <ItemGrid xs={12} sm={12} md={8}>
-          
+
             <RegularCard
               content={
 
                 <ResponsiveContainer width="95%" height={700}>
-                <ScatterChart r = {5} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-           
+                <ScatterChart r = {5} margin={{top: 20, right: 20, bottom: 20, left: 30}}>
+
             <CartesianGrid />
-            <XAxis  dataKey={'TotalLevelsCompleted'} type="number" name='totalTimeSpent' 
+            <XAxis  dataKey={'TotalLevelsCompleted'} type="number" name='totalTimeSpent'
                 label={
                 <AxisLabel axisType="xAxis" width={800} height={300}>
-                 
+
                 </AxisLabel>
                   }
               />
             <YAxis dataKey={'totalTimeSpent'} type="number" name='TotalLevelsCompleted' unit='mins'
               label={
-                <AxisLabel axisType="yAxis" width={10} height={700}>
+                <AxisLabel axisType="yAxis" width={0} height={700}>
                   {"Play Time (mins)"}
                 </AxisLabel>
                   }
             />
-            <Scatter name='Student' data={this.state.scatterData} fill='#FF0000'/>
-           
-            
+            <Scatter name='Student' data={this.state.scatterData} fill='#000000 '/>
+
             <Legend verticalAlign="top" height={36}/>
             <Tooltip cursor={{strokeDasharray: '3 3'}}/>
             <ReferenceLine x={27} stroke="red" strokeDasharray="5 5"/>
             <ReferenceLine y={153} stroke="red" strokeDasharray="5 5"/>
-            
-
 
           </ScatterChart>
               </ResponsiveContainer>
@@ -653,7 +640,7 @@ class Dashboard extends React.Component {
                 {" "}
               Classifies the Students according to their individual's Levels Completed and Time Spent
                 </span>
-                 
+
               }
               statIcon={AccessTime}
               statText= {'Last updated '+today}
@@ -665,20 +652,20 @@ class Dashboard extends React.Component {
             <ChartCard
               chart={
                 <PieChart width={250} height={300}>
-                  <Pie 
+                  <Pie
                     activeIndex={this.state.activeIndex}
-                    activeShape={renderActiveShape} 
-                    data={this.state.piechartfinal} 
-                    cx={300/2} 
-                    cy={300/2} 
+                    activeShape={renderActiveShape}
+                    data={this.state.piechartfinal}
+                    cx={300/2}
+                    cy={300/2}
                     innerRadius={30}
-                    outerRadius={55} 
+                    outerRadius={55}
                     fill="#fbf6f6"
                     opacity= {0.3}
                     onMouseEnter={this.onPieEnter}
                   />
                  </PieChart>
-              
+
               }
               chartColor="purple"
               title="Percentage of the different Classification"
@@ -694,22 +681,20 @@ class Dashboard extends React.Component {
                     style = {{maxHeight:'400px', overflow:'auto'}}>
 
               <h4>How to use the Scatter Plot?</h4>
-              
-                     
+
               <ResponsiveContainer width="95%" height={200}>
                 <ScatterChart r = {0.1} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-           
+
             <CartesianGrid />
             <XAxis  dataKey={'TotalLevelsCompleted'} type="number"  hide={true} />
             <YAxis dataKey={'totalTimeSpent'} type="number"  hide={true}/>
-            <Scatter  data={this.state.scatterData} fill='#FF0000'/>
-           
-            
+            <Scatter  data={this.state.scatterData} fill='#000000 '/>
+
             <Legend verticalAlign="bottom" height={36} hide={true}/>
             <Tooltip cursor={{strokeDasharray: '3 3'}}/>
             <ReferenceLine x={27} stroke="red" strokeDasharray="5 5"/>
             <ReferenceLine y={153}  stroke="red" strokeDasharray="5 5"/>
-            
+
             <ReferenceArea x1={0} x2={27} y1={0} y2={153} stroke="red" strokeOpacity={0.3} label= "Q4" isfront={true}/>
              <ReferenceArea x1={0} x2={27} y1={153} y2={800} stroke="red" strokeOpacity={0.8} label= "Q1" isfront={true}/>
              <ReferenceArea x1={27} x2={60} y1={0} y2={153} stroke="red" strokeOpacity={0.8} label= "Q3" isfront={true}/>
@@ -717,53 +702,45 @@ class Dashboard extends React.Component {
 
           </ScatterChart>
               </ResponsiveContainer>
-                
 
-              A healthy sign of the cohort would be to see the students clustering in the middle of the scatter plot <p></p>
+              A healthy sign of the cohort would be to see the students dots clustering in the middle of the scatter plot <p></p>
 
               <h5>Generic Analysis :</h5> <p></p>
-              
-              Quadrant 1: Students in Q1 requires the most attention. These group of students are spending much more time than an
-              average student on solving code combat levels on solving levels but not being able to complete as many Code Combat levels<p></p>
 
-              Quadrant 2: Students in Q2 generally belong to the better performing group. However, they are spending a lot of time and 
-              hardwork to complete the Code Combat levels. Although it is commendable for their efforts, instructor should place
-              attention on the students who edge closer to the north west of this quadrant<p></p>
+              Quadrant 1: Students in Q1 require the most attention. These group of students are spending much more time than the
+              average student on solving code combat levels, but not being able to complete as much Code Combat levels<p></p>
 
-              Quadrant 3: Students in Q3 generally belong to the best performing group. Students in this catergory are completing the
+              Quadrant 2: Students in Q2 generally belong to the better performing group. However, they are spending a lot of time and
+              hardwork to complete the Code Combat levels. Although it is commendable for their efforts, teachers should place
+              attention on the students who are closer to the north west of this quadrant<p></p>
+
+              Quadrant 3: Students in Q3 generally belong to the best performing group. Students in this category are completing the
               Code Combat levels with lesser time compared to an average student. This may imply that the students in this quadrant
               are good at programming <p></p>
-              
-              Quadrant 4: Students in Q4 belongs to the average group. The types of student in this quadrant is diverse. The student
-              nearer to the south-west of the quadrant may be starting out or are slightly unmotivated to attempt the code combat levels
-              However, a healthy sign of the general cohort is to have most of the students in the center of the   <p></p>
 
+              Quadrant 4: Students in Q4 belong to the average group. The category of student in this quadrant is diverse. The student
+              nearer to the south-west of the quadrant may be starting out or are slightly unmotivated to attempt the code combat levels<p></p>
 
 
                   </div>
-
-
-
 
             </span>
               }
               statIcon={AccessTime}
              statText= {'Last updated '+today}
             />
-           
-              
-                </ItemGrid> 
 
+                </ItemGrid>
 
       </Grid>
-     
+
      <Grid container>
 
      <ItemGrid xs={12} sm={12} md={6}>
 
            <StatsCard
                   icon={ContentCopy}
-                  iconColor="green"
+                  iconColor="blue"
                   title="Average Daily Time Spent per Student"
                   description="153"
                   small=" mins"
@@ -778,9 +755,9 @@ class Dashboard extends React.Component {
                 <BarChart data={this.state.listavgDailyTimeSpent}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="Weekday" />
-                    <YAxis 
+                    <YAxis
                        label={
-                            <AxisLabel axisType="yAxis" width={340} height={300}>
+                            <AxisLabel axisType="yAxis" width={340} height={400}>
                               {"PlayTime (mins)"}
                             </AxisLabel>
                               }
@@ -788,11 +765,11 @@ class Dashboard extends React.Component {
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="playtime" fill="#787878" opacity= {0.9}/>
-                    
+
                   </BarChart>
                 </ResponsiveContainer>
               }
-              chartColor="yellow"
+              chartColor="blue"
               title="Average Time Spent by Students Daily"
               text={
                 <span>
@@ -800,7 +777,7 @@ class Dashboard extends React.Component {
                     <ArrowUpward
                       className={this.props.classes.upArrowCardCategory}
                     />{" "}
-                    
+
                   </span>{" "}
                  This chart reflects the daily average time spent by each Student <p></p>
 
@@ -809,13 +786,11 @@ class Dashboard extends React.Component {
               statIcon={AccessTime}
               statText= {'Last updated '+today}
             />
-              
                </ItemGrid>
-
 
         <ItemGrid xs={8} sm={8} md={6}>
             <RegularCard
-              headerColor="orange"
+              headerColor="blue"
               cardTitle="Top Mentions"
               cardSubtitle="Student in the this Category refers to those who are performing better than an average student.
                  The students who spend lesser time to complete code combat levels than the cohort average in the chart on the left
@@ -830,21 +805,18 @@ class Dashboard extends React.Component {
             />
 
           </ItemGrid>
-         
 
-
-         
         </Grid>
         <Grid container>
        <ItemGrid xs={8} sm={8} md={6}>
                   <RegularCard
                     headerColor="orange"
                     cardTitle="Students Requiring Actions"
-                    cardSubtitle="Students in this category may require attention by the instructor. They are spending relatively more time than average, but only able to complete lesser levels"
+                    cardSubtitle="Students in this category may require attention by the teacher. They are spending relatively more time than average, but only able to complete lesser levels"
                     content={
                       <Table
                         tableHeaderColor="warning"
-                        tableHead={["No.", "Name", "LvlCompleted", "TimeSpent"]}
+                        tableHead={["No.", "Name", "LvlCompleted", "TimeSpent", "AvgTimePerDay"]}
                         tableData={this.state.topTenTime}
                       />
                     }
@@ -857,35 +829,32 @@ class Dashboard extends React.Component {
               chart={
                 <ResponsiveContainer width="95%" height={350}>
                 <ScatterChart r = {5} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-           
+
             <CartesianGrid />
-            <XAxis  dataKey={'TotalLevelsCompleted'} type="number" name='totalTimeSpent' 
+            <XAxis  dataKey={'TotalLevelsCompleted'} type="number" name='totalTimeSpent'
                 label={
                 <AxisLabel axisType="xAxis" width={800} height={400}>
-                 
+
                 </AxisLabel>
                   }
               />
             <YAxis dataKey={'totalTimeSpent'} type="number" name='TotalLevelsCompleted' unit='mins'
               label={
-                <AxisLabel axisType="yAxis" width={10} height={350}>
+                <AxisLabel axisType="yAxis" width={5} height={350}>
                   {"Play Time (mins)"}
                 </AxisLabel>
                   }
             />
-            <Scatter name='Student' data={this.state.scatter2} fill='#FF0000'/>
-           
-            
+            <Scatter name='Student' data={this.state.scatter2} fill='#000000 '/>
+
             <Legend verticalAlign="top" height={36}/>
             <Tooltip cursor={{strokeDasharray: '3 3'}}/>
             <ReferenceLine x={27} stroke="red" strokeDasharray="5 5"/>
             <ReferenceLine y={153} stroke="red" strokeDasharray="5 5"/>
-            
-
 
           </ScatterChart>
               </ResponsiveContainer>
-              
+
               }
               chartColor="orange"
               title="Focused Scatter plot of Students Requiring Actions"
@@ -895,54 +864,36 @@ class Dashboard extends React.Component {
                     <ArrowUpward
                       className={this.props.classes.upArrowCardCategory}
                     />{" "}
-                    
+
                   </span>{" "}
                   Enlarged scatter plot of Q1 and Q2 above<p></p>
                 <h5>How to interpet this section?</h5> <p></p>
                 Focus should be placed on the students who edge towards the north-west of Q1 and Q2.
-                The north-western part of Q1 and Q2 represents students who are spending excessive time on 
-                code combat, but not completing any level. This may suggest that they are struggling to keep up 
-                with the code combat levels. 
+                The north-western part of Q1 and Q2 represents students who are spending excessive time on
+                code combat, but not completing any level. This may suggest that they are struggling to keep up
+                with the code combat levels.
                 <h5>But first:</h5><p></p>
                 (1) Find out from the identified student if they are actually struggling or due to playtime logging errors<p></p>
                 (2) Check the chart below "Top Five levels Requiring the Most Effort" to find out if they had spent too much time
                 solving the difficult levels.
 
                 </span>
+
               }
               statIcon={AccessTime}
               statText= {'Last updated '+today}
             />
-              
                </ItemGrid>
-            
-        
-
             </Grid>
-        <Grid container> 
-         <ItemGrid xs={12} sm={12} md={2}>   
-                  <StatsCard
-                  icon={ContentCopy}
-                  iconColor="blue"
-                  title="Current Week's Total Levels Completed"
-                  description="1728"
-                  small="levels"
-                  statIcon={DateRange}
-                  statIconColor="primary"
-                  statLink={{ text: "Last 24 hours" }}
-                />
-          </ItemGrid>
-           
-            
+        <Grid container>
 
-        
-           <ItemGrid xs={12} sm={12} md={10}>
+           <ItemGrid xs={12} sm={12} md={12}>
                  <RegularCard
               content={
-                  <BarChart width={800} height={300} data={this.state.topFivePlaytime}>
+                  <BarChart width={1000} height={300} data={this.state.topFivePlaytime}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" hide= {true} />
-                    <YAxis 
+                    <YAxis
                       label={
                             <AxisLabel axisType="yAxis" width={340} height={250}>
                               {"Play Time (mins)"}
@@ -952,37 +903,25 @@ class Dashboard extends React.Component {
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="playTime" fill="#787878" opacity= {0.9} unit=' mins'/>
-                    
+
                   </BarChart>
                 }
-              headerColor="orange"
+              headerColor="red"
               cardTitle="Top 10 Levels Requiring the Most Time and Effort!"
               cardSubtitle={
                 <span>
                 {" "}
                 Students tend to spend more time on the levels below on average as compared to other levels in Code Combat.
                 </span>
-                 
+
               }
               statIcon={AccessTime}
               statText= {'Last updated '+today}
             />
-
-
-              
                </ItemGrid>
-            
-        
-          
             </Grid>
-
-
-
-
-
-
         <Grid container>
-          
+
           <ItemGrid xs={12} sm={12} md={12}>
 
             <RegularCard
@@ -994,7 +933,7 @@ class Dashboard extends React.Component {
                     style = {{maxHeight:'400px', overflow:'auto'}}>
                 <Table
                   tableHeaderColor="warning"
-                  tableHead={["Name", "CCName", "LastUpdated", "LastLevelsPlayed", "Student'sAvgPlaytime", "CohortAvgPlaytime"]}
+                  tableHead={["Name", "CCName", "LastUpdated", "LastLevelsPlayed", "LvlCompleted", "TimeSpent"]}
                   tableData={this.state.tablelist}
                 />
                 </div>
