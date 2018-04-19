@@ -4,6 +4,16 @@ import PropTypes from "prop-types";
 import ChartistGraph from "react-chartist";
 import _ from 'lodash';
 import firebase from "firebase";
+import TreeMap from "react-d3-treemap";
+import { VictoryChart,
+  VictoryBoxPlot,
+  VictoryAxis,
+  VictoryCandlestick,
+  VictoryTheme,
+  VictoryTooltip,
+  VictoryVoronoiContainer } from "victory";
+// Include its styles in you build process as well
+import "react-d3-treemap/dist/react.d3.treemap.css";
 import {
   ContentCopy,
   Store,
@@ -46,7 +56,8 @@ import {
   Legend,
   Treemap,
   RadialBarChart,
-  RadialBar
+  RadialBar,
+  x,y,width,height
 } from "recharts";
 
 import dashboardStyle from "variables/styles/dashboardStyle";
@@ -302,15 +313,69 @@ class Dashboard extends React.Component {
               }
             />
           </ItemGrid>
-          <ItemGrid xs={100} sm={100} md={12}>
+          <ItemGrid xs={8} sm={8} md={8}>
+            <RegularCard
+              headerColor="blue"
+              cardTitle="Time Taken To Complete Assignments"
+              cardSubtitle="An summary of the Minimum, Maximum, and the Quartile amount of time taken to complete each assignment, showing the difficulty of each assignment. "
+              statIcon={AccessTime}
+              statText="updated 4 minutes ago"
+              content = {
+                <div style={{height:'400px', margin: '-40px'}}>
+                  <VictoryChart domainPadding={{x:10, y:10}}
+                    containerComponent={
+                      <VictoryVoronoiContainer
+                        labels={(d) => `y: ${d.y}`}
+                      />
+                    }>
+                    <VictoryBoxPlot
+                      labels={(d) => d.y}
+                      labelComponent={<VictoryTooltip/>}
+                      boxWidth={10}
+                      whiskerWidth={5}
+                      data={[
+                        { x: "assign1", y: [1, 2, 3, 5, 6, 7] },
+                        { x: "assign2", y: [3, 2, 8, 10] },
+                        { x: "assign3", y: [2, 8, 6, 5] },
+                        { x: "assign4", y: [1, 3, 2, 9] },
+                        { x: "assign5", y: [3, 2, 8, 10] },
+                        { x: "assign6", y: [1, 3, 2, 9] },
+                        { x: "assign7", y: [1, 3, 2, 9] },
+                        { x: "assign8", y: [1, 3, 2, 9] },
+                        { x: "assign9", y: [1, 3, 2, 9] },
+                        { x: "assign10", y: [1, 3, 2, 9] }
+                      ]}
+                      style={{
+                        min: { stroke: "#32CD32", strokeWidth: 3 },
+                        max: { stroke: "red", strokeWidth: 3 },
+                        q1: { fill: "#3CB371" },
+                        q3: { fill: "orange" },
+                        median: { stroke: "white", strokeWidth: 2 }
+                      }}
+                    />
+                    <VictoryAxis
+                      style={{
+                        ticks: { stroke: "grey", size: 5},
+                        tickLabels: {fontSize: 10, padding: 10, angle: -40 }
+                      }}/>
+                    <VictoryAxis dependentAxis
+                      label="Time taken (hours)"
+                      style={{
+                        axis: {stroke: "#000000"},
+                        axisLabel: {fontSize: 10, padding: 25},
+                        ticks: { stroke: "grey", size: 5},
+                        tickLabels: {fontSize: 10, padding: 5}
+                      }}/>
+                  </VictoryChart>
+                  </div>
+              }
+            />
             <RegularCard
               headerColor="green"
               cardTitle="User Activity"
               cardSubtitle={"Tracks user activities & assignment submissions over a period of time"}
-              statIcon={AccessTime}
-              statText="updated 4 minutes ago"
-              content = {
-                <LineChart width={1300} height={400} data={this.state.userActivity}
+              content={
+                <LineChart width={800} height={400} data={this.state.userActivity}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -323,37 +388,27 @@ class Dashboard extends React.Component {
               }
             />
           </ItemGrid>
-          <ItemGrid xs={8} sm={8} md={8}>
-            <RegularCard
-              headerColor="red"
-              cardTitle="Assignments Not Completed TreeMap"
-              cardSubtitle="The more assignments unsubmitted, the bigger area of the student"
-              content={
-                <div>
-                  <p>a</p>
-                </div>
-              }
-            />
-          </ItemGrid>
-
           <ItemGrid xs={4} sm={4} md={4}>
 
             <RegularCard
               headerColor="red"
-              cardTitle="Assignments Not Completed Table"
-              cardSubtitle="Use together with the treemap, rank all students with the number of unsubmitted assignments"
+              cardTitle="No. of Incomplete Assignments"
+              cardSubtitle="A possible list of students who are struggling, ranked in order"
               content={
                 <div
-                  style = {{maxHeight:'400px', overflow:'auto'}}>
+                  style = {{maxHeight:'863px', overflow:'auto'}}>
                 <Table
                   tableHeaderColor="warning"
-                  tableHead={["Student Name", "Assignments Not Completed"]}
+                  tableHead={["Student Name", "No. of Assignments Not Completed"]}
                   tableData={this.state.unsubmittable_rank }
                 />
                 </div>
               }
             />
+
           </ItemGrid>
+
+
         </Grid>
         <Grid container>
           <ItemGrid xs={12} sm={12} md={12}>
@@ -361,7 +416,7 @@ class Dashboard extends React.Component {
             plainCard={true}
             headerColor="purple"
             cardTitle="Text Analytics"
-            cardSubtitle="An analysis of the open-ended/short-answer questions"
+            cardSubtitle="The analysis of the open-ended/short-answer reponses"
             content={
               <MessageContents />
             }

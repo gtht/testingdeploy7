@@ -99,7 +99,7 @@ class LessonList extends React.Component {
             selectedIndex={this.state.selectedIndex}
           />
       ) : (
-        <p>Pick an assignment to begin</p>
+        <p>Pick an assignment to view</p>
       );
     // end of show/hide Messages method
 
