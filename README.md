@@ -122,6 +122,8 @@ material-dashboard-react
 * [React](https://reactjs.org/) - The web framework used
 * [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/) - The design template used
 * [Firebase](https://firebase.google.com/) - The cloud storage used to store the data to be used by the app
+* [Colaboratory]() - The Jupyter notebook environment used to retrieve the Achievements app data and reformat the data that is deem usable by our preferred charting libraries
+* [ReCharts](http://recharts.org/en-US/) & [Victory | VictoryChart - FormidableLabs](https://formidable.com/open-source/victory/docs/victory-chart/) - The charting libraries used 
 
 ## Authors
 
