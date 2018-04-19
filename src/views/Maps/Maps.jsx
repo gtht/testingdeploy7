@@ -1,6 +1,8 @@
 import React from "react";
 import firebase from "firebase";
-import { LessonList } from "components";
+import { LessonList, RegularCard, ItemGrid } from "components";
+import { Grid } from "material-ui";
+
 import _ from 'lodash';
 
 class Maps extends React.Component {
@@ -8,12 +10,14 @@ class Maps extends React.Component {
     super(props);
     this.state = {
       listOfLessons: [],
-      nextLessonIndex: 0
+      first: null
     }
+    this.myFunction5 = this.myFunction5.bind(this);
   }
 
   componentDidMount() {
-        let app = firebase.database().ref('lessons');
+    // Final_YouTubeUI_DataRetrieving
+        let app = firebase.database().ref('Final_YouTubeUI_DataRetrieving');
         app.on('value', snapshot => {
           this.getLessonData(snapshot.val());
         });
@@ -32,15 +36,23 @@ class Maps extends React.Component {
       //stores array of Objects into lessons state
       this.setState({
         listOfLessons: lessons,
-        nextLessonIndex: lessons.length
-      });
+        first: lessons[0].key
+      }, this.myFunction5);
+  }
+
+  myFunction5 = () => {
+
   }
 
   render(){
-    // alert("from maps:"+this.state.listOfLessons);
+    // alert(this.state.first);
     return (
-      <div style= {{flex: 1, flexDirection: 'row'}}>
-        <div><LessonList db={firebase} listOfLessons={this.state.listOfLessons} nextLessonIndex={this.state.nextLessonIndex} /></div>
+      <div>
+        <Grid container>
+          <ItemGrid xs={12} sm={12} md={12}>
+          <LessonList db={firebase} listOfLessons={this.state.listOfLessons} first={this.state.first} />
+          </ItemGrid>
+        </Grid>
       </div>
     );
   }

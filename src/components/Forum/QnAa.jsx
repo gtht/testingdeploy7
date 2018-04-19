@@ -1,22 +1,29 @@
 import React from "react";
 import firebase from "firebase";
-import { RegularCard, MessageList, MessageBox, ChartCard, Muted } from "components";
+import { RegularCard, MessageList, MessageBox, ChartCard, Muted, ItemGrid } from "components";
 import { AccessTime } from "material-ui-icons";
 import _ from 'lodash';
 import WordCloud from 'react-d3-cloud';
+import { Grid } from "material-ui";
 
 class QnAa extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       listOfMessages: [],
-      worddata: []
+      worddata: [],
+      arrListOfMsgs: [],
+      top5: [],
+      selected5: []
     }
-    this.myFunction2 = this.myFunction2.bind(this);
+    this.wordCloudCalculate = this.wordCloudCalculate.bind(this);
+    this.topfiveCalculate = this.topfiveCalculate.bind(this);
   }
 
   componentDidMount() {
-      let msg = firebase.database().ref('lessons/lecture'+(this.props.selectedIndex+1)+'/messages');
+    // lessons/lecture'+(this.props.selectedIndex+1)+'/messages
+    // alert(this.props.selectedLesson);
+      let msg = firebase.database().ref('Final_YouTubeUI_DataRetrieving/'+this.props.selectedLesson+'/responses');
       msg.on('value', snapshot => {
         this.getMessageData(snapshot.val());
       });
@@ -24,6 +31,7 @@ class QnAa extends React.Component {
 
     getMessageData(values){
       let messagesVal = values;   // this is an Object
+      // alert(messagesVal);
       let messages = _(messagesVal)
                         .keys()
                         .map(messageKey => {
@@ -33,33 +41,44 @@ class QnAa extends React.Component {
                         })
                         .value();
         //stores array of Objects into lessons state
-        this.setState({listOfMessages: messages}, this.myFunction2);
+        this.setState({listOfMessages: messages}, this.wordCloudCalculate);
     }
 
-    myFunction2 = () => {
+  wordCloudCalculate = () => {
       var titles = [];
       var dict = [];
+      const excludeWord = ["I","YOU","IT","HE","SHE","Q","A","DO","NOT","IS","IN","WE","HOW","INTO",
+                            "AND","OR","BY","TO","YOUR","ARE","WHO","WHAT","WHEN","WHERE","WHY","BE",
+                            "THEN","SO","AN","THAT","THE","DOES","HAS","HAVE","SHOULD","WOULD","COULD",
+                            "ON","US","FOR","THEY","AM", "ITS", "FROM", "BUT", "OF", "WITH", "AS", "OUR",
+                            "THERE","CAN","DONT","THIS","THAT","THOSE","IF","THAN"];
+      var arrListOfMsgs = [];
       this.state.listOfMessages.map((message) => {
-        var title = message.title;
+        // alert(message.text);
+        arrListOfMsgs.push(message.text);
+        var title = message.text;
         var words = title.split(" ");
         for (var j=0; j<words.length; j++){
-          var word = words[j].replace(/[^a-zA-Z 0-9]+/g,"");
+          var word = words[j].replace(/[^a-zA-Z]+/g,"").toUpperCase();
           var index = titles.indexOf(word);
           // alert(index);
           if (index > -1){
             // alert("repetitive"+dict[index][1]);
             dict[index] = [word, (dict[index][1]+1)];
-          } else {
+          } else if (excludeWord.indexOf(word) < 0){
             titles.push(word);
             dict.push([word, 1]);
           }
         }
       });
       var d = [];
+      var c = [];
       for (var i=0; i<dict.length; i++){
         d.push({ text: dict[i][0], value: dict[i][1] });
       }
-      this.setState({ worddata: d }, this.myFunction3);
+      var selected5 = this.topfiveCalculate(d, arrListOfMsgs);
+      // alert("inside wordcalculate: "+selected5 );
+      this.setState({ worddata: d, arrListOfMsgs: arrListOfMsgs, selected5: selected5}, this.myFunction3);
     }
 
     myFunction3 = () => {
@@ -67,56 +86,97 @@ class QnAa extends React.Component {
 
     }
 
+    topfiveCalculate(wordlist, msglist) {
+      // sort list of word frequencies in descending order
+      wordlist.sort(function(obj1, obj2) {
+      	// Descending
+      	return obj2.value - obj1.value;
+      });
+      var selected5 = [];
+      var counter = 5;
+      var index = 0;
+      // alert(msglist.length);
+      while (counter > 0 && index < msglist.length){
+        // zero = false, all other values = true, for Boolean value
+        // alert(msglist[index]);
+        // reset score for every new reponse
+        var max5score = [];
+        var score = 0;
+        // find the top 20 words inside of each response
+        for (var j=0; j<25; j++){
+          // reset tf for each word search
+          var tf;
+          if (msglist[index].toUpperCase().indexOf(wordlist[j].text) > -1) {
+            tf = true;
+          } else {
+            tf = false;
+          }
+          // alert(wordlist[j].text+" "+tf);
+          score = score + Number(tf);
+        }
+        if (max5score.length != 5){
+          max5score.push();
+        } else {
+
+        }
+        // alert(score);
+        if (score > 8){
+          selected5.push(msglist[index]);
+          counter--;
+        }
+        index++;
+      }
+      // alert(selected5);
+      return selected5;
+      // alert(list[0].text+" "+list[0].value);
+      // alert(list[1].text+" "+list[1].value);
+      // alert(list[3].text+" "+list[3].value);
+      // alert("list: "+ list);
+
+    }
+
   render(){
     const { classes, onClose, selectedLesson, selectedIndex, ...other } = this.props;
     const data2 = this.state.worddata;
-    const fontSizeMapper = word => Math.log2(word.value*5) * 10;
-    let resolved = 0;
-    if (this.state.listOfMessages.length > 0){
-      for (var i=0; i<this.state.listOfMessages.length; i++){
-        // alert(this.state.listOfMessages[i]);
-        if (this.state.listOfMessages[i].solved == true){
-          // alert("true");
-          resolved++;
-        }
-      }
-    }
+    // alert(this.state.selected5);
+    // // alert("test");
+    const fontSizeMapper = word => Math.log2(word.value*2) * 10;
+    // let resolved = 0;
+    // if (this.state.listOfMessages.length > 0){
+    //   for (var i=0; i<this.state.listOfMessages.length; i++){
+    //     // alert(this.state.listOfMessages[i]);
+    //     if (this.state.listOfMessages[i].solved == true){
+    //       // alert("true");
+    //       resolved++;
+    //     }
+    //   }
+    // }
     return (
-
-      <div style= {{flex: 1, flexDirection: 'row'}}>
-        <div style= {{flex: 0.7, float: 'left', left: 0, marginLeft: 15, width:'70%'}}>
+      <ItemGrid xs={12} sm={12} md={12}>
+        <RegularCard
+          fullWidth={true}
+          cardTitle= "Most Common Keywords"
+          cardSubtitle={"An overview of the most frequent keywords used by students, indicating their understanding of the video content."}
+          headerColor="orange"
+          content={
+              <WordCloud
+                width={800}
+                height={200}
+                data={data2}
+                fontSizeMapper={fontSizeMapper}
+              />
+          }
+        />
         <RegularCard
           fullWidth= {true}
-          cardTitle= {this.props.selectedLesson.lecture_name}
+          cardTitle= "Top Answers"
+          cardSubtitle={"A list of responses that contains the most frequent keywords, showing the representative responses"}
+          headerColor="green"
           content={
-          <MessageList db={firebase} selectedIndex={this.props.selectedIndex} listOfMessages={this.state.listOfMessages} /> }
+          <MessageList db={firebase} selectedIndex={this.props.selectedIndex} selected5={this.state.selected5} />
+          }
         />
-      </div>
-        <div style= {{flex: 0.3, right: 0, marginRight: 15, marginTop: 7, width: '25%', float: 'right'}}>
-        <MessageBox db={firebase} selectedIndex={this.props.selectedIndex} />
-        <div style= {{
-          padding: '20px 15px',
-          lineHeight: '20px',
-          position: "relative",
-          marginBottom: "10px",
-          backgroundColor: "white",
-          color: "#555555",
-          borderRadius: "3px",
-          boxShadow:
-          "0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2)"}}>
-
-          <Muted style={{padding: '10px'}}>Resolved Post(s):</Muted><h3>{resolved} out of {this.state.listOfMessages.length}</h3><hr/>
-          <Muted style={{padding: '10px'}}>Common Words:</Muted>
-            <WordCloud style={{border: '1px solid blue'}}
-              width={200}
-              height= {200}
-              data={data2}
-              fontSizeMapper={fontSizeMapper}
-            />
-
-        </div>
-        </div>
-      </div>
+      </ItemGrid>
     );
   }
 }
