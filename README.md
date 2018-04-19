@@ -1,11 +1,16 @@
-# [CLAssistant | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
+# [The CLAssistant app | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
 ![version][version-badge] [![license][license-badge]][LICENSE]
 
-CLAssistant is an education analytics app created for the purpose of BT3103 module. This app uses the template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project.
+The CLAssistant app is an education analytics app created for the purpose of BT3103 module. This app serves as a solution to help teachers become even better teachers than they already are. Through the use of visualisation and text analytics, the CLAssistant app analyzes data that is churned out by the existing Achievements app. With this app, teachers will be able to better-understand their students in greater depth. 
+
+The CLAssistant app is designed to be very user-friendly, with easy navigations and instructions on how to interpret the each visualisation. The minimalistic design allows for the visualisation to be the main focus of the app. 
+
+This app uses the material-UI-react template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project.
 
 ## Links:
 
 + [Live Preview](https://bt3103-project.firebaseapp.com/)
++ [Video Guide - How To Interpret The Visualisations]
 
 ## Getting Started
 
@@ -65,25 +70,13 @@ material-dashboard-react
     ├── components
     │   ├── Cards
     │   │   ├── ChartCard.jsx
-    │   │   ├── ProfileCard.jsx
     │   │   ├── RegularCard.jsx
     │   │   ├── StatsCard.jsx
-    │   │   └── TasksCard.jsx
     │   ├── CustomButtons
     │   │   ├── Button.jsx
     │   │   └── IconButton.jsx
-    │   ├── CustomInput
-    │   │   └── CustomInput.jsx
     │   ├── Footer
     │   │   └── Footer.jsx
-    │   ├── Forum
-    │   │   └── AddLessonDialog.jsx
-    │   │   └── LessonList.jsx
-    │   │   └── Message.jsx
-    │   │   └── MessageBox.jsx
-    │   │   └── MessageContent.jsx
-    │   │   └── MessageList.jsx
-    │   │   └── QnAa.jsx
     │   ├── Grid
     │   │   └── ItemGrid.jsx
     │   ├── Header
@@ -91,24 +84,18 @@ material-dashboard-react
     │   │   └── HeaderLinks.jsx
     │   ├── Sidebar
     │   │   └── Sidebar.jsx
-    │   ├── Snackbar
-    │   │   ├── Snackbar.jsx
-    │   │   └── SnackbarContent.jsx
     │   ├── Table
     │   │   └── Table.jsx
     │   ├── Tasks
     │   │   └── Tasks.jsx
+    │   ├── TextAnalytics
+    │   │   └── LessonList.jsx
+    │   │   └── Message.jsx
+    │   │   └── TextA.jsx
+    │   │   └── ResponseList.jsx
+    │   │   └── Displays.jsx
     │   ├── Typography
-    │   │   ├── A.jsx
-    │   │   ├── Danger.jsx
-    │   │   ├── Info.jsx
     │   │   ├── Muted.jsx
-    │   │   ├── P.jsx
-    │   │   ├── Primary.jsx
-    │   │   ├── Quote.jsx
-    │   │   ├── Small.jsx
-    │   │   ├── Success.jsx
-    │   │   └── Warning.jsx
     │   └── index.js
     ├── containers
     │   └── App
@@ -126,23 +113,16 @@ material-dashboard-react
     └── views
         ├── Dashboard
         │   └── Dashboard.jsx
-        ├── Icons
-        │   └── Icons.jsx
-        ├── Maps
-        │   └── Maps.jsx
-        ├── Notifications
-        │   └── Notifications.jsx
-        ├── TableList
-        │   └── TableList.jsx
-        ├── Typography
-        │   └── Typography.jsx
-        └── UserProfile
-            └── UserProfile.jsx
+        └── CodeCombat
+            └── CodeCombat.jsx
 ```
 
 ## Built With
 
 * [React](https://reactjs.org/) - The web framework used
+* [Firebase](https://firebase.google.com/) - The cloud storage used to store the data to be used by the app
+* [Colaboratory]() - The Jupyter notebook environment used to retrieve the Achievements app data and reformat the data that is deem usable by our preferred charting libraries
+* [ReCharts](http://recharts.org/en-US/) & [Victory](https://formidable.com/open-source/victory/docs/victory-chart/) - The charting libraries used 
 
 ## Authors
 
@@ -159,12 +139,19 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+### Reference:
 * [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/)
 * [Getting Started with React and Firebase](https://medium.com/@diananina247/getting-started-with-react-and-firebase-b07346f8a355)
 * [ReCharts](http://recharts.org/en-US/)
 * [Victory | VictoryChart - FormidableLabs](https://formidable.com/open-source/victory/docs/victory-chart/)
 * [Material-UI](https://material-ui-next.com/)
 * [npm](https://www.npmjs.com/)
+
+### Inspiration:
+* The Achievements app
+* Prof Chris
+
+"We would like to thank our prof, Prof Chris, for his patience, guidance, constructive feedback and advice throughout these 13 weeks." - Group 4
 
 [LICENSE]: ./LICENSE.md
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
