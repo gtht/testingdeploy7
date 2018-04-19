@@ -878,6 +878,7 @@ class Dashboard extends React.Component {
                 solving the difficult levels.
 
                 </span>
+
               }
               statIcon={AccessTime}
               statText= {'Last updated '+today}

@@ -1,37 +1,20 @@
-# [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/)
-[![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+# [CLAssistant | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
+![version][version-badge] [![license][license-badge]][LICENSE]
 
-![alt text](https://s3.amazonaws.com/creativetim_bucket/products/71/original/opt_mdr_thumbnail.jpg "Material Dashboard Free React")
-
-Material Dashboard React is a free Material-UI Admin with a fresh, new design inspired by Google's Material Design. We are very excited to introduce our take on the material concepts through an easy to use and beautiful set of components. Material Dashboard React was built over the popular Material-UI framework.
-
-Material Dashboard React makes use of light, surface and movement. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left sidebar and the content is on the right inside the main panel.
-
-Material Dashboard React comes with 5 color filter choices for both the sidebar and the card headers (blue, green, orange, red and purple) and an option to have a background image on the sidebar.
-
-Material Dashboard React uses a framework built by our friend [Olivier - Material-UI](https://github.com/mui-org/material-ui), who did an amazing job creating the backbone for the material effects, animations, ripples and transitions. Big thanks to his team for the effort and forward thinking they put into it.
-
-Special thanks go to:
-+ [React-chartist](https://github.com/fraserxu/react-chartist) for the wonderful charts.
-
-We are very excited to share this dashboard with you and we look forward to hearing your feedback!
-
-You can find the Github Repo here.
+CLAssistant is an education analytics app created for the purpose of BT3103 module. This app uses the template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project.
 
 ## Links:
 
-+ [Live Preview](https://creativetimofficial.github.io/material-dashboard-react/)
-+ [Material Dashboard HTML](http://demos.creative-tim.com/material-dashboard/examples/dashboard.html)
++ [Live Preview](https://bt3103-project.firebaseapp.com/)
 
-## Quick start
+## Getting Started
 
-Quick start options:
+### Quick start options:
 
-- [Download from Github](https://github.com/creativetimofficial/material-dashboard-react/archive/master.zip).
-- [Download from Creative Tim](http://www.creative-tim.com/product/material-dashboard-react).
-- Clone the repo: `git clone https://github.com/creativetimofficial/material-dashboard-react.git`.
+- [Download from Github](https://github.com/potassiumflouride/testingdeploy7/archive/master.zip).
+- Clone the repo: `git clone https://github.com/potassiumflouride/testingdeploy7.git`.
 
-## Terminal Commands
+### Terminal Commands
 
 1. Install NodeJs from [NodeJs Official Page](https://nodejs.org/en).
 2. Open Terminal
@@ -39,7 +22,6 @@ Quick start options:
 4. Run in terminal: ```npm install```
 5. Then: ```npm start```
 6. Navigate to `http://localhost:3000/`
-7. (optional) Run in terminal `npm i -g cross-env`
 
 ### What's included
 
@@ -94,6 +76,14 @@ material-dashboard-react
     │   │   └── CustomInput.jsx
     │   ├── Footer
     │   │   └── Footer.jsx
+    │   ├── Forum
+    │   │   └── AddLessonDialog.jsx
+    │   │   └── LessonList.jsx
+    │   │   └── Message.jsx
+    │   │   └── MessageBox.jsx
+    │   │   └── MessageContent.jsx
+    │   │   └── MessageList.jsx
+    │   │   └── QnAa.jsx
     │   ├── Grid
     │   │   └── ItemGrid.jsx
     │   ├── Header
@@ -125,6 +115,7 @@ material-dashboard-react
     │       └── App.jsx
     ├── index.js
     ├── logo.svg
+    ├── registerServiceWorker.js
     ├── routes
     │   ├── app.jsx
     │   └── index.jsx
@@ -149,29 +140,31 @@ material-dashboard-react
             └── UserProfile.jsx
 ```
 
-## Useful Links
+## Built With
 
-More products from Creative Tim: <https://www.creative-tim.com/bootstrap-themes>
+* [React](https://reactjs.org/) - The web framework used
 
-Tutorials: <https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w>
+## Authors
 
-Freebies: <https://www.creative-tim.com/products>
+* [Kuan Fei](https://github.com/potassiumflouride)
+* [Yan Rong](https://github.com/yanrongabc)
+* [Genevieve](https://github.com/gtht)
+* [Shudan](https://github.com/Maplezzsd)
 
-Affiliate Program (earn money): <https://www.creative-tim.com/affiliates/new>
+See also the list of [contributors](https://github.com/potassiumflouride/testingdeploy7/graphs/contributors) who participated in this project.
 
-Social Media:
+## License
 
-Twitter: <https://twitter.com/CreativeTim>
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-Facebook: <https://www.facebook.com/CreativeTim>
+## Acknowledgments
 
-Dribbble: <https://dribbble.com/creativetim>
-
-Google+: <https://plus.google.com/+CreativetimPage>
-
-Instagram: <https://instagram.com/creativetimofficial>
-
-[CHANGELOG]: ./CHANGELOG.md
+* [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/)
+* [Getting Started with React and Firebase](https://medium.com/@diananina247/getting-started-with-react-and-firebase-b07346f8a355)
+* [ReCharts](http://recharts.org/en-US/)
+* [Victory | VictoryChart - FormidableLabs](https://formidable.com/open-source/victory/docs/victory-chart/)
+* [Material-UI](https://material-ui-next.com/)
+* [npm](https://www.npmjs.com/)
 
 [LICENSE]: ./LICENSE.md
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
