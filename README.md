@@ -9,7 +9,7 @@ CLAssistant is an education analytics app created for the purpose of BT3103 modu
 
 ## Getting Started
 
-Quick start options:
+### Quick start options:
 
 - [Download from Github](https://github.com/potassiumflouride/testingdeploy7/archive/master.zip).
 - Clone the repo: `git clone https://github.com/potassiumflouride/testingdeploy7.git`.
