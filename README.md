@@ -7,14 +7,14 @@ CLAssistant is an education analytics app created for the purpose of BT3103 modu
 
 + [Live Preview](https://bt3103-project.firebaseapp.com/)
 
-## Quick start
+## Getting Started
 
 Quick start options:
 
 - [Download from Github](https://github.com/potassiumflouride/testingdeploy7/archive/master.zip).
 - Clone the repo: `git clone https://github.com/potassiumflouride/testingdeploy7.git`.
 
-## Terminal Commands
+### Terminal Commands
 
 1. Install NodeJs from [NodeJs Official Page](https://nodejs.org/en).
 2. Open Terminal
@@ -139,6 +139,10 @@ material-dashboard-react
         └── UserProfile
             └── UserProfile.jsx
 ```
+
+## Built With
+
+* [React](https://reactjs.org/) - The web framework used
 
 ## Authors
 
