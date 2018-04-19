@@ -51,7 +51,7 @@ class QnAa extends React.Component {
                             "AND","OR","BY","TO","YOUR","ARE","WHO","WHAT","WHEN","WHERE","WHY","BE",
                             "THEN","SO","AN","THAT","THE","DOES","HAS","HAVE","SHOULD","WOULD","COULD",
                             "ON","US","FOR","THEY","AM", "ITS", "FROM", "BUT", "OF", "WITH", "AS", "OUR",
-                            "THERE","CAN","DONT","THIS","THAT","THOSE"];
+                            "THERE","CAN","DONT","THIS","THAT","THOSE","IF","THAN"];
       var arrListOfMsgs = [];
       this.state.listOfMessages.map((message) => {
         // alert(message.text);
@@ -156,11 +156,11 @@ class QnAa extends React.Component {
         <RegularCard
           fullWidth={true}
           cardTitle= "Most Common Keywords"
-          cardSubtitle={"An overview of the most common keywords submitted to this assignment"}
+          cardSubtitle={"An overview of the most frequent keywords used by students, indicating their understanding of the video content."}
           headerColor="orange"
           content={
               <WordCloud
-                width={900}
+                width={800}
                 height={200}
                 data={data2}
                 fontSizeMapper={fontSizeMapper}
@@ -170,7 +170,7 @@ class QnAa extends React.Component {
         <RegularCard
           fullWidth= {true}
           cardTitle= "Top Answers"
-          cardSubtitle={"A list of responses that contains the most frequent keywords"}
+          cardSubtitle={"A list of responses that contains the most frequent keywords, showing the representative responses"}
           headerColor="green"
           content={
           <MessageList db={firebase} selectedIndex={this.props.selectedIndex} selected5={this.state.selected5} />

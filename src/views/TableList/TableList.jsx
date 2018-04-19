@@ -491,8 +491,8 @@ class Dashboard extends React.Component {
                   <YAxis />
                   <Tooltip />
                   <Legend hide={true}/>
-                  <Line type="linear" dataKey="activeUsers" stroke="#8B0000" />
-                  <Line type="linear" dataKey="totalAvgLevelsCompleted" stroke="#000080" />
+                  <Line type="linear" dataKey="activeUsers" stroke="#CC0000" />
+                  <Line type="linear" dataKey="totalAvgLevelsCompleted" stroke="#0000CC" />
                   </LineChart>
                 </ResponsiveContainer>
               }

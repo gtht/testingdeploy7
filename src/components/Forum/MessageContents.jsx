@@ -1,47 +1,63 @@
-import React, {Component} from 'react';
-import {IconButton, List, ListItemText, Switch, FormControlLabel } from 'material-ui';
-import {Muted} from 'components';
-import { Delete } from 'material-ui-icons';
-import Message from './Message';
+import React from "react";
+import firebase from "firebase";
+import { LessonList, RegularCard, ItemGrid } from "components";
+import { Grid } from "material-ui";
 
-// <ListItemText
-//   primary= {<p><b><Message message = {message.title} /></b></p>}
-//   secondary= {<Muted><Message message = {message.desc} /></Muted>}
-// />
+import _ from 'lodash';
 
-class MessageContents extends Component {
+class MessageContents extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      checkedA: true
+      listOfLessons: [],
+      first: null
+    }
+    this.myFunction5 = this.myFunction5.bind(this);
+  }
+
+  componentDidMount() {
+    // Final_YouTubeUI_DataRetrieving
+        let app = firebase.database().ref('Final_YouTubeUI_DataRetrieving');
+        app.on('value', snapshot => {
+          this.getLessonData(snapshot.val());
+        });
     }
 
-    this.handleChange = this.handleChange.bind(this);
+  getLessonData(values){
+    let messagesVal = values;   // this is an Object
+    let lessons = _(messagesVal)
+                      .keys()
+                      .map(messageKey => {
+                          let cloned = _.clone(messagesVal[messageKey]);
+                          cloned.key = messageKey;
+                          return cloned;
+                      })
+                      .value();
+      //stores array of Objects into lessons state
+      this.setState({
+        listOfLessons: lessons,
+        first: lessons[0].key
+      }, this.myFunction5);
   }
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
+  myFunction5 = () => {
+
+  }
 
   render(){
-    alert("messgaeContent:"+this.state.checkedA);
+    // alert(this.state.first);
     return (
-      <div style={{flex:1, flexDirection: 'row'}}>
-        <div style={{border: '1px soli d red', flex:0.8, float: 'left', width: '80%'}}>contentssssss</div>
-        <FormControlLabel
-        style={{border: '1px solid red', flex: 0.1, float: 'right', width:'15%'}}
-        control={
-          <Switch
-            checked={this.state.checkedA}
-            onChange={this.handleChange('checkedA')}
-            value="checkedA"
-            color="primary"
-          />
-        }
-        label="Primary"
-      />
+      <div>
+        <Grid container>
+          <ItemGrid xs={12} sm={12} md={12}>
+          <div style={{marginTop: '10px'}}>
+          <LessonList db={firebase} listOfLessons={this.state.listOfLessons} first={this.state.first} />
+          </div>
+          </ItemGrid>
+        </Grid>
       </div>
-    )
+    );
   }
 }
+
 export default MessageContents;
