@@ -1,5 +1,5 @@
 # [CLAssistant | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
-[![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+![version][version-badge][CHANGELOG] [![license][license-badge]][LICENSE]
 
 CLAssistant is an education analytics app created for the purpose of BT3103 module. This app uses the template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project.
 
