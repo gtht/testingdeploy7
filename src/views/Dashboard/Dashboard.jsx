@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ChartistGraph from "react-chartist";
 import _ from 'lodash';
 import firebase from "firebase";
-import TreeMap from "react-d3-treemap";
+//import TreeMap from "react-d3-treemap";
 import { VictoryChart,
   VictoryBoxPlot,
   VictoryAxis,
@@ -13,7 +13,7 @@ import { VictoryChart,
   VictoryTooltip,
   VictoryVoronoiContainer } from "victory";
 // Include its styles in you build process as well
-import "react-d3-treemap/dist/react.d3.treemap.css";
+//import "react-d3-treemap/dist/react.d3.treemap.css";
 import {
   ContentCopy,
   Store,
@@ -110,7 +110,7 @@ class Dashboard extends React.Component {
        assignmentsSubmissionPie : {},
        assignmentTable :[],
        //youtubeTable : [],
-       //youtubeChart : {},
+       time_chart : [],
        userActivity : {},
        assignmentTreemap : {},
        unsubmittable_rank: [],
@@ -136,7 +136,7 @@ class Dashboard extends React.Component {
   var path3= defaultPath.child('FFFFFFF_AssignmentUnsubmit_Treemap/');
   var path4= defaultPath.child('FFFFFFF_AssignmentUnsubmit_Table/');
   //var path5= defaultPath.child('ShudanWeaknessTeacherTable-head/');
-  var path6= defaultPath.child('ShudanWeaknessTeacherTable-table/');
+  var path6= defaultPath.child('FFFFFFF_AssignmentTakingTime_Chart_data1ist/');
   var path7= defaultPath.child('FFFFFFF_UserActivity_Line/');
 
     console.log('from dashboard.jsx');
@@ -232,7 +232,7 @@ class Dashboard extends React.Component {
     */
      if (num==6){
       this.setState({
-        finalTable: messages
+        time_chart: messages
       });
     }
 
@@ -255,15 +255,11 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Grid container>
-          <ItemGrid xs={6} sm={6} md={6}>
+          <ItemGrid xs={7} sm={7} md={7}>
             <RegularCard
               headerColor="orange"
               cardTitle="Percentage of Assignment Completion"
-              cardSubtitle={
-                <span>
-                {" "}
-                An overview of the <b>percentage of submissions</b> received for each assignment
-                </span>}
+              cardSubtitle="An overview of the <b>amount of submissions</b> received for each assignment, reviewing the progress of the class."
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
               content = {
@@ -271,8 +267,8 @@ class Dashboard extends React.Component {
                 <RadialBarChart
                   width={1100}
                   height={400}
-                  cx={190}
-                  cy={190}
+                  cx={200}
+                  cy={200}
                   innerRadius={20}
                   outerRadius={200}
                   barSize={15}
@@ -297,11 +293,11 @@ class Dashboard extends React.Component {
               }
             />
           </ItemGrid>
-          <ItemGrid xs={6} sm={6} md={6}>
+          <ItemGrid xs={5} sm={5} md={5}>
             <RegularCard
               headerColor="orange"
               cardTitle="List of Assignment Completion"
-              cardSubtitle="Used in conjunction with the Percentage of Assignment Completion chart; An overview list of assignments & its no. of submissions received to-date"
+              cardSubtitle="Complements the Percentage of Assignment Completion chart; An overview list of assignments & its no. of submissions received to-date."
               content={
                 <div style={{maxHeight:'400px', overflow: 'auto'}}>
                 <Table
@@ -317,7 +313,7 @@ class Dashboard extends React.Component {
             <RegularCard
               headerColor="blue"
               cardTitle="Time Taken To Complete Assignments"
-              cardSubtitle="An summary of the Minimum, Maximum, and the Quartile amount of time taken to complete each assignment, showing the difficulty of each assignment. "
+              cardSubtitle="An summary of the Minimum, Maximum, and the Quartiles 1 & 3 of the amount of time taken for all students to complete each assignment, showing the doability of each assignment. "
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
               content = {
@@ -333,18 +329,7 @@ class Dashboard extends React.Component {
                       labelComponent={<VictoryTooltip/>}
                       boxWidth={10}
                       whiskerWidth={5}
-                      data={[
-                        { x: "assign1", y: [1, 2, 3, 5, 6, 7] },
-                        { x: "assign2", y: [3, 2, 8, 10] },
-                        { x: "assign3", y: [2, 8, 6, 5] },
-                        { x: "assign4", y: [1, 3, 2, 9] },
-                        { x: "assign5", y: [3, 2, 8, 10] },
-                        { x: "assign6", y: [1, 3, 2, 9] },
-                        { x: "assign7", y: [1, 3, 2, 9] },
-                        { x: "assign8", y: [1, 3, 2, 9] },
-                        { x: "assign9", y: [1, 3, 2, 9] },
-                        { x: "assign10", y: [1, 3, 2, 9] }
-                      ]}
+                      data={this.state.time_chart}
                       style={{
                         min: { stroke: "#32CD32", strokeWidth: 3 },
                         max: { stroke: "red", strokeWidth: 3 },
@@ -359,7 +344,7 @@ class Dashboard extends React.Component {
                         tickLabels: {fontSize: 10, padding: 10, angle: -40 }
                       }}/>
                     <VictoryAxis dependentAxis
-                      label="Time taken (hours)"
+                      label="Time taken (days)"
                       style={{
                         axis: {stroke: "#000000"},
                         axisLabel: {fontSize: 10, padding: 25},
@@ -373,10 +358,10 @@ class Dashboard extends React.Component {
             <RegularCard
               headerColor="green"
               cardTitle="User Activity"
-              cardSubtitle={"Tracks user activities & assignment submissions over a period of time"}
+              cardSubtitle={"Tracks user activeness in the Achievement App as well as assignment submissions over a week"}
               content={
-                <LineChart width={800} height={400} data={this.state.userActivity}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <LineChart width={600} height={480} data={this.state.userActivity}
+                    margin={{ top: 5, right: 40, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
                   <YAxis />
@@ -392,8 +377,8 @@ class Dashboard extends React.Component {
 
             <RegularCard
               headerColor="red"
-              cardTitle="No. of Incomplete Assignments"
-              cardSubtitle="A possible list of students who are struggling, ranked in order"
+              cardTitle="Student Ranking in terms of Incomplete Assignments"
+              cardSubtitle="A list of students & their amount of incomplete assignments, ranked in descending order; Top ranked are likely to be struggling to complete their assingments."
               content={
                 <div
                   style = {{maxHeight:'863px', overflow:'auto'}}>

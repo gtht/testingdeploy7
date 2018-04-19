@@ -156,7 +156,7 @@ class QnAa extends React.Component {
         <RegularCard
           fullWidth={true}
           cardTitle= "Most Common Keywords"
-          cardSubtitle={"An overview of the most common keywords submitted to this assignment"}
+          cardSubtitle={"An overview of the most frequent keywords used by students, indicating their understanding of the video content."}
           headerColor="orange"
           content={
               <WordCloud
@@ -170,7 +170,7 @@ class QnAa extends React.Component {
         <RegularCard
           fullWidth= {true}
           cardTitle= "Top Answers"
-          cardSubtitle={"A list of responses that contains the most frequent keywords"}
+          cardSubtitle={"A list of responses that contains the most frequent keywords, showing the representative responses"}
           headerColor="green"
           content={
           <MessageList db={firebase} selectedIndex={this.props.selectedIndex} selected5={this.state.selected5} />
