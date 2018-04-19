@@ -160,7 +160,7 @@ class QnAa extends React.Component {
           headerColor="orange"
           content={
               <WordCloud
-                width={800}
+                width={600}
                 height={200}
                 data={data2}
                 fontSizeMapper={fontSizeMapper}

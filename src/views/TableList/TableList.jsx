@@ -890,7 +890,7 @@ class Dashboard extends React.Component {
            <ItemGrid xs={12} sm={12} md={12}>
                  <RegularCard
               content={
-                  <BarChart width={1000} height={300} data={this.state.topFivePlaytime}>
+                  <BarChart width={900} height={300} data={this.state.topFivePlaytime}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" hide= {true} />
                     <YAxis
