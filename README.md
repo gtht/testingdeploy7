@@ -1,7 +1,7 @@
-# [CLAssistant | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
+# [The CLAssistant app | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
 ![version][version-badge] [![license][license-badge]][LICENSE]
 
-CLAssistant is an education analytics app created for the purpose of BT3103 module. This app serves as a solution to help teachers become even better teachers than they already are. Through the use of visualisation and text analytics, the CLAssistant app analyzes data that is churned out by the existing Achievements app. With this app, teachers will be able to better-understand their students in greater depth. 
+The CLAssistant app is an education analytics app created for the purpose of BT3103 module. This app serves as a solution to help teachers become even better teachers than they already are. Through the use of visualisation and text analytics, the CLAssistant app analyzes data that is churned out by the existing Achievements app. With this app, teachers will be able to better-understand their students in greater depth. 
 
 The CLAssistant app is designed to be very user-friendly, with easy navigations and instructions on how to interpret the each visualisation. The minimalistic design allows for the visualisation to be the main focus of the app. 
 
@@ -150,7 +150,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * The Achievements app
 * Prof Chris
 
-We would like to thank our prof, Prof Chris, for his patience, guidance, constructive feedback and advice throughout these 13 weeks.
+"We would like to thank our prof, Prof Chris, for his patience, guidance, constructive feedback and advice throughout these 13 weeks." - Group 4
 
 [LICENSE]: ./LICENSE.md
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
