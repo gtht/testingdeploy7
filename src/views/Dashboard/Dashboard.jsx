@@ -1,52 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-// react plugin for creating charts
-import ChartistGraph from "react-chartist";
 import _ from 'lodash';
 import firebase from "firebase";
-//import TreeMap from "react-d3-treemap";
+
 import { VictoryChart,
   VictoryBoxPlot,
   VictoryAxis,
-  VictoryCandlestick,
-  VictoryTheme,
-  VictoryTooltip,
   VictoryVoronoiContainer } from "victory";
-// Include its styles in you build process as well
-//import "react-d3-treemap/dist/react.d3.treemap.css";
-import {
-  ContentCopy,
-  Store,
-  InfoOutline,
-  Warning,
-  DateRange,
-  LocalOffer,
-  Update,
-  ArrowUpward,
-  AccessTime,
-  Accessibility
-} from "material-ui-icons";
+
+import {  AccessTime } from "material-ui-icons";
+
 import { withStyles, Grid } from "material-ui";
 
 import {
-  StatsCard,
-  ChartCard,
-  TasksCard,
   RegularCard,
   Table,
   ItemGrid,
-  MessageContents
+  TextA
 } from "components";
 
 import {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart
-} from "variables/charts";
-
-import {
-  PieChart,
-  Pie,
   LineChart,
   Line,
   XAxis,
@@ -54,39 +27,12 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  Treemap,
   RadialBarChart,
-  RadialBar,
-  x,y,width,height
+  RadialBar
 } from "recharts";
 
 import dashboardStyle from "variables/styles/dashboardStyle";
 
-const AxisLabel = ({
-  axisType,
-  x = 0,
-  y = 0,
-  width,
-  height,
-  stroke,
-  children
-}) => {
-  const isVert = axisType === "yAxis";
-  const cx = isVert ? x + 20 : x + width / 2;
-  const cy = isVert ? height / 2 + y : y + height;
-  const rot = isVert ? `270 ${cx} ${cy}` : 0;
-  return (
-    <text
-      x={cx}
-      y={cy}
-      transform={`rotate(${rot})`}
-      textAnchor="middle"
-      stroke={stroke}
-    >
-      {children}
-    </text>
-  );
-};
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
@@ -100,7 +46,7 @@ if(dd<10){
 if(mm<10){
     mm='0'+mm;
 }
-var today = dd+'/'+mm+'/'+yyyy+ ' ' + hh + ':'+min;
+today = dd+'/'+mm+'/'+yyyy+ ' ' + hh + ':'+min;
 
 class Dashboard extends React.Component {
 
@@ -109,16 +55,13 @@ class Dashboard extends React.Component {
       this.state= {
        assignmentsSubmissionPie : {},
        assignmentTable :[],
-       //youtubeTable : [],
        time_chart : [],
        userActivity : {},
        assignmentTreemap : {},
        unsubmittable_rank: [],
        finalTable : [],
-        xaxisLabel : " ",
-        yaxisLabel : " ",
-        finalTable : []
-
+       xaxisLabel : " ",
+       yaxisLabel : " "
       };
     }
 
@@ -135,7 +78,6 @@ class Dashboard extends React.Component {
   var path2= defaultPath.child('FFFFFFF_AssignmentPercentage_table/');
   var path3= defaultPath.child('FFFFFFF_AssignmentUnsubmit_Treemap/');
   var path4= defaultPath.child('FFFFFFF_AssignmentUnsubmit_Table/');
-  //var path5= defaultPath.child('ShudanWeaknessTeacherTable-head/');
   var path6= defaultPath.child('FFFFFFF_AssignmentTakingTime_Chart_data1ist/');
   var path7= defaultPath.child('FFFFFFF_UserActivity_Line/');
 
@@ -164,13 +106,7 @@ class Dashboard extends React.Component {
       this.getData(snapshot.val(),4);
 
     })
-  /*
-  path5.on('value',snapshot =>{
-      //console.log(snapshot.val());
-      this.getData(snapshot.val(),5);
 
-    })
-    */
   path6.on('value',snapshot =>{
       //console.log(snapshot.val());
       this.getData(snapshot.val(),6);
@@ -186,57 +122,46 @@ class Dashboard extends React.Component {
  }
   getData(values, num){
     var messagesVal = values;   // this is an Object
-    // iterates thru the 10 Objects
-    //alert("messageVal="+messagesVal);
     var messages = _(messagesVal)
                       .keys()
                       .map(messageKey => {
                           var cloned = _.clone(messagesVal[messageKey]);
                           cloned.key = messageKey;
                           return cloned;
-                          //alert("messageKey="+messageKey);
                       })
                       .value();
 
-      //alert(typeof messages);
-      //alert("messages="+messages
-      if (num==1){
+      if (num===1){
       this.setState({
         assignmentsSubmissionPie: messages
       });
     }
 
-       if (num==2){
+       if (num===2){
       this.setState({
         assignmentTable: messages
       });
     }
 
-        if (num==3){
+        if (num===3){
       this.setState({
         assignmentTreemap: messages
       });
     }
 
-    if (num==4){
+    if (num===4){
       this.setState({
         unsubmittable_rank: messages
       });
     }
-    /*
-     if (num==5){
-      this.setState({
-        finalTableheader: messages
-      });
-    }
-    */
-     if (num==6){
+
+    if (num===6){
       this.setState({
         time_chart: messages
       });
     }
 
-     if (num==7){
+     if (num===7){
       this.setState({
         userActivity: messages
       });
@@ -399,7 +324,7 @@ class Dashboard extends React.Component {
             cardTitle="Text Analytics"
             cardSubtitle="The analysis of the open-ended/short-answer reponses"
             content={
-              <MessageContents />
+              <TextA />
             }
           />
           </ItemGrid>
