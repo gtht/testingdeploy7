@@ -122,7 +122,7 @@ material-dashboard-react
 * [React](https://reactjs.org/) - The web framework used
 * [Firebase](https://firebase.google.com/) - The cloud storage used to store the data to be used by the app
 * [Colaboratory]() - The Jupyter notebook environment used to retrieve the Achievements app data and reformat the data that is deem usable by our preferred charting libraries
-* [ReCharts](http://recharts.org/en-US/) & [Victory | VictoryChart - FormidableLabs](https://formidable.com/open-source/victory/docs/victory-chart/) - The charting libraries used 
+* [ReCharts](http://recharts.org/en-US/) & [Victory](https://formidable.com/open-source/victory/docs/victory-chart/) - The charting libraries used 
 
 ## Authors
 
