@@ -164,6 +164,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * [Material-UI](https://material-ui-next.com/)
 * [npm](https://www.npmjs.com/)
 
-+[LICENSE]: ./LICENSE.md
-+[version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
-+[license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[LICENSE]: ./LICENSE.md
+[version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
+[license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
