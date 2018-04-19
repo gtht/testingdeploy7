@@ -259,7 +259,7 @@ class Dashboard extends React.Component {
             <RegularCard
               headerColor="orange"
               cardTitle="Percentage of Assignment Completion"
-              cardSubtitle="An overview of the <b>amount of submissions</b> received for each assignment, reviewing the progress of the class."
+              cardSubtitle="An overview of the amount of submissions received for each assignment, reviewing the progress of the class."
               statIcon={AccessTime}
               statText="updated 4 minutes ago"
               content = {
@@ -319,14 +319,10 @@ class Dashboard extends React.Component {
               content = {
                 <div style={{height:'400px', margin: '-40px'}}>
                   <VictoryChart domainPadding={{x:10, y:10}}
-                    containerComponent={
-                      <VictoryVoronoiContainer
-                        labels={(d) => `y: ${d.y}`}
-                      />
-                    }>
+                  containerComponent={<VictoryVoronoiContainer/>}>
                     <VictoryBoxPlot
-                      labels={(d) => d.y}
-                      labelComponent={<VictoryTooltip/>}
+                      medianLabels
+                      q3Labels
                       boxWidth={10}
                       whiskerWidth={5}
                       data={this.state.time_chart}
