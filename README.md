@@ -1,7 +1,7 @@
 # [CLAssistant | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
 [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
 
-CLAssistant is an education analytics app created for the purpose of BT3103 module. This app uses the template by [Creative Tim](https://creativetim.github.io/material-ui-react) as a base to this project.
+CLAssistant is an education analytics app created for the purpose of BT3103 module. This app uses the template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project.
 
 ## Links:
 
@@ -11,9 +11,8 @@ CLAssistant is an education analytics app created for the purpose of BT3103 modu
 
 Quick start options:
 
-- [Download from Github](https://github.com/creativetimofficial/material-dashboard-react/archive/master.zip).
-- [Download from Creative Tim](http://www.creative-tim.com/product/material-dashboard-react).
-- Clone the repo: `git clone https://github.com/creativetimofficial/material-dashboard-react.git`.
+- [Download from Github](https://github.com/potassiumflouride/testingdeploy7/archive/master.zip).
+- Clone the repo: `git clone https://github.com/potassiumflouride/testingdeploy7.git`.
 
 ## Terminal Commands
 
@@ -23,7 +22,6 @@ Quick start options:
 4. Run in terminal: ```npm install```
 5. Then: ```npm start```
 6. Navigate to `http://localhost:3000/`
-7. (optional) Run in terminal `npm i -g cross-env`
 
 ### What's included
 
