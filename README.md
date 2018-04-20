@@ -162,10 +162,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/) - Creative Tim 
 * [CodeCombat](https://codecombat.com/) 
 * [Getting Started with React and Firebase](https://medium.com/@diananina247/getting-started-with-react-and-firebase-b07346f8a355) - Nina Diana
-* [ReCharts](http://recharts.org/en-US/) - 
+* [ReCharts](http://recharts.org/en-US/) - ReCharts Group
 * [Victory | VictoryChart - FormidableLabs](https://formidable.com/open-source/victory/docs/victory-chart/)
-* [Material-UI](https://material-ui-next.com/)
-* [npm](https://www.npmjs.com/)
+* [Material-UI](https://material-ui-next.com/) Material-UI
+* [npm](https://www.npmjs.com/) - npm Orgs
 
 ### Inspirations:
 * [The Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home)
