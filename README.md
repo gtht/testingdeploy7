@@ -5,12 +5,12 @@ The CLAssistant app is an education analytics web-application created for the pu
 
 With this app, teachers will be able to:
 #### classroom:
-1. have an overview of the class assignments, 
-2. Check the doability of the class assignments, so as to increase/decrease the difficulty accordingly
-3. Understand his/her students' study-patterns, so as to be able to better plan & set deadlines 
-4. Take note of the possibly-struggling students
-5. Have a summary of the short-answer/open-ended answers submitted by students
-6. 
+1. have an overview of the class assignments, the submission situation and the time periods.
+2. Check the doability of the class assignments, so as to increase/decrease the difficulty accordingly.
+3. Check the effort distribution so as to decide next class & assignment plan.
+4. Understand his/her students' study-patterns including peak studying periods, so as to be able to better plan & set deadlines 
+5. Take note of the possibly-struggling students
+6. Have a summary of the short-answer/open-ended answers submitted by students so as to be able to set plans and achieve an insight about current learning effect. 
 
 Much thought & effort has been put into designing the app's 2 dashboards. The dashboards are designed to be user-friendly, with easy navigations and instructions on how to interpret the each visualisation. The minimalistic design layout allows for the visualisations to stand out and be the main focus of the app. To ensure optimal insights-gaining, we ensured that the visualisation presented is not overloaded with too much information.
 
