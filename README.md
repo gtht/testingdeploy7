@@ -1,11 +1,20 @@
 # [The CLAssistant app | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
 ![version][version-badge] [![license][license-badge]][LICENSE]
 
-The CLAssistant app is an education analytics app created for the purpose of BT3103 module. This app serves as a solution to help teachers become even better teachers than they already are. Through the use of visualisation and text analytics, the CLAssistant app analyzes data that is churned out by the existing Achievements app. With this app, teachers will be able to better-understand their students in greater depth. 
+The CLAssistant app is an education analytics web-application created for the purpose of BT3103 module. This app serve as a solution to help teachers become even better teachers than they already are. Through the use of data visualisation & analytics, the CLAssistant app aids teachers in gaining better understanding of their class by analyzing the student data collected within the [Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home). 
 
-The CLAssistant app is designed to be very user-friendly, with easy navigations and instructions on how to interpret the each visualisation. The minimalistic design allows for the visualisation to be the main focus of the app. 
+With this app, teachers will be able to:
+#### classroom:
+1. have an overview of the class assignments, 
+2. Check the doability of the class assignments, so as to increase/decrease the difficulty accordingly
+3. Understand his/her students' study-patterns, so as to be able to better plan & set deadlines 
+4. Take note of the possibly-struggling students
+5. Have a summary of the short-answer/open-ended answers submitted by students
+6. 
 
-This app uses the material-UI-react template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project.
+Much thought & effort has been put into designing the app's 2 dashboards. The dashboards are designed to be user-friendly, with easy navigations and instructions on how to interpret the each visualisation. The minimalistic design layout allows for the visualisations to stand out and be the main focus of the app. To ensure optimal insights-gaining, we ensured that the visualisation presented is not overloaded with too much information.
+
+This app uses the material-UI-react template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project. From there
 
 ## Links:
 
@@ -119,10 +128,10 @@ material-dashboard-react
 
 ## Built With
 
-* [React](https://reactjs.org/) - The web framework used
-* [Firebase](https://firebase.google.com/) - The cloud storage used to store the data to be used by the app
-* [Colaboratory]() - The Jupyter notebook environment used to retrieve the Achievements app data and reformat the data that is deem usable by our preferred charting libraries
-* [ReCharts](http://recharts.org/en-US/) & [Victory](https://formidable.com/open-source/victory/docs/victory-chart/) - The charting libraries used 
+* [React](https://reactjs.org/) - The web framework used for the app
+* [Firebase](https://firebase.google.com/) - The cloud storage used to store the data that's used in this app
+* [Colaboratory]() - The Jupyter notebook environment used to retrieve, calculate, reformat and push the modified Achievements data into the cloud storage
+* [ReCharts](http://recharts.org/en-US/) & [Victory](https://formidable.com/open-source/victory/docs/victory-chart/) - The charting libraries used to display charts & graphs in the app
 
 ## Authors
 
@@ -139,19 +148,19 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-### Reference:
-* [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/)
-* [Getting Started with React and Firebase](https://medium.com/@diananina247/getting-started-with-react-and-firebase-b07346f8a355)
-* [ReCharts](http://recharts.org/en-US/)
+### Reference(s):
+* [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/) - Creative Tim 
+* [Getting Started with React and Firebase](https://medium.com/@diananina247/getting-started-with-react-and-firebase-b07346f8a355) - Nina Diana
+* [ReCharts](http://recharts.org/en-US/) - 
 * [Victory | VictoryChart - FormidableLabs](https://formidable.com/open-source/victory/docs/victory-chart/)
 * [Material-UI](https://material-ui-next.com/)
 * [npm](https://www.npmjs.com/)
 
-### Inspiration:
-* The Achievements app
+### Inspiration(s):
+* [The Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home)
 * Prof Chris
 
-"We would like to thank our prof, Prof Chris, for his patience, guidance, constructive feedback and advice throughout these 13 weeks." - Group 4
+"We would like to thank our prof, Prof Chris, for his patience, guidance, constructive feedback and advice throughout these 13 weeks. The app would not have been possible without him." - Group 4
 
 [LICENSE]: ./LICENSE.md
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
