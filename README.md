@@ -1,16 +1,25 @@
-# [The CLAssistant app | A BT3103 Project](https://potassiumflouride.github.io/testingdeploy7)
+# [The CLAssistant app | A BT3103 Project](https://github.com/potassiumflouride/testingdeploy7)
 ![version][version-badge] [![license][license-badge]][LICENSE]
 
-The CLAssistant app is an education analytics web-application created for the purpose of BT3103 module. This app serve as a solution to help teachers become even better teachers than they already are. Through the use of data visualisation & analytics, the CLAssistant app aids teachers in gaining better understanding of their class by analyzing the student data collected within the [Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home). 
+The CLAssistant app is an education analytics web-application created for the purpose of BT3103 module. This app serves as a solution to help teachers to become better teachers than they already are. Through the use of data visualisation & analytics, the CLAssistant app aids teachers in gaining better understanding of their class by analyzing the student data collected within the [Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home). 
 
 With this app, teachers will be able to:
-#### classroom:
-1. have an overview of the class assignments, the submission situation and the time periods.
+#### [Classroom Analytics](https://bt3103-project.firebaseapp.com/dashboard)
+1. Have an overview of the class assignments, the submission situation and the time periods.
 2. Check the doability of the class assignments, so as to increase/decrease the difficulty accordingly.
 3. Check the effort distribution so as to decide next class & assignment plan.
 4. Understand his/her students' study-patterns including peak studying periods, so as to be able to better plan & set deadlines 
 5. Take note of the possibly-struggling students
 6. Have a summary of the short-answer/open-ended answers submitted by students so as to be able to set plans and achieve an insight about current learning effect. 
+
+#### [Code Combat Analytics](https://bt3103-project.firebaseapp.com/codecombat):
+1. Have an overview of the student’s participation in code combat and identify the students who are most active and consistent
+2. Classify the students according to their coding competency 
+3. Identify the better performing students on Code Combat
+3. Take note of the possibly-struggling students on Code Combat
+4. Have a snap shot of individual student's recent code combat activity
+
+
 
 Much thought & effort has been put into designing the app's 2 dashboards. The dashboards are designed to be user-friendly, with easy navigations and instructions on how to interpret the each visualisation. The minimalistic design layout allows for the visualisations to stand out and be the main focus of the app. To ensure optimal insights-gaining, we ensured that the visualisation presented is not overloaded with too much information.
 
@@ -150,17 +159,18 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ### Reference(s):
 * [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/) - Creative Tim 
+* [CodeCombat](https://codecombat.com/) 
 * [Getting Started with React and Firebase](https://medium.com/@diananina247/getting-started-with-react-and-firebase-b07346f8a355) - Nina Diana
 * [ReCharts](http://recharts.org/en-US/) - 
 * [Victory | VictoryChart - FormidableLabs](https://formidable.com/open-source/victory/docs/victory-chart/)
 * [Material-UI](https://material-ui-next.com/)
 * [npm](https://www.npmjs.com/)
 
-### Inspiration(s):
+### Inspirations:
 * [The Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home)
-* Prof Chris
+* Prof [Chris Boesch](http://nus.edu.sg/alset/staff.html) 
 
-"We would like to thank our prof, Prof Chris, for his patience, guidance, constructive feedback and advice throughout these 13 weeks. The app would not have been possible without him." - Group 4
+"We would like to thank our Prof, Prof Chris, for his patience, guidance, constructive feedback and advice throughout these 13 weeks. The app would not have been possible without him." - Group 4
 
 [LICENSE]: ./LICENSE.md
 [version-badge]: https://img.shields.io/badge/version-1.0.0-blue.svg
