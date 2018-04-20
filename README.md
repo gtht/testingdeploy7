@@ -29,6 +29,7 @@ This app uses the material-UI-react template, [Material Dashboard React - Free M
 
 + [Live Preview](https://bt3103-project.firebaseapp.com/)
 + [Video Guide - How To Interpret The Visualisations](https://youtu.be/b2DVP0EyZEY)
++ [Documentation](https://docs.google.com/document/d/1QlKL6bljvA135ZgKS4cNoUDEByYrv1h5F6avFeopuNc/edit?usp=sharing)
 
 ## Getting Started
 
