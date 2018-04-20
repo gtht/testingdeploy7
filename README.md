@@ -1,7 +1,8 @@
 # [The CLAssistant app | A BT3103 Project](https://github.com/potassiumflouride/testingdeploy7)
 ![version][version-badge] [![license][license-badge]][LICENSE]
 
-The CLAssistant app is an education analytics web-application created for the purpose of BT3103 module. This app serves as a solution to help teachers to become better teachers than they already are. Through the use of data visualisation & analytics, the CLAssistant app aids teachers in gaining better understanding of their class by analyzing the student data collected within the [Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home). 
+The CLAssistant app is an education analytics web-application created for the purpose of BT3103 module. This app serve as a solution to help teachers become even better teachers than they already are. Through the use of data visualisation & analytics, the CLAssistant app aids teachers in gaining better understanding of their class by analyzing the student data collected within the [Achievements App](http://nus.edu.sg/alset/apps/achievements/#/home). 
+
 
 With this app, teachers will be able to:
 #### [Classroom Analytics](https://bt3103-project.firebaseapp.com/dashboard)
@@ -20,15 +21,14 @@ With this app, teachers will be able to:
 4. Have a snap shot of individual student's recent code combat activity
 
 
-
 Much thought & effort has been put into designing the app's 2 dashboards. The dashboards are designed to be user-friendly, with easy navigations and instructions on how to interpret the each visualisation. The minimalistic design layout allows for the visualisations to stand out and be the main focus of the app. To ensure optimal insights-gaining, we ensured that the visualisation presented is not overloaded with too much information.
 
-This app uses the material-UI-react template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project. From there
+This app uses the material-UI-react template, [Material Dashboard React - Free Material-UI Design Admin](https://creativetimofficial.github.io/material-dashboard-react/), by [Creative Tim](https://github.com/creativetimofficial/) as a base to this project.
 
 ## Links:
 
 + [Live Preview](https://bt3103-project.firebaseapp.com/)
-+ [Video Guide - How To Interpret The Visualisations]
++ [Video Guide - How To Interpret The Visualisations](https://youtu.be/b2DVP0EyZEY)
 
 ## Getting Started
 
